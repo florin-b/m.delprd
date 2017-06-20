@@ -13,10 +13,6 @@ $(document)
 
 function calculeazaDistanta() {
 
-	$("#map_canvas_delegatie").show();
-
-	$("#dateTraseu").show();
-
 	var judetPlecare = $('#select-judet-plecare').find(":selected").text();
 	var locPlecare = $('#select-loc-plecare').find(":selected").text();
 
@@ -52,6 +48,11 @@ function calculeazaDistanta() {
 
 	stopsArray.push("Romania, " + judetSosire + ", " + locSosire);
 
+	if (locPlecare == locSosire && stopsArray.length == 2) {
+		showAlertCreare('Atentie!', 'Adaugati o oprire.');
+		return false;
+	}
+
 	var minZoomLevel = 12;
 
 	var map = new google.maps.Map(document
@@ -63,6 +64,9 @@ function calculeazaDistanta() {
 
 	var directionsDisplay = new google.maps.DirectionsRenderer;
 	var directionsService = new google.maps.DirectionsService;
+
+	$("#map_canvas_delegatie").show();
+	$("#dateTraseu").show();
 
 	document.getElementById('map_canvas_delegatie').style.visibility = "visible";
 	document.getElementById('labelTraseu1').style.visibility = "visible";
@@ -85,7 +89,7 @@ function calculeazaDistanta() {
 		origin : stopsArray[0],
 		destination : stopsArray[stopsArray.length - 1],
 		waypoints : waypts,
-		optimizeWaypoints : true,
+		optimizeWaypoints : false,
 		travelMode : 'DRIVING'
 	}, function(response, status) {
 		if (status === 'OK') {
@@ -104,6 +108,7 @@ function calculeazaDistanta() {
 			}
 
 			$('#kmtraseu').text('' + distanta / 1000);
+			$("#saveDelegatie").show();
 
 		} else {
 			window.alert('Eroare calculare distanta ' + status);

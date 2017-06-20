@@ -12,20 +12,24 @@
 
 
 
-
 </head>
 <body>
 	<div data-role="page" id="main-page" data-theme="a"
 		data-url="auth/mainMenu.jsp">
 
-		<div data-role="panel" data-display="push" id="left-panel1"
+		<div data-role="panel" data-display="overlay" id="left-panel1"
 			data-position="left" data-theme="a">
 			<ul data-role="listview">
 				<jsp:include page="navbar.jsp" />
 			</ul>
+			<script type="text/javascript">
+				$(document).on('pageshow', function() {
+					$('#left-panel1').panel('open');
+				});
+			</script>
 		</div>
 		<div data-role="header" data-theme="a">
-			<h1>Meniu principal</h1>
+			<h1></h1>
 			<a href="#left-panel1" data-theme="a" data-icon="arrow-r"
 				data-iconpos="notext" data-shadow="false" data-iconshadow="false"
 				class="ui-icon-nodisc">Meniu</a>

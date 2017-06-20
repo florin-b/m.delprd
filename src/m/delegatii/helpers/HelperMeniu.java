@@ -10,6 +10,7 @@ public class HelperMeniu {
 
 	public static void addMenuOption(List<NavigationDetails> navigationLinks, NavigationDetails nd) {
 
+		//tratare situatie expirare sesiune
 		TipAnjagat tipAngajat = UserInfo.getInstance().getTipAngajat();
 
 		switch (tipAngajat) {

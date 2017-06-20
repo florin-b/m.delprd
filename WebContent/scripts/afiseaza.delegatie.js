@@ -2,21 +2,28 @@ var listOpririTest = [];
 var json_parsed;
 var rowid;
 
-$(document).on('pageshow', '#afiseaza', function() {
+$(document).on('pagecreate', '#afiseaza', function() {
+
+	initDateFields();
 
 });
 
 function afiseazaDelegatii() {
-	var date = $('#dateStart').val();
+	var dStart = $('#dateStart').val();
+
+	var dStop = $('#dateStop').val();
 
 	var codAng = $('#codAng').text();
 
 	$.mobile.loading('show');
 	$.ajax({
 		type : "GET",
-		url : window.location.origin + "/flota.service/delegatii/afiseazaDelegatii",
+		url : window.location.origin
+				+ "/flota.service/delegatii/afiseazaDelegatii",
 		data : ({
-			codAngajat : codAng
+			codAngajat : codAng,
+			dataStart : dStart,
+			dataStop : dStop
 		}),
 		cache : false,
 		dataType : "text",
@@ -32,14 +39,14 @@ function afiseazaDelegatii() {
 			var delegatie = json_parsed[u];
 
 			var str = '<li data-rowid = ' + delegatie.id + '>' + '<div id ='
-					+ delegatie.id + '>' + adaugaDelegatie1(delegatie)
+					+ delegatie.id + '>' + adaugaDelegatieAfis(delegatie)
 					+ '</div>' + '</li>';
 
 			$('#delegatiiList').append(str).listview('refresh');
 
 		}
 
-		$.mobile.loading('hide')
+		$.mobile.loading('hide');
 
 	}
 
@@ -49,28 +56,105 @@ function afisDelegatii() {
 	afiseazaDelegatii();
 }
 
-function adaugaDelegatie1(delegatie) {
+function adaugaDelegatieAfis(delegatie) {
 
-	var content = '<table border="0" style="width:100%;" cellpadding="6" data-role="table"  data-mode="columntoggle" class="ui-responsive table-stroke">';
-	content += '<tr><td colspan="2"><b>' + delegatie.numeAngajat
-			+ "</b></td></tr>";
+	var content = '<div class="ui-corner-all custom-corners">';
 
-	content += '<tr><td width="30%">Data plecare:</td><td> '
-			+ delegatie.dataPlecare + "</td></tr>";
-	content += '<tr><td>Ora plecare: </td><td>' + delegatie.oraPlecare
-			+ "</td></tr>";
+	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat
+			+ "</div>";
 
-	content += decodeOpriri(delegatie.listOpriri);
+	content += '<div class="ui-body ui-body-a">';
 
-	content += '<tr><td>Km calculati: </td><td>' + delegatie.distantaCalculata
-			+ " km </td></tr>";
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Data plecare:</div>';
+	content += '<div class="ui-block-b">' + delegatie.dataPlecare + '</div>';
+	content += '</div>';
 
-	content += '<tr><td>Km realizati: </td><td>' + delegatie.distantaEfectuata
-			+ " km </td></tr>";
-	content += '<tr><td>Km raprobati: </td><td>' + delegatie.distantaAprobata
-			+ " km </td></tr>";
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Ora plecare:</div>';
+	content += '<div class="ui-block-b">' + delegatie.oraPlecare + '</div>';
+	content += '</div>';
 
-	content += '</table>';
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Data sosire:</div>';
+	content += '<div class="ui-block-b">' + delegatie.dataSosire + '</div>';
+	content += '</div>';
+
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Traseu:</div>';
+	content += '<div class="ui-block-b">' + decodeOpriri(delegatie.listOpriri)
+			+ '</div>';
+	content += '</div>';
+
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Km calculati:</div>';
+	content += '<div class="ui-block-b">' + delegatie.distantaCalculata
+			+ '</div>';
+	content += '</div>';
+
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Km realizati:</div>';
+	content += '<div class="ui-block-b">' + delegatie.distantaEfectuata
+			+ '</div>';
+	content += '</div>';
+
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Km aprobati:</div>';
+	content += '<div class="ui-block-b">' + delegatie.distantaAprobata
+			+ '</div>';
+	content += '</div>';
+
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Stare:</div>';
+	content += '<div class="ui-block-b">'
+			+ getStatusDelegatie(delegatie.statusCode) + '</div>';
+	content += '</div>';
+
+	content += '</div>';
+
+	content += '</div>';
 
 	return content;
+}
+
+function initDateFields() {
+	$("#dateStart").datepicker({
+		dateFormat : "dd-mm-yy"
+	});
+
+	$("#dateStop").datepicker({
+		dateFormat : "dd-mm-yy"
+	});
+
+	var firstDate = new Date();
+	var lastDate = new Date();
+
+	var daysToAdd = 0;
+
+	firstDate.setDate(1);
+	lastDate.setDate(lastDate.getDate() + daysToAdd);
+	$("#dateStart").datepicker("setDate", firstDate);
+	$("#dateStop").datepicker("setDate", lastDate);
+}
+
+function getStatusDelegatie(codStatus) {
+	var strStatus = 'Nedefinit';
+
+	switch (codStatus) {
+	case "-1":
+		strStatus = " <b>Trimisa spre aprobare</b>"
+		break;
+
+	case "1":
+		strStatus = "  <b>Aprobata</b>"
+		break;
+
+	case "6":
+		strStatus = "  <b>Respinsa</b>"
+		break;
+
+	}
+
+	return strStatus;
+
 }

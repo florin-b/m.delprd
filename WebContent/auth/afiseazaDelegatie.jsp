@@ -3,12 +3,31 @@
 <head>
 <title>DELEGATII</title>
 
+
+
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
 <link rel="stylesheet"
 	href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+
+
+<script type="text/javascript" src="../scripts/helpers/helper.adrese.js"></script>
+
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 <script
 	src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+
+
 
 </head>
 <body>
@@ -17,7 +36,7 @@
 	<div data-role="page" id="afiseaza" data-theme="d" data-url="">
 
 
-		<div data-role="panel" data-display="push" data-position="left"
+		<div data-role="panel" data-display="overlay" data-position="left"
 			id="left-panel" data-theme="a">
 			<ul data-role="listview">
 				<jsp:include page="navbar.jsp" />
@@ -33,32 +52,50 @@
 		<div data-role="content" id="loadContent">
 
 
-			<table style="width: 100%;" cellpadding="6" data-role="table"
-				data-mode="columntoggle:none" class="ui-responsive table-stroke">
+			<div class="ui-corner-all custom-corners">
+
+				<div class="ui-bar ui-bar-a">Interval cautare</div>
+
+				<div class="ui-body ui-body-a">
+
+					<div class="ui-grid-b ui-responsive">
+
+						<div class="ui-block-a">Start</div>
+
+						<div class="ui-block-b">
+							<input id="dateStart" type="text" readonly="readonly" />
+						</div>
+
+					</div>
 
 
-				<tr>
-					<td colspan="2"><b>Interval cautare</b></td>
-				</tr>
+					<div class="ui-grid-b ui-responsive">
 
-				<tr>
-					<td width="30%">Start</td>
-					<td><input type="date" name="date" id="dateStart" value="" />
-					</td>
-				</tr>
+						<div class="ui-block-a">Stop</div>
 
-				<tr>
-					<td width="30%">Stop</td>
-					<td><input type="date" name="date" id="dateStop" value="" />
-					</td>
-				</tr>
+						<div class="ui-block-b">
+							<input id="dateStop" type="text" readonly="readonly" />
+						</div>
+
+					</div>
 
 
-				<tr>
-					<td colspan=2><a href="#" class="ui-btn ui-corner-all"
-						style="background: #7CCD7C; color: white;"
-						onclick="afisDelegatii();">Cauta</a></td>
-			</table>
+					<div class="ui-grid-b ui-responsive">
+
+						<div class="ui-block-a"></div>
+
+						<div class="ui-block-b">
+							<a href="#" class="ui-btn ui-corner-all"
+								onclick="afisDelegatii();">Cauta</a>
+						</div>
+
+					</div>
+
+
+
+				</div>
+
+			</div>
 
 
 
@@ -67,9 +104,11 @@
 			<script type="text/javascript" src="../scripts/afiseaza.delegatie.js"></script>
 
 
-			<ol data-role="listview" id="delegatiiList" style="margin: 5px;">
+			<br>
 
-			</ol>
+			<ul data-role="listview" id="delegatiiList" >
+
+			</ul>
 
 
 		</div>

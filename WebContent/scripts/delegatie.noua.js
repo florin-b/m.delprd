@@ -1,3 +1,58 @@
+(function(b) {
+	b.support.touch = "ontouchend" in document;
+	if (!b.support.touch) {
+		return;
+	}
+	var c = b.ui.mouse.prototype, e = c._mouseInit, a;
+	function d(g, h) {
+		if (g.originalEvent.touches.length > 1) {
+			return;
+		}
+		g.preventDefault();
+		var i = g.originalEvent.changedTouches[0], f = document
+				.createEvent("MouseEvents");
+		f.initMouseEvent(h, true, true, window, 1, i.screenX, i.screenY,
+				i.clientX, i.clientY, false, false, false, false, 0, null);
+		g.target.dispatchEvent(f);
+	}
+	c._touchStart = function(g) {
+		var f = this;
+		if (a || !f._mouseCapture(g.originalEvent.changedTouches[0])) {
+			return;
+		}
+		a = true;
+		f._touchMoved = false;
+		d(g, "mouseover");
+		d(g, "mousemove");
+		d(g, "mousedown");
+	};
+	c._touchMove = function(f) {
+		if (!a) {
+			return;
+		}
+		this._touchMoved = true;
+		d(f, "mousemove");
+	};
+	c._touchEnd = function(f) {
+		if (!a) {
+			return;
+		}
+		d(f, "mouseup");
+		d(f, "mouseout");
+		if (!this._touchMoved) {
+			d(f, "click");
+		}
+		a = false;
+	};
+	c._mouseInit = function() {
+		var f = this;
+		f.element.bind("touchstart", b.proxy(f, "_touchStart")).bind(
+				"touchmove", b.proxy(f, "_touchMove")).bind("touchend",
+				b.proxy(f, "_touchEnd"));
+		e.call(f);
+	};
+})(jQuery);
+
 $(document).on(
 		"pagecreate",
 		"#new-page",
@@ -5,6 +60,16 @@ $(document).on(
 
 			$('body').on('click', '.deleteMe', function() {
 				$(this).parent().remove();
+				$('#stopsList').listview('refresh');
+			});
+
+			$("#saveDelegatie").hide();
+			$("#dateTraseu").hide();
+
+			$("#stopsList").sortable();
+			$("#stopsList").disableSelection();
+
+			$("#stopsList").on("sortstop", function(event, ui) {
 				$('#stopsList').listview('refresh');
 			});
 
@@ -85,11 +150,10 @@ function adaugaStop() {
 	if (localitate != '') {
 
 		$('#calcDist').show();
-		$('#saveDelegatie').show();
 
 		$('#stopsList').append(
 				'<li value = ' + codjudet + '><a>' + stop
-						+ '</a><a class="deleteMe"></a></li>').listview(
+						+ '</span></a><a class="deleteMe"></a></li>').listview(
 				'refresh');
 
 	} else {
@@ -152,19 +216,19 @@ function salveazaDelegatie() {
 
 	var opriri = judetPlecare + ' / ' + locPlecare;
 
-	$('.stopsList').each(function() {
-		var list = $(this).find('li');
-		$(list.get()).each(function() {
-			var currentStop = $(this).val() + ' / ' + $(this).text();
+	$('.stopsList').each(
+			function() {
+				var list = $(this).find('li');
+				$(list.get()).each(
+						function() {
+							var currentStop = $(this).val() + ' / '
+									+ $(this).text().split('/')[1];
 
-			if (opriri == '')
-				opriri = currentStop;
-			else
-				opriri += "," + currentStop;
+							opriri += "," + currentStop;
 
-		});
+						});
 
-	})
+			})
 
 	opriri += ',' + judetSosire + ' / ' + locSosire;
 

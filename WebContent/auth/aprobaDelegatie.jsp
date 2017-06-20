@@ -35,7 +35,7 @@
 	<div data-role="page" id="aproba" data-theme="d" data-url="">
 
 
-		<div data-role="panel" data-display="push" data-position="left"
+		<div data-role="panel" data-display="overlay" data-position="left"
 			id="left-panel2" data-theme="a">
 			<ul data-role="listview">
 				<jsp:include page="navbar.jsp" />

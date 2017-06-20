@@ -14,9 +14,13 @@ function aprobaDelegatie(delegatieId) {
 
 	var kmAprob = $('#' + delegatieId).find("#kmaprob").val();
 
-	if (!$.isNumeric(kmAprob)) {
-		showAlertAprob('Atentie!', 'Valoare km aprobati invalida.');
-		return;
+	if (kmAprob == null)
+		kmAprob = 0;
+	else {
+		if (!$.isNumeric(kmAprob)) {
+			showAlertAprob('Atentie!', 'Valoare km aprobati invalida.');
+			return;
+		}
 	}
 
 	var tipAng = $('#tipAng').text();
@@ -26,7 +30,8 @@ function aprobaDelegatie(delegatieId) {
 
 	$.ajax({
 		type : "POST",
-		url : window.location.origin + "/flota.service/delegatii/aprobaDelegatie",
+		url : window.location.origin
+				+ "/flota.service/delegatii/aprobaDelegatie",
 		data : ({
 			idDelegatie : delegatieId,
 			tipAngajat : tipAng,
@@ -38,7 +43,7 @@ function aprobaDelegatie(delegatieId) {
 		success : onSuccess
 	});
 
-	function onSuccess(data) {
+	function onSuccess() {
 		showAlertAprob('Status', 'Delegatie aprobata');
 		$.mobile.loading('hide');
 		afisDelegatiiAprob();
@@ -57,23 +62,21 @@ function respingeDelegatie(delegatieId) {
 	var tipAng = $('#tipAng').text();
 	var codAng = $('#codAng').text();
 
-	
-	
 	$.mobile.loading('show');
 
-	$
-			.ajax({
-				type : "POST",
-				url : window.location.origin + "/flota.service/delegatii/respingeDelegatie",
-				data : ({
-					idDelegatie : delegatieId,
-					tipAngajat : tipAng,
-					codAngajat : codAng
-				}),
-				cache : false,
-				dataType : "text",
-				success : onSuccess
-			});
+	$.ajax({
+		type : "POST",
+		url : window.location.origin
+				+ "/flota.service/delegatii/respingeDelegatie",
+		data : ({
+			idDelegatie : delegatieId,
+			tipAngajat : tipAng,
+			codAngajat : codAng
+		}),
+		cache : false,
+		dataType : "text",
+		success : onSuccess
+	});
 
 	function onSuccess(data) {
 		$.mobile.loading('hide');
@@ -90,18 +93,18 @@ function afisDelegatiiAprob() {
 	var tipAng = $('#tipAng').text();
 	var unitLog = $('#unitLog').text();
 
-	$
-			.ajax({
-				type : "GET",
-				url : window.location.origin + "/flota.service/delegatii/afisDelegatiiAprob",
-				data : ({
-					tipAngajat : tipAng,
-					unitLog : unitLog
-				}),
-				cache : false,
-				dataType : "text",
-				success : onSuccess
-			});
+	$.ajax({
+		type : "GET",
+		url : window.location.origin
+				+ "/flota.service/delegatii/afisDelegatiiAprob",
+		data : ({
+			tipAngajat : tipAng,
+			unitLog : unitLog
+		}),
+		cache : false,
+		dataType : "text",
+		success : onSuccess
+	});
 
 	function onSuccess(data) {
 
@@ -150,11 +153,15 @@ function adaugaDelegatie(delegatie) {
 	content += '<tr><td>Km calculati: </td><td>' + delegatie.distantaCalculata
 			+ " km </td></tr>";
 
-	content += '<tr><td>Km realizati: </td><td>' + delegatie.distantaEfectuata
-			+ " km </td></tr>";
-	content += '<tr><td> Km aprobati: </td>';
+	
+	
+	if (delegatie.distantaEfectuata > 0) {
+		content += '<tr><td>Km realizati: </td><td>'
+				+ delegatie.distantaEfectuata + " km </td></tr>";
+		content += '<tr><td> Km aprobati: </td>';
 
-	content += '<td><input type="text" name="name" id="kmaprob" value="0"></td></tr>';
+		content += '<td><input type="text" name="name" id="kmaprob" value="0"></td></tr>';
+	}
 
 	content += '</table>';
 
