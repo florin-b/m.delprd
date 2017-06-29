@@ -1,10 +1,25 @@
-function decodeOpriri(opriri) {
+function decodeOpriri(delegatie) {
 
-	var tt = opriri + '';
-	var arrayOpriri = tt.split(',');
 	var content = '<table border="0" style="width:100%;" cellpadding="5" data-role="table"  data-mode="columntoggle" class="ui-responsive">';
-	for (var i = 0; i < arrayOpriri.length; i++) {
-		content += '<tr><td>' + arrayOpriri[i] + '</td></tr>';
+
+	var vizitatStr = '<img src="../img/ok.png">';
+	var nevizitatStr = '<img src="../img/cancel.png">';
+
+	var status = '';
+	for (var i = 0; i < delegatie.listOpriri.length; i++) {
+
+		if (i > 0 && i < delegatie.listOpriri.length - 1
+				&& delegatie.distantaEfectuata > 0) {
+			if (delegatie.listOpriri[i].vizitat)
+				status = vizitatStr;
+			else
+				status = nevizitatStr;
+		}
+
+		content += '<tr><td>' + delegatie.listOpriri[i].adresa + '</td><td>'
+				+ status + '</td></tr>';
+
+		status = '';
 	}
 
 	content += '</table>';
@@ -20,10 +35,8 @@ function getOpriri(idDelegatie, listDelegatii) {
 
 		if (listDelegatii[i].id == idDelegatie) {
 
-			var arrayOpriri = (listDelegatii[i].listOpriri + '').split(',');
-
-			for (var j = 0; j < arrayOpriri.length; j++) {
-				stops.push(arrayOpriri[j]);
+			for (var j = 0; j < listDelegatii[i].listOpriri.length; j++) {
+				stops.push(listDelegatii[i].listOpriri[j].adresa);
 			}
 		}
 	}
@@ -42,9 +55,7 @@ function getCoordsTraseu(idDelegatie) {
 		url : window.location.origin
 				+ "/flota.service/delegatii/getCoordsTraseu",
 		data : ({
-			codMasina : '90033028',
-			dataStart : '08-06-2017 06:50',
-			dataStop : '08-06-2017 07:02'
+			idDelegatie : idDelegatie
 		}),
 		cache : false,
 		dataType : "text",

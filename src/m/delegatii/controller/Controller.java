@@ -31,13 +31,11 @@ public class Controller extends HttpServlet {
 
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		String action = request.getParameter("action");
 
@@ -70,15 +68,15 @@ public class Controller extends HttpServlet {
 				session.setAttribute("userAuthLevel", "0");
 
 				if (account.loginUser(user)) {
-					
+
 					user.setCod(UserInfo.getInstance().getCod());
 					user.setUnitLog(UserInfo.getInstance().getUnitLog());
 					user.setTipAng(UserInfo.getInstance().getTipAngajat().name());
-					
+					user.setListMasini(UserInfo.getInstance().getListMasini());
+
 					session.setAttribute("userAuthLevel", "1");
 					session.setAttribute("user", user);
 					request.getRequestDispatcher("/auth/mainMenu.jsp").include(request, response);
-					
 
 				} else {
 					session.setAttribute("account", account);

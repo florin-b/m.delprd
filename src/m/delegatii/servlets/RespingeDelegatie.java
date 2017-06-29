@@ -26,17 +26,7 @@ public class RespingeDelegatie extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		try {
-			PrintWriter writer = response.getWriter();
-
-			String idDelegatie = request.getParameter("idDelegatie");
-
-			new OperatiiDelegatii().respingeDelegatie(idDelegatie);
-
-			writer.write("success");
-		} catch (Exception ex) {
-			System.out.println(ex.toString());
-		}
+		
 
 	}
 

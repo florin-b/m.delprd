@@ -6,9 +6,11 @@ $(document).on(
 			var currentId = document.getElementById("delid").value;
 
 			listOpririTest = getOpriri(currentId, json_parsed);
+			
+		
 
-			var coordsTraseu = getCoordsTraseu('11').replace('[', '').replace(
-					']', '').split(",");
+			var coordsTraseu = getCoordsTraseu(currentId).replace('[', '')
+					.replace(']', '').split(",");
 
 			var minZoomLevel = 12;
 
@@ -39,8 +41,7 @@ $(document).on(
 				strokeOpacity : 1.0,
 				strokeWeight : 5
 			});
-			
-			
+
 			var stopsArray = [];
 			for (var i = 0; i < listOpririTest.length; i++) {
 				var currentLine = (listOpririTest[i] + '').split("/");
@@ -59,7 +60,7 @@ $(document).on(
 				});
 
 			}
-			
+
 			traseuPath.setMap(map);
 			directionsDisplay.setMap(map);
 
@@ -73,7 +74,7 @@ $(document).on(
 				if (status === 'OK') {
 
 					directionsDisplay.setDirections(response);
-					
+
 					google.maps.event.trigger(map, 'resize');
 
 				} else {
@@ -81,6 +82,4 @@ $(document).on(
 				}
 			});
 
-			
-			
 		});

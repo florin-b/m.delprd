@@ -26,18 +26,7 @@ public class AprobaDelegatie extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		try {
-			PrintWriter writer = response.getWriter();
-
-			String idDelegatie = request.getParameter("idDelegatie");
-			double kmAprobati = Double.parseDouble(request.getParameter("kmAprobati"));
-
-			new OperatiiDelegatii().aprobaDelegatie(idDelegatie, kmAprobati);
-
-			writer.write("11");
-		} catch (Exception ex) {
-			System.out.println(ex.toString());
-		}
+		
 
 	}
 

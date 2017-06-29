@@ -82,7 +82,7 @@ function adaugaDelegatieAfis(delegatie) {
 
 	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
 	content += '<div class="ui-block-a">Traseu:</div>';
-	content += '<div class="ui-block-b">' + decodeOpriri(delegatie.listOpriri)
+	content += '<div class="ui-block-b">' + decodeOpriri(delegatie)
 			+ '</div>';
 	content += '</div>';
 
@@ -99,8 +99,8 @@ function adaugaDelegatieAfis(delegatie) {
 	content += '</div>';
 
 	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
-	content += '<div class="ui-block-a">Km aprobati:</div>';
-	content += '<div class="ui-block-b">' + delegatie.distantaAprobata
+	content += '<div class="ui-block-a">Km respinsi:</div>';
+	content += '<div class="ui-block-b">' + delegatie.distantaRespinsa
 			+ '</div>';
 	content += '</div>';
 
@@ -146,6 +146,7 @@ function getStatusDelegatie(codStatus) {
 		break;
 
 	case "1":
+	case "2":
 		strStatus = "  <b>Aprobata</b>"
 		break;
 

@@ -1,37 +1,20 @@
 package m.delegatii.test;
 
-import java.sql.ResultSet;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-
-
-import m.delegatii.beans.BeanDelegatieAprobare;
-import m.delegatii.enums.EnumTipAprob;
-import m.delegatii.enums.TipAnjagat;
-import m.delegatii.model.OperatiiDelegatii;
-import m.delegatii.utils.DateUtils;
+import m.delegatii.model.OperatiiMasini;
 
 public class TestClass {
 
 	public static void main(String[] args) throws Exception {
 
-		String opriri = "17 /  GALATI,9 / BRAILA /  BRAILA,40 / BUCURESTI";
 		
-		String[] arrayOpriri = opriri.split(",");
 		
-		for (int i = 0; i < arrayOpriri.length; i++) {
-
-			String[] arrayAdresa = arrayOpriri[i].trim().split("/");
-			
-			System.out.println(arrayAdresa[0] + ", " + arrayAdresa[1]);
-			
-		}
+		System.out.println(new OperatiiMasini().getMasiniAlocate("00083215"));
+		
 		
 		
 

@@ -28,8 +28,8 @@
 				action="<%=response.encodeURL("Controller?action=dologin")%>">
 				<h3>Autentificare</h3>
 				<label for="txt-user">Utilizator</label> <input type="text"
-					name="txt_user" value="androag"> <label for="txt-password">Parola</label>
-				<input type="password" name="txt_password" value="112"> <input
+					name="txt_user" value="CPITA"> <label for="txt-password">Parola</label>
+				<input type="password" name="txt_password" value="tG6q1x"> <input
 					type="submit" value="Login" data-rel="popup" id="btn-submit"
 					data-transition="pop" data-position-to="window"
 					class="ui-btn ui-btn-b ui-corner-all mc-top-margin-1-5"></input>

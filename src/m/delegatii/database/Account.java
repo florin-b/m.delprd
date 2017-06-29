@@ -3,12 +3,14 @@ package m.delegatii.database;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import m.delegatii.beans.User;
 import m.delegatii.beans.UserInfo;
+import m.delegatii.model.OperatiiMasini;
 import m.delegatii.utils.Utils;
 
 public class Account {
@@ -60,6 +62,10 @@ public class Account {
 				}
 
 				UserInfo.getInstance().setCod(codAgent);
+				
+				List<String> listMasini = new OperatiiMasini().getMasiniAlocate(UserInfo.getInstance().getCod());
+
+				UserInfo.getInstance().setListMasini(listMasini.toString());
 
 				return true;
 			} else {

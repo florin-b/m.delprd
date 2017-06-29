@@ -10,6 +10,7 @@ public class UserInfo {
 	private String cod;
 	private TipAnjagat tipAngajat;
 	private String unitLog;
+	private String listMasini;
 
 	private static UserInfo instance;
 
@@ -78,6 +79,14 @@ public class UserInfo {
 
 	public void setUnitLog(String unitLog) {
 		this.unitLog = unitLog;
+	}
+
+	public String getListMasini() {
+		return listMasini;
+	}
+
+	public void setListMasini(String listMasini) {
+		this.listMasini = listMasini;
 	}
 
 }

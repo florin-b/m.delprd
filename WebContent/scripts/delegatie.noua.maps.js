@@ -107,7 +107,7 @@ function calculeazaDistanta() {
 				distanta += route.legs[i].distance.value;
 			}
 
-			$('#kmtraseu').text('' + distanta / 1000);
+			$('#kmtraseu').text('' + parseInt(distanta / 1000));
 			$("#saveDelegatie").show();
 
 		} else {

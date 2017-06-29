@@ -8,8 +8,9 @@ public class User {
 	private String filiala = "";
 	private String message = "mes";
 	private String cod = "";
-	private String unitLog ="";
+	private String unitLog = "";
 	private String tipAng = "";
+	private String listMasini = "";
 
 	public User() {
 
@@ -71,8 +72,6 @@ public class User {
 		return true;
 	}
 
-	
-	
 	public String getCod() {
 		return cod;
 	}
@@ -99,6 +98,14 @@ public class User {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public String getListMasini() {
+		return listMasini;
+	}
+
+	public void setListMasini(String listMasini) {
+		this.listMasini = listMasini;
 	}
 
 	@Override

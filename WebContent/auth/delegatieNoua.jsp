@@ -108,7 +108,7 @@
 
 						<div class="ui-block-b">
 							<input type="text" name="nrAuto" class="ui-corner-all"
-								id="nrAuto" value="GL-99-VVV" readonly="readonly" />
+								id="nrAuto" readonly="readonly" />
 						</div>
 
 
@@ -134,12 +134,12 @@
 						<div class="ui-block-a">Selecteaza nr. auto</div>
 
 						<div class="ui-block-b">
-							<select name="select-auto" id="select-auto">
-								<option value="GL-10-AAA">GL-10-AAA</option>
-								<option value="GL-10-BBB">GL-10-BBB</option>
-								<option value="GL-10-CCC">GL-10-CCC</option>
-								<option value="GL-10-DDD">GL-10-DDD</option>
-							</select>
+							<div class="ui-field-contain">
+								<select name="select-auto" id="select-auto">
+
+								</select>
+
+							</div>
 						</div>
 
 
@@ -160,17 +160,6 @@
 
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -318,7 +307,7 @@
 
 			<div class="ui-corner-all custom-corners">
 
-				<div class="ui-bar ui-bar-a">Opriri</div>
+				<div class="ui-bar ui-bar-a">Puncte definire traseu</div>
 
 				<div class="ui-body ui-body-a">
 
@@ -362,7 +351,7 @@
 						<div class="ui-block-b">
 
 							<input type="button" class="ui-btn ui-corner-all" data-theme="a"
-								onclick="adaugaStop();" value="Adauga oprire"></a>
+								onclick="adaugaStop();" value="Adauga"></a>
 
 						</div>
 					</div>
@@ -447,5 +436,6 @@
 	<div id="codAng" style="visibility: hidden">${sessionScope.user.cod}</div>
 	<div id="tipAng" style="visibility: hidden">${sessionScope.user.tipAng}</div>
 	<div id="unitLog" style="visibility: hidden">${sessionScope.user.unitLog}</div>
+	<div id="listMasini" style="visibility: hidden">${sessionScope.user.listMasini}</div>
 </body>
 </html>

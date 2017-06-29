@@ -34,19 +34,7 @@ public class AfiseazaDelegatie extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		try {
-
-			PrintWriter writer = response.getWriter();
-
-			Gson gson = new Gson();
-			JsonElement je = gson.toJsonTree(new OperatiiDelegatii().afiseazaDelegatii());
-			JsonObject jo = new JsonObject();
-			jo.add("delegatii", je);
-
-			writer.write(jo.toString());
-		} catch (Exception ex) {
-			logger.error(Utils.getStackTrace(ex));
-		}
+		
 	}
 
 }

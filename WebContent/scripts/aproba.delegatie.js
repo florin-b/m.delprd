@@ -10,17 +10,33 @@ $(document).on('pageshow', '#aproba', function() {
 
 });
 
-function aprobaDelegatie(delegatieId) {
+function aprobaDelegatie(delegatieId, tipAprobare) {
 
-	var kmAprob = $('#' + delegatieId).find("#kmaprob").val();
+	// tipAprobare:
+	// 0 - aprobare initiala
+	// 1 - aprobare totala
+	// 2 - aprobare partiala
 
-	if (kmAprob == null)
-		kmAprob = 0;
+	var kmResp = $('#' + delegatieId).find("#kmresp").val();
+
+	if (kmResp == null)
+		kmResp = 0;
 	else {
-		if (!$.isNumeric(kmAprob)) {
-			showAlertAprob('Atentie!', 'Valoare km aprobati invalida.');
-			return;
+		if (tipAprobare == 2) {
+			if (!$.isNumeric(kmResp)) {
+				showAlertAprob('Atentie!', 'Valoare km aprobati invalida.');
+				return;
+			}
+
+			if (kmResp <= 0) {
+				showAlertAprob('Atentie!', 'Valoare km aprobati invalida.');
+				return;
+			}
 		}
+	}
+
+	if (tipAprobare == 1) {
+		kmResp = 0;
 	}
 
 	var tipAng = $('#tipAng').text();
@@ -35,7 +51,7 @@ function aprobaDelegatie(delegatieId) {
 		data : ({
 			idDelegatie : delegatieId,
 			tipAngajat : tipAng,
-			kmAprobati : kmAprob,
+			kmRespinsi : kmResp,
 			codAngajat : codAng
 		}),
 		cache : false,
@@ -115,7 +131,7 @@ function afisDelegatiiAprob() {
 			var delegatie = json_parsed[u];
 
 			var str = '<li data-rowid = ' + delegatie.id + '>' + '<div id ='
-					+ delegatie.id + '>' + adaugaDelegatie(delegatie)
+					+ delegatie.id + '>' + adaugaDelegatieAprob(delegatie)
 					+ '</div>' + '</li>';
 
 			$('#aprobList').append(str).listview('refresh');
@@ -134,49 +150,93 @@ function setDelSelected(delegatieId) {
 
 }
 
-function adaugaDelegatie(delegatie) {
+function adaugaDelegatieAprob(delegatie) {
 
-	var content = '<table border="0" style="width:100%;" cellpadding="6" data-role="table"  data-mode="columntoggle:none" class="ui-responsive table-stroke">';
-	content += '<tr><td colspan="2"><b>' + delegatie.numeAngajat
-			+ "</b></td></tr>";
+	var content = '<div class="ui-corner-all custom-corners">';
 
-	content += '<tr><td width="30%">Data plecare:</td><td> '
-			+ delegatie.dataPlecare + "</td></tr>";
-	content += '<tr><td>Ora plecare: </td><td>' + delegatie.oraPlecare
-			+ "</td></tr>";
+	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat
+			+ "</div>";
 
-	content += '<tr><td width="30%">Data sosire:</td><td> '
-			+ delegatie.dataSosire + "</td></tr>";
+	content += '<div class="ui-body ui-body-a">';
 
-	content += decodeOpriri(delegatie.listOpriri);
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Data plecare:</div>';
+	content += '<div class="ui-block-b">' + delegatie.dataPlecare + '</div>';
+	content += '</div>';
 
-	content += '<tr><td>Km calculati: </td><td>' + delegatie.distantaCalculata
-			+ " km </td></tr>";
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Ora plecare:</div>';
+	content += '<div class="ui-block-b">' + delegatie.oraPlecare + '</div>';
+	content += '</div>';
 
-	
-	
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Data sosire:</div>';
+	content += '<div class="ui-block-b">' + delegatie.dataSosire + '</div>';
+	content += '</div>';
+
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Traseu:</div>';
+	content += '<div class="ui-block-b">' + decodeOpriri(delegatie) + '</div>';
+	content += '</div>';
+
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a"  >Km calculati:</div>';
+	content += '<div class="ui-block-b">' + delegatie.distantaCalculata
+			+ '</div>';
+	content += '</div>';
+
 	if (delegatie.distantaEfectuata > 0) {
-		content += '<tr><td>Km realizati: </td><td>'
-				+ delegatie.distantaEfectuata + " km </td></tr>";
-		content += '<tr><td> Km aprobati: </td>';
 
-		content += '<td><input type="text" name="name" id="kmaprob" value="0"></td></tr>';
+		content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+		content += '<div class="ui-block-a">Km realizati:</div>';
+		content += '<div class="ui-block-b" id="kmEfectuati">'
+				+ delegatie.distantaEfectuata + '</div>';
+		content += '</div>';
+
+		var kmNeaprobati = 0;
+
+		if (delegatie.distantaEfectuata > delegatie.distantaCalculata)
+			kmNeaprobati = delegatie.distantaEfectuata
+					- delegatie.distantaCalculata;
+
+		content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+		content += '<div class="ui-block-a">Km respinsi:</div>';
+		content += '<div class="ui-block-b"><input type="text" name="name" id="kmresp" value='
+				+ kmNeaprobati + '>' + '</div>';
+		content += '</div>';
+
+		content += '<br><div class="ui-grid-b ui-responsive">';
+
+		content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" onclick="aprobaDelegatie('
+				+ delegatie.id + ',1);">Aproba total</a></div>';
+
+		content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #7CCD7C;" onclick="aprobaDelegatie('
+				+ delegatie.id + ',2);">Aproba partial</a></div>';
+
+		content += '<div class="ui-block-c" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="respingeDelegatie('
+				+ delegatie.id + ');">Respinge</a></div>';
+
 	}
 
-	content += '</table>';
+	else {
 
-	content += '<div class="ui-grid-b ui-responsive">';
+		content += '<br><div class="ui-grid-a ui-responsive">';
 
-	content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #7CCD7C; color: white;" onclick="aprobaDelegatie('
-			+ delegatie.id + ');">Aproba</a></div>';
+		content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" onclick="aprobaDelegatie('
+				+ delegatie.id + ',0);">Aproba </a></div>';
+		content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="respingeDelegatie('
+				+ delegatie.id + ');">Respinge</a></div>';
+	}
 
-	content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; color: white;" onclick="respingeDelegatie('
-			+ delegatie.id + ');">Respinge</a></div>';
-
-	content += '<div class="ui-block-c" ><a href="#custDetails" class="ui-btn ui-corner-all" style="background: #87CEEB; color: white;" data-transition="slide" onclick="setDelSelected('
+	content += '<br><div  ><a href="#custDetails" class="ui-btn ui-corner-all" style="background: #87CEEB; " data-transition="slide" onclick="setDelSelected('
 			+ delegatie.id + ');">Harta traseu</a></div>';
 
 	content += '</div>';
 
+	content += '</div>';
+
+	content += '</div>';
+
 	return content;
+
 }

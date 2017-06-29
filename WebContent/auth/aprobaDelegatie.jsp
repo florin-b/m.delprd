@@ -26,8 +26,6 @@
 </style>
 
 
-
-
 </head>
 <body>
 
@@ -78,8 +76,6 @@
 
 		<a href="#aproba" class="ui-btn ui-corner-all" data-rel="back"
 			data-corners="false">Inapoi</a>
-
-
 
 
 		<div data-role="content">

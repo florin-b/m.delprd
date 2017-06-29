@@ -73,6 +73,8 @@ $(document).on(
 				$('#stopsList').listview('refresh');
 			});
 
+			initNrAutoFields();
+
 			initDateFields();
 
 			setDefaultJudetPlecare();
@@ -426,4 +428,29 @@ function initDateFields() {
 
 	$("#dateStart").datepicker("setDate", cDate);
 	$("#dateStop").datepicker("setDate", cDate);
+}
+
+function initNrAutoFields() {
+
+	var listMasini = $('#listMasini').text().replace('[', '').replace(']', '')
+			.split(',');
+
+	$('#nrAuto').val(listMasini[0]);
+
+	$('#select-auto').empty();
+
+	if (listMasini.length > 0) {
+		for (var i = 1; i <= listMasini.length - 1; i++) {
+			$('#select-auto').append(
+					'<option value=' + listMasini[i] + '>' + listMasini[i]
+							+ '</option>');
+
+		}
+
+		$("#select-auto option[value='" + listMasini[1] + "']").attr(
+				'selected', 'selected');
+		$('#select-auto').selectmenu('refresh');
+		$('#select-auto').trigger('change');
+	}
+
 }
