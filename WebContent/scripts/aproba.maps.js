@@ -68,7 +68,7 @@ $(document).on(
 				origin : stopsArray[0],
 				destination : stopsArray[0],
 				waypoints : waypts,
-				optimizeWaypoints : true,
+				optimizeWaypoints : false,
 				travelMode : 'DRIVING'
 			}, function(response, status) {
 				if (status === 'OK') {

@@ -46,7 +46,7 @@
 	src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 
-
+<script type="text/javascript" src="../scripts/delegatie.noua.auto.js"></script>
 
 
 
@@ -184,6 +184,32 @@
 						</div>
 
 					</div>
+
+
+
+
+
+
+
+
+
+
+					<form class="ui-filterable">
+						<input id="autocomplete-input" data-type="search"
+							placeholder="Localitatea de plecare">
+					</form>
+					<ul id="autocomplete" data-role="listview" data-inset="true"
+						data-filter="true" data-input="#autocomplete-input">
+
+
+
+
+					</ul>
+
+
+
+
+
 
 
 
