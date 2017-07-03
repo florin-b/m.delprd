@@ -53,114 +53,46 @@
 	};
 })(jQuery);
 
-$(document).on(
-		"pagecreate",
-		"#new-page",
-		function() {
+$(document).on("pagecreate", "#new-page", function() {
 
-			$('body').on('click', '.deleteMe', function() {
-				$(this).parent().remove();
-				$('#stopsList').listview('refresh');
-			});
+	$('body').on('click', '.deleteMe', function() {
+		$(this).parent().remove();
+		$('#stopsList').listview('refresh');
+	});
 
-			$("#saveDelegatie").hide();
-			$("#dateTraseu").hide();
+	$("#saveDelegatie").hide();
+	$("#dateTraseu").hide();
 
-			$("#stopsList").sortable();
-			$("#stopsList").disableSelection();
+	$("#stopsList").sortable();
+	$("#stopsList").disableSelection();
 
-			$("#stopsList").on("sortstop", function(event, ui) {
-				$('#stopsList').listview('refresh');
-			});
+	$("#stopsList").on("sortstop", function(event, ui) {
+		$('#stopsList').listview('refresh');
+	});
 
-			initNrAutoFields();
+	initNrAutoFields();
 
-			initDateFields();
+	initDateFields();
 
-			setDefaultJudetPlecare();
-			setDefaultJudetSosire();
-
-			$('body').on(
-					'change',
-					'#select-judet-opriri',
-					function() {
-
-						var judet = $(this[this.selectedIndex]).val();
-
-						$.mobile.loading('show');
-
-						$.ajax({
-							type : "GET",
-							url : window.location.origin
-									+ "/flota.service/delegatii/localitati",
-							data : ({
-								codJudet : judet
-							}),
-							cache : false,
-							dataType : "text",
-							success : onSuccess
-						});
-
-						function onSuccess(data) {
-
-							var locList = formatLocalitatiList(data);
-
-							$('#select-loc-opriri').empty();
-							$('#select-loc-opriri').append(locList);
-							$('#select-loc-opriri').selectmenu('refresh');
-							$.mobile.loading('hide')
-
-							var defaultLoc = getDefaultLoc(judet);
-							if (defaultLoc != '')
-								$('#select-loc-opriri').val(defaultLoc)
-										.selectmenu('refresh');
-
-						}
-
-					});
-
-		});
-
-function formatLocalitatiList(strLocalitati) {
-
-	var arrayLoc = strLocalitati.substring(1, strLocalitati.length - 1).split(
-			",");
-
-	var formattedList = '';
-
-	for (var i = 0; i < arrayLoc.length; i++) {
-		formattedList += '<option>';
-		formattedList += arrayLoc[i];
-		formattedList += '</option>';
-
-	}
-
-	return formattedList;
-
-}
+});
 
 function adaugaStop() {
 
-	var numejudet = $('#select-judet-opriri').find(":selected").text();
+	var locStop = $('#punct-loc-input').val();
 
-	var codjudet = $('#select-judet-opriri').find(":selected").val();
-
-	var localitate = $('#select-loc-opriri').find(":selected").text();
-
-	var stop = numejudet + ' / ' + localitate;
-
-	if (localitate != '') {
+	if (locStop.indexOf('/') != -1) {
 
 		$('#calcDist').show();
 
 		$('#stopsList').append(
-				'<li value = ' + codjudet + '><a>' + stop
+				'<li><a>' + locStop
 						+ '</span></a><a class="deleteMe"></a></li>').listview(
 				'refresh');
 
-	} else {
-		showAlertCreare('Atentie!', 'Selectati o localitate.');
 	}
+
+	$('#punct-loc-input').val('');
+
 }
 
 function showAlertCreare(tipAlert, mesajAlert) {
@@ -171,11 +103,11 @@ function showAlertCreare(tipAlert, mesajAlert) {
 
 function salveazaDelegatie() {
 
-	var judetPlecare = $('#select-judet-plecare').find(":selected").val();
-	var locPlecare = $('#select-loc-plecare').find(":selected").text();
+	var judetPlecare = $('#start-loc-input').val().split('/')[1];
+	var locPlecare = $('#start-loc-input').val().split('/')[0];
 
-	var judetSosire = $('#select-judet-sosire').find(":selected").val();
-	var locSosire = $('#select-loc-sosire').find(":selected").text();
+	var judetSosire = $('#stop-loc-input').val().split('/')[1];
+	var locSosire = $('#stop-loc-input').val().split('/')[0];
 
 	var nrAuto = $('#nrAuto').val();
 	var dataPlecare = $('#dateStart').val();
@@ -185,6 +117,8 @@ function salveazaDelegatie() {
 
 	var tipAng = $('#tipAng').text();
 	var codAng = $('#codAng').text();
+
+	return;
 
 	if (locPlecare == '') {
 		showAlertCreare('Atentie!', 'Selectati localitatea de plecare.');
@@ -216,15 +150,15 @@ function salveazaDelegatie() {
 		return false;
 	}
 
-	var opriri = judetPlecare + ' / ' + locPlecare;
+	var opriri = locPlecare + ' / ' + judetPlecare;
 
 	$('.stopsList').each(
 			function() {
 				var list = $(this).find('li');
 				$(list.get()).each(
 						function() {
-							var currentStop = $(this).val() + ' / '
-									+ $(this).text().split('/')[1];
+							var currentStop = $(this).text().split('/')[0]
+									+ ' / ' + $(this).text().split('/')[1];
 
 							opriri += "," + currentStop;
 
@@ -232,7 +166,7 @@ function salveazaDelegatie() {
 
 			})
 
-	opriri += ',' + judetSosire + ' / ' + locSosire;
+	opriri += ',' + locSosire + ' / ' + judetSosire;
 
 	$.mobile.loading('show');
 
@@ -305,121 +239,33 @@ function hideControls() {
 
 	$('#stopsList').empty();
 	$('#nrAuto').empty();
-	$('#select-loc').empty();
-	$('#select-loc').selectmenu('refresh');
+
 	$("#map_canvas_delegatie").hide();
 	$("#dateTraseu").hide();
 	$(this).hide();
-
-	$('#select-judet').val('00');
-
-	$('#select-judet').selectmenu('refresh');
 
 	$('#calcDist').hide();
 	$('#saveDelegatie').hide();
 
 }
 
-$('body').on('change', '#select-judet-plecare', function() {
-
-	var judet = $(this[this.selectedIndex]).val();
-
-	$.mobile.loading('show');
-
-	$.ajax({
-		type : "GET",
-		url : window.location.origin + "/flota.service/delegatii/localitati",
-		data : ({
-			codJudet : judet
-		}),
-		cache : false,
-		dataType : "text",
-		success : onSuccess
-	});
-
-	function onSuccess(data) {
-
-		var locList = formatLocalitatiList(data);
-
-		$('#select-loc-plecare').empty();
-		$('#select-loc-plecare').append(locList);
-		$('#select-loc-plecare').selectmenu('refresh');
-		$.mobile.loading('hide')
-
-		var defaultLoc = getDefaultLoc(judet);
-
-		if (defaultLoc != '')
-			$('#select-loc-plecare').val(defaultLoc).selectmenu('refresh');
-
-	}
-
-});
-
-$('body').on('change', '#select-judet-sosire', function() {
-
-	var judet = $(this[this.selectedIndex]).val();
-
-	$.mobile.loading('show');
-
-	$.ajax({
-		type : "GET",
-		url : window.location.origin + "/flota.service/delegatii/localitati",
-		data : ({
-			codJudet : judet
-		}),
-		cache : false,
-		dataType : "text",
-		success : onSuccess
-	});
-
-	function onSuccess(data) {
-
-		var locList = formatLocalitatiList(data);
-
-		$('#select-loc-sosire').empty();
-		$('#select-loc-sosire').append(locList);
-		$('#select-loc-sosire').selectmenu('refresh');
-		$.mobile.loading('hide')
-
-		var defaultLoc = getDefaultLoc(judet);
-		if (defaultLoc != '')
-			$('#select-loc-sosire').val(defaultLoc).selectmenu('refresh');
-
-	}
-
-});
-
-function setDefaultJudetPlecare() {
-	var unitLog = $('#unitLog').text();
-
-	var codJudet = getCodJudet(unitLog);
-
-	$("#select-judet-plecare option[value='" + codJudet + "']").attr(
-			'selected', 'selected');
-	$('#select-judet-plecare').selectmenu('refresh');
-	$('#select-judet-plecare').trigger('change');
-
-}
-
-function setDefaultJudetSosire() {
-	var unitLog = $('#unitLog').text();
-
-	var codJudet = getCodJudet(unitLog);
-
-	$("#select-judet-sosire option[value='" + codJudet + "']").attr('selected',
-			'selected');
-	$('#select-judet-sosire').selectmenu('refresh');
-	$('#select-judet-sosire').trigger('change');
-
-}
-
 function initDateFields() {
 	$("#dateStart").datepicker({
-		dateFormat : "dd-mm-yy"
+		minDate : "-1D",
+		maxDate : "+10D",
+		dateFormat : "dd-mm-yy",
+		onSelect : function(selected) {
+			$("#dateStop").datepicker("option", "minDate", selected)
+
+		}
+
 	});
 
 	$("#dateStop").datepicker({
-		dateFormat : "dd-mm-yy"
+		minDate : 0,
+		maxDate : "+20D",
+		dateFormat : "dd-mm-yy",
+
 	});
 
 	var cDate = new Date();

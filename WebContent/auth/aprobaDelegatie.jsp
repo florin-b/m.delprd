@@ -131,6 +131,29 @@
 	</div>
 
 
+	<div data-role="dialog" id="aprob" data-title="Confirmare">
+		<div data-role="content">
+			<h3 class="aprob-1"></h3>
+			<p class="aprob-2"></p>
+			<a href="#" class="aprob-da" data-role="button" data-theme="b"
+				data-rel="back">Da</a> <a href="#" data-role="button" data-theme="c"
+				data-rel="back">Renunta</a>
+		</div>
+	</div>
+
+
+	<div data-role="dialog" id="resping" data-title="Confirmare">
+		<div data-role="content">
+			<h3 class="resping-1"></h3>
+			<p class="resping-2"></p>
+			<a href="#" class="resping-da" data-role="button" data-theme="b"
+				data-rel="back">Da</a> <a href="#" data-role="button" data-theme="c"
+				data-rel="back">Renunta</a>
+		</div>
+	</div>
+
+
+
 
 </body>
 </html>

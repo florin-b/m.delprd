@@ -10,6 +10,46 @@ $(document).on('pageshow', '#aproba', function() {
 
 });
 
+function confirmAprob_old(text1, text2, button, callback) {
+	$("#sure .sure-1").text(text1);
+	$("#sure .sure-2").text(text2);
+	$("#sure .sure-do").text(button).unbind("click.sure").on("click.sure",
+			function() {
+				callback(true);
+				$(this).off("click.sure");
+			});
+
+	$.mobile.changePage("#sure");
+}
+
+function showAprobDialog(delegatieId, tipAprobare) {
+
+	$("#aprob .aprob-1").text("Confirmare");
+	$("#aprob .aprob-2").text("Aprobati delegatia?");
+
+	$("#aprob .aprob-da").text("Da").unbind("click.aprob").on("click.aprob",
+			function() {
+				aprobaDelegatie(delegatieId, tipAprobare);
+				$(this).off("click.aprob");
+			});
+
+	$.mobile.changePage("#aprob");
+}
+
+function showRespingDialog(delegatieId) {
+
+	$("#resping .resping-1").text("Confirmare");
+	$("#resping .resping-2").text("Respingeti delegatia?");
+
+	$("#resping .resping-da").text("Da").unbind("click.resping").on(
+			"click.resping", function() {
+				respingeDelegatie(delegatieId);
+				$(this).off("click.resping");
+			});
+
+	$.mobile.changePage("#resping");
+}
+
 function aprobaDelegatie(delegatieId, tipAprobare) {
 
 	// tipAprobare:
@@ -94,7 +134,7 @@ function respingeDelegatie(delegatieId) {
 		success : onSuccess
 	});
 
-	function onSuccess(data) {
+	function onSuccess() {
 		$.mobile.loading('hide');
 		showAlertAprob('Status', 'Delegatie respinsa');
 		afisDelegatiiAprob();
@@ -180,7 +220,7 @@ function adaugaDelegatieAprob(delegatie) {
 	content += '</div>';
 
 	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
-	content += '<div class="ui-block-a"  >Km calculati:</div>';
+	content += '<div class="ui-block-a"  >Km alocati:</div>';
 	content += '<div class="ui-block-b">' + delegatie.distantaCalculata
 			+ '</div>';
 	content += '</div>';
@@ -207,13 +247,13 @@ function adaugaDelegatieAprob(delegatie) {
 
 		content += '<br><div class="ui-grid-b ui-responsive">';
 
-		content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" onclick="aprobaDelegatie('
+		content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" onclick="showAprobDialog('
 				+ delegatie.id + ',1);">Aproba total</a></div>';
 
-		content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #7CCD7C;" onclick="aprobaDelegatie('
+		content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #7CCD7C;" onclick="showAprobDialog('
 				+ delegatie.id + ',2);">Aproba partial</a></div>';
 
-		content += '<div class="ui-block-c" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="respingeDelegatie('
+		content += '<div class="ui-block-c" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="showRespingDialog('
 				+ delegatie.id + ');">Respinge</a></div>';
 
 	}
@@ -222,9 +262,9 @@ function adaugaDelegatieAprob(delegatie) {
 
 		content += '<br><div class="ui-grid-a ui-responsive">';
 
-		content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" onclick="aprobaDelegatie('
+		content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" id="aprobaD" onclick="showAprobDialog('
 				+ delegatie.id + ',0);">Aproba </a></div>';
-		content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="respingeDelegatie('
+		content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="showRespingDialog('
 				+ delegatie.id + ');">Respinge</a></div>';
 	}
 

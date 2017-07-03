@@ -13,11 +13,13 @@ $(document)
 
 function calculeazaDistanta() {
 
-	var judetPlecare = $('#select-judet-plecare').find(":selected").text();
-	var locPlecare = $('#select-loc-plecare').find(":selected").text();
+	// validare date
 
-	var judetSosire = $('#select-judet-sosire').find(":selected").text();
-	var locSosire = $('#select-loc-sosire').find(":selected").text();
+	var judetPlecare = $('#start-loc-input').val().split('/')[1];
+	var locPlecare = $('#start-loc-input').val().split('/')[0];
+
+	var judetSosire = $('#stop-loc-input').val().split('/')[1];
+	var locSosire = $('#stop-loc-input').val().split('/')[0];
 
 	if (locPlecare == '') {
 		showAlertCreare('Atentie!', 'Selectati localitatea de plecare.');
@@ -40,8 +42,8 @@ function calculeazaDistanta() {
 						function() {
 							var currentLine = $(this).text().split("/");
 
-							stopsArray.push("Romania," + currentLine[0] + ","
-									+ currentLine[1]);
+							stopsArray.push("Romania," + currentLine[1] + ","
+									+ currentLine[0]);
 
 						});
 			})
@@ -110,8 +112,19 @@ function calculeazaDistanta() {
 			$('#kmtraseu').text('' + parseInt(distanta / 1000));
 			$("#saveDelegatie").show();
 
+			scrollToMap();
+
 		} else {
 			window.alert('Eroare calculare distanta ' + status);
 		}
 	});
+
+	function scrollToMap() {
+		$(function() {
+			$('html, body').animate({
+				scrollTop : $('#map_canvas_delegatie').offset().top
+			});
+		});
+	}
+
 }

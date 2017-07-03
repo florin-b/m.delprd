@@ -50,6 +50,8 @@
 
 
 
+
+
 <style>
 #mapcontent {
 	padding: 0px;
@@ -75,6 +77,18 @@
 	display: inline-block;
 	margin: 1em;
 	left: 5px;
+}
+
+.ui-block-a {
+	text-align: left;
+	vertical-align: middle;
+	padding: 10px;
+}
+
+.ui-block-b {
+	text-align: left;
+	vertical-align: middle;
+	padding: 10px;
 }
 </style>
 
@@ -102,9 +116,9 @@
 
 				<div class="ui-body ui-body-a">
 
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 
-						<div class="ui-block-a"></div>
+						<div class="ui-block-a">Curent</div>
 
 						<div class="ui-block-b">
 							<input type="text" name="nrAuto" class="ui-corner-all"
@@ -116,7 +130,7 @@
 					</div>
 
 
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a"></div>
 
@@ -128,7 +142,7 @@
 
 
 
-					<div class="ui-grid-b ui-responsive" id="alegeAutoDiv"
+					<div class="ui-grid-a ui-responsive" id="alegeAutoDiv"
 						style="display: none;">
 
 						<div class="ui-block-a">Selecteaza nr. auto</div>
@@ -147,7 +161,7 @@
 					</div>
 
 
-					<div class="ui-grid-b ui-responsive" id="salveazaAutoDiv"
+					<div class="ui-grid-a ui-responsive" id="salveazaAutoDiv"
 						style="display: none;">
 
 						<div class="ui-block-a"></div>
@@ -174,7 +188,7 @@
 
 				<div class="ui-body ui-body-a">
 
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a">Data</div>
 
@@ -189,32 +203,7 @@
 
 
 
-
-
-
-
-
-					<form class="ui-filterable">
-						<input id="autocomplete-input" data-type="search"
-							placeholder="Localitatea de plecare">
-					</form>
-					<ul id="autocomplete" data-role="listview" data-inset="true"
-						data-filter="true" data-input="#autocomplete-input">
-
-
-
-
-					</ul>
-
-
-
-
-
-
-
-
-
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 						<div class="ui-block-a">Ora</div>
 						<div class="ui-block-b">
 							<select name="select-ora" id="select-ora">
@@ -232,39 +221,26 @@
 					</div>
 
 
-					<div class="ui-grid-b ui-responsive">
 
-						<div class="ui-block-a">Judet</div>
 
-						<div class="ui-block-b">
-							<div class="ui-field-contain">
-								<jsp:include page="/tags/judetePlecareList.jsp" />
-
-							</div>
-						</div>
-
-					</div>
-
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a">Localitate</div>
 
 						<div class="ui-block-b">
-							<div class="ui-field-contain">
-								<form>
-									<div class="ui-field-contain" id="divLocs">
-										<script type="text/javascript"
-											src="../scripts/delegatie.noua.js"></script>
 
-										<select name="select-loc-plecare" id="select-loc-plecare">
-										</select>
-									</div>
-								</form>
-							</div>
+							<form class="ui-filterable">
+								<input id="start-loc-input" data-type="search"
+									placeholder="Cautati o localitate">
+							</form>
+							<ul id="list-start-loc" data-role="listview" data-inset="true"
+								data-filter="true" data-input="#start-loc-input">
+
+							</ul>
+
 						</div>
 
 					</div>
-
 
 				</div>
 			</div>
@@ -278,7 +254,7 @@
 
 				<div class="ui-body ui-body-a">
 
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a">Data</div>
 
@@ -289,37 +265,34 @@
 					</div>
 
 
-					<div class="ui-grid-b ui-responsive">
 
-						<div class="ui-block-a">Judet</div>
 
-						<div class="ui-block-b">
-							<div class="ui-field-contain">
-								<jsp:include page="/tags/judeteSosireList.jsp" />
-							</div>
-						</div>
 
-					</div>
 
-					<div class="ui-grid-b ui-responsive">
+
+
+
+
+					<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a">Localitate</div>
 
 						<div class="ui-block-b">
-							<div class="ui-field-contain">
-								<form>
-									<div class="ui-field-contain" id="divLocs">
-										<script type="text/javascript"
-											src="../scripts/delegatie.noua.js"></script>
 
-										<select name="select-loc-sosire" id="select-loc-sosire">
-										</select>
-									</div>
-								</form>
-							</div>
+							<form class="ui-filterable">
+								<input id="stop-loc-input" data-type="search"
+									placeholder="Cautati o localitate">
+							</form>
+							<ul id="list-stop-loc" data-role="listview" data-inset="true"
+								data-filter="true" data-input="#stop-loc-input">
+
+							</ul>
+
 						</div>
 
 					</div>
+
+
 
 				</div>
 
@@ -337,42 +310,29 @@
 
 				<div class="ui-body ui-body-a">
 
-					<div class="ui-grid-b ui-responsive">
 
-						<div class="ui-block-a">Judet</div>
 
-						<div class="ui-block-b">
-							<div class="ui-field-contain">
-								<jsp:include page="/tags/judeteOpririList.jsp" />
-							</div>
-						</div>
-
-					</div>
-
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a">Localitate</div>
 
 						<div class="ui-block-b">
-							<div class="ui-field-contain">
-								<form>
-									<div class="ui-field-contain" id="divLocs">
-										<script type="text/javascript"
-											src="../scripts/delegatie.noua.js"></script>
 
-										<select name="select-loc-opriri" id="select-loc-opriri">
-										</select>
-									</div>
-								</form>
-							</div>
+							<form class="ui-filterable">
+								<input id="punct-loc-input" data-type="search"
+									placeholder="Cautati o localitate">
+							</form>
+							<ul id="list-punct-loc" data-role="listview" data-inset="true"
+								data-filter="true" data-input="#punct-loc-input">
+
+							</ul>
+
 						</div>
-
-
 
 					</div>
 
 
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 						<div class="ui-block-a"></div>
 						<div class="ui-block-b">
 
@@ -398,7 +358,7 @@
 
 			<br> <a href="#" class="ui-btn ui-corner-all" id="calcDist"
 				style="background: #7CCD7C; color: white;"
-				onclick="calculeazaDistanta();">Calculeaza distanta</a> <br>
+				onclick="calculeazaDistanta();">Calculeaza km normati</a> <br>
 
 
 			<div class="ui-corner-all custom-corners" id="dateTraseu">
@@ -407,9 +367,9 @@
 				<div class="ui-body ui-body-a">
 
 					<div>
-						<div class="boxInline" id="labelTraseu1">Distanta traseu:</div>
+						<div class="boxInline" id="labelTraseu1">Km normati:</div>
 						<div id="kmtraseu" class="boxInline"></div>
-						<div id="labelTraseu2" class="boxInline">km</div>
+						<div id="labelTraseu2" class="boxInline"></div>
 					</div>
 
 
@@ -458,6 +418,7 @@
 		</div>
 	</div>
 
+	<script type="text/javascript" src="../scripts/delegatie.noua.js"></script>
 
 	<div id="codAng" style="visibility: hidden">${sessionScope.user.cod}</div>
 	<div id="tipAng" style="visibility: hidden">${sessionScope.user.tipAng}</div>

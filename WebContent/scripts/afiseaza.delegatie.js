@@ -87,7 +87,7 @@ function adaugaDelegatieAfis(delegatie) {
 	content += '</div>';
 
 	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
-	content += '<div class="ui-block-a">Km calculati:</div>';
+	content += '<div class="ui-block-a">Km alocati:</div>';
 	content += '<div class="ui-block-b">' + delegatie.distantaCalculata
 			+ '</div>';
 	content += '</div>';
