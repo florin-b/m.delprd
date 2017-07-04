@@ -89,4 +89,13 @@ public class UserInfo {
 		this.listMasini = listMasini;
 	}
 
+	@Override
+	public String toString() {
+		return "UserInfo [nume=" + nume + ", filiala=" + filiala + ", tipAcces=" + tipAcces + ", cod=" + cod + ", tipAngajat=" + tipAngajat + ", unitLog=" + unitLog
+				+ ", listMasini=" + listMasini + "]";
+	}
+	
+	
+	
+
 }

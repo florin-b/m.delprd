@@ -118,8 +118,6 @@ function salveazaDelegatie() {
 	var tipAng = $('#tipAng').text();
 	var codAng = $('#codAng').text();
 
-	return;
-
 	if (locPlecare == '') {
 		showAlertCreare('Atentie!', 'Selectati localitatea de plecare.');
 		return false;
