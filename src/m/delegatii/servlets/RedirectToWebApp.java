@@ -33,6 +33,7 @@ public class RedirectToWebApp extends HttpServlet {
 		UserInfo.getInstance().setTipAcces(request.getParameter("tipAcces"));
 		UserInfo.getInstance().setTipAngajat(request.getParameter("tipAcces"));
 		UserInfo.getInstance().setUnitLog(request.getParameter("unitLog"));
+		UserInfo.getInstance().setCodDepart(request.getParameter("codDepart"));
 
 		List<String> listMasini = new OperatiiMasini().getMasiniAlocate(UserInfo.getInstance().getCod());
 
@@ -44,6 +45,7 @@ public class RedirectToWebApp extends HttpServlet {
 		user.setUnitLog(UserInfo.getInstance().getUnitLog());
 		user.setTipAng(UserInfo.getInstance().getTipAngajat().name());
 		user.setListMasini(UserInfo.getInstance().getListMasini());
+		user.setCodDepart(UserInfo.getInstance().getCodDepart());
 
 		session.setAttribute("userAuthLevel", "1");
 		session.setAttribute("user", user);

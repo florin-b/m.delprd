@@ -10,13 +10,14 @@ public class HelperMeniu {
 
 	public static void addMenuOption(List<NavigationDetails> navigationLinks, NavigationDetails nd) {
 
-		//tratare situatie expirare sesiune
+		// tratare situatie expirare sesiune
 		TipAnjagat tipAngajat = UserInfo.getInstance().getTipAngajat();
 
 		switch (tipAngajat) {
 		case AV:
 			switch (nd.getNume()) {
 			case CREEAZA_DELEGATIE:
+			case MODIFICA_DELEGATIE:
 			case AFISEAZA_DELEGATIE:
 			case EXIT:
 				navigationLinks.add(nd);
@@ -31,6 +32,7 @@ public class HelperMeniu {
 		case SD:
 			switch (nd.getNume()) {
 			case CREEAZA_DELEGATIE:
+			case MODIFICA_DELEGATIE:
 			case APROBA_DELEGATIE:
 			case AFISEAZA_DELEGATIE:
 			case EXIT:

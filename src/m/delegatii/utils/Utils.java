@@ -33,7 +33,6 @@ public class Utils {
 		return (String.valueOf(millis));
 	}
 
-	
 	public static String getUnitLog(String numeFiliala) {
 		String fl = "NN10";
 
@@ -106,5 +105,58 @@ public class Utils {
 		return fl;
 
 	}
-	
+
+	public static String getDepart(String numeDepart) {
+		String codDepart;
+
+		switch (numeDepart) {
+		case "CHIM":
+			codDepart = "07";
+			break;
+
+		case "DIVE":
+			codDepart = "10";
+			break;
+
+		case "ELEC":
+			codDepart = "05";
+			break;
+
+		case "FERO":
+			codDepart = "02";
+			break;
+
+		case "GIPS":
+			codDepart = "06";
+			break;
+
+		case "INST":
+			codDepart = "08";
+			break;
+
+		case "LEMN":
+			codDepart = "01";
+			break;
+
+		case "MATE":
+			codDepart = "04";
+			break;
+
+		case "PARC":
+			codDepart = "03";
+			break;
+
+		case "HIDR":
+			codDepart = "09";
+			break;
+
+		default:
+			codDepart = "00";
+			break;
+		}
+
+		return codDepart;
+
+	}
+
 }

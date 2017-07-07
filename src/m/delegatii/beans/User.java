@@ -17,6 +17,7 @@ public class User implements Serializable {
 	private String unitLog = "";
 	private String tipAng = "";
 	private String listMasini = "";
+	private String codDepart = "";
 
 	public User() {
 
@@ -114,9 +115,18 @@ public class User implements Serializable {
 		this.listMasini = listMasini;
 	}
 
+	public String getCodDepart() {
+		return codDepart;
+	}
+
+	public void setCodDepart(String codDepart) {
+		this.codDepart = codDepart;
+	}
+
 	@Override
 	public String toString() {
-		return "User [ name=" + name + ", userName=" + userName + ", filiala=" + filiala + ", message=" + message + "]";
+		return "User [password=" + password + ", name=" + name + ", userName=" + userName + ", filiala=" + filiala + ", message=" + message + ", cod=" + cod + ", unitLog="
+				+ unitLog + ", tipAng=" + tipAng + ", listMasini=" + listMasini + ", codDepart=" + codDepart + "]";
 	}
 
 }

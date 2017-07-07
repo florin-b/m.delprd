@@ -9,6 +9,7 @@ public class UserInfo {
 	private String tipAcces;
 	private String cod;
 	private TipAnjagat tipAngajat;
+	private String codDepart;
 	private String unitLog;
 	private String listMasini;
 
@@ -89,13 +90,18 @@ public class UserInfo {
 		this.listMasini = listMasini;
 	}
 
+	public String getCodDepart() {
+		return codDepart;
+	}
+
+	public void setCodDepart(String codDepart) {
+		this.codDepart = codDepart;
+	}
+
 	@Override
 	public String toString() {
-		return "UserInfo [nume=" + nume + ", filiala=" + filiala + ", tipAcces=" + tipAcces + ", cod=" + cod + ", tipAngajat=" + tipAngajat + ", unitLog=" + unitLog
-				+ ", listMasini=" + listMasini + "]";
+		return "UserInfo [nume=" + nume + ", filiala=" + filiala + ", tipAcces=" + tipAcces + ", cod=" + cod + ", tipAngajat=" + tipAngajat + ", codDepart=" + codDepart
+				+ ", unitLog=" + unitLog + ", listMasini=" + listMasini + "]";
 	}
-	
-	
-	
 
 }

@@ -54,6 +54,10 @@ public class Account {
 				UserInfo.getInstance().setTipAcces(callableStatement.getString(6));
 				UserInfo.getInstance().setTipAngajat(callableStatement.getString(6));
 				UserInfo.getInstance().setUnitLog(Utils.getUnitLog(user.getFiliala()));
+				
+				
+				UserInfo.getInstance().setCodDepart(Utils.getDepart(callableStatement.getString(4)));
+				
 
 				String codAgent = callableStatement.getString(8);
 
@@ -66,6 +70,8 @@ public class Account {
 				List<String> listMasini = new OperatiiMasini().getMasiniAlocate(UserInfo.getInstance().getCod());
 
 				UserInfo.getInstance().setListMasini(listMasini.toString());
+				
+				
 
 				return true;
 			} else {

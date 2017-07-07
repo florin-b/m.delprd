@@ -73,6 +73,7 @@ public class Controller extends HttpServlet {
 					user.setUnitLog(UserInfo.getInstance().getUnitLog());
 					user.setTipAng(UserInfo.getInstance().getTipAngajat().name());
 					user.setListMasini(UserInfo.getInstance().getListMasini());
+					user.setCodDepart(UserInfo.getInstance().getCodDepart());
 
 					session.setAttribute("userAuthLevel", "1");
 					session.setAttribute("user", user);

@@ -71,6 +71,7 @@
 	<div id="codAng" style="visibility: hidden">${sessionScope.user.cod}</div>
 	<div id="tipAng" style="visibility: hidden">${sessionScope.user.tipAng}</div>
 	<div id="unitLog" style="visibility: hidden">${sessionScope.user.unitLog}</div>
+	<div id="codDepart" style="visibility: hidden">${sessionScope.user.codDepart}</div>
 
 	<div data-role="page" id="custDetails" data-theme="a">
 

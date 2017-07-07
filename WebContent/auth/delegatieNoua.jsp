@@ -264,16 +264,7 @@
 
 					</div>
 
-
-
-
-
-
-
-
-
-
-					<div class="ui-grid-a ui-responsive">
+				<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a">Localitate</div>
 
@@ -292,8 +283,6 @@
 
 					</div>
 
-
-
 				</div>
 
 			</div>
@@ -309,8 +298,6 @@
 				<div class="ui-bar ui-bar-a">Puncte definire traseu</div>
 
 				<div class="ui-body ui-body-a">
-
-
 
 					<div class="ui-grid-a ui-responsive">
 

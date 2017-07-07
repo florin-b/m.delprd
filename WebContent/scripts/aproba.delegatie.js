@@ -10,17 +10,7 @@ $(document).on('pageshow', '#aproba', function() {
 
 });
 
-function confirmAprob_old(text1, text2, button, callback) {
-	$("#sure .sure-1").text(text1);
-	$("#sure .sure-2").text(text2);
-	$("#sure .sure-do").text(button).unbind("click.sure").on("click.sure",
-			function() {
-				callback(true);
-				$(this).off("click.sure");
-			});
 
-	$.mobile.changePage("#sure");
-}
 
 function showAprobDialog(delegatieId, tipAprobare) {
 
@@ -148,6 +138,7 @@ function afisDelegatiiAprob() {
 
 	var tipAng = $('#tipAng').text();
 	var unitLog = $('#unitLog').text();
+	var depart = $('#codDepart').text();
 
 	$.ajax({
 		type : "GET",
@@ -155,7 +146,8 @@ function afisDelegatiiAprob() {
 				+ "/flota.service/delegatii/afisDelegatiiAprob",
 		data : ({
 			tipAngajat : tipAng,
-			unitLog : unitLog
+			unitLog : unitLog,
+			codDepart : depart
 		}),
 		cache : false,
 		dataType : "text",

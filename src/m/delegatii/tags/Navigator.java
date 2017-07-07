@@ -29,7 +29,12 @@ public class Navigator extends SimpleTagSupport {
 		nd.setText("Creeaza delegatie");
 		nd.setNume(EnumMeniu.CREEAZA_DELEGATIE);
 		HelperMeniu.addMenuOption(navigationLinks, nd);
-		
+
+		nd = new NavigationDetails();
+		nd.setLink(String.format("%s/auth/modificaDelegatie.jsp", root));
+		nd.setText("Modifica delegatie");
+		nd.setNume(EnumMeniu.MODIFICA_DELEGATIE);
+		HelperMeniu.addMenuOption(navigationLinks, nd);
 
 		nd = new NavigationDetails();
 		nd.setLink(String.format("%s/auth/aprobaDelegatie.jsp", root));
