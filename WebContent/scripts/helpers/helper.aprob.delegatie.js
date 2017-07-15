@@ -8,7 +8,7 @@ function decodeOpriri(delegatie) {
 	var status = '';
 	for (var i = 0; i < delegatie.listOpriri.length; i++) {
 
-		if (i > 0 && i < delegatie.listOpriri.length - 1
+		if (i > 0 && i < delegatie.listOpriri.length
 				&& delegatie.distantaEfectuata > 0) {
 			if (delegatie.listOpriri[i].vizitat)
 				status = vizitatStr;

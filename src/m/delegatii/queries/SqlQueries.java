@@ -87,7 +87,13 @@ public class SqlQueries {
 		
 	}
 	
-	
+	public static String getTipPersNonV() {
+		StringBuilder sqlString = new StringBuilder();
+
+		sqlString.append("select f.cod from personal u, functii_non_vanzari f where u.cod =? and f.cod = u.functie");
+
+		return sqlString.toString();
+	}
 	
 	
 

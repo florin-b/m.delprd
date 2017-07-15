@@ -249,7 +249,7 @@ function hideControls() {
 
 function initDateFields() {
 	$("#dateStart").datepicker({
-		minDate : "-1D",
+		minDate : "-20D",
 		maxDate : "+10D",
 		dateFormat : "dd-mm-yy",
 		onSelect : function(selected) {
@@ -283,13 +283,21 @@ function initNrAutoFields() {
 
 	$('#select-auto').empty();
 
+	$('#schimbaAuto').hide();
+
 	if (listMasini.length > 0) {
-		for (var i = 1; i <= listMasini.length - 1; i++) {
+
+		var i;
+
+		for (i = 1; i <= listMasini.length - 1; i++) {
 			$('#select-auto').append(
 					'<option value=' + listMasini[i] + '>' + listMasini[i]
 							+ '</option>');
 
 		}
+
+		if (i > 1)
+			$('#schimbaAuto').show();
 
 		$("#select-auto option[value='" + listMasini[1] + "']").attr(
 				'selected', 'selected');

@@ -27,7 +27,8 @@
 	src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 
-
+<script type="text/javascript"
+	src="../scripts/helpers/helper.angajat.js"></script>
 
 </head>
 <body>
@@ -58,7 +59,7 @@
 
 				<div class="ui-body ui-body-a">
 
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a">Start</div>
 
@@ -66,10 +67,12 @@
 							<input id="dateStart" type="text" readonly="readonly" />
 						</div>
 
+
+
 					</div>
 
 
-					<div class="ui-grid-b ui-responsive">
+					<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a">Stop</div>
 
@@ -80,7 +83,26 @@
 					</div>
 
 
-					<div class="ui-grid-b ui-responsive">
+
+					<div class="ui-grid-a ui-responsive" id='divTipDelegatie'>
+
+						<div class="ui-block-a"></div>
+
+						<div class="ui-block-b">
+							<fieldset data-role="controlgroup" data-type="vertical">
+
+								<input type="radio" name="radio-del" id="radio-proprii"
+									value="P" checked="checked"> <label for="radio-proprii">Delegatii
+									proprii</label> <input type="radio" name="radio-del" id="radio-subord"
+									value="S"> <label for="radio-subord">Delegatii
+									subordonati</label>
+							</fieldset>
+						</div>
+
+					</div>
+
+
+					<div class="ui-grid-a ui-responsive">
 
 						<div class="ui-block-a"></div>
 
@@ -90,7 +112,6 @@
 						</div>
 
 					</div>
-
 
 
 				</div>
@@ -106,14 +127,12 @@
 
 			<br>
 
-			<ul data-role="listview" id="delegatiiList" >
+			<ul data-role="listview" id="delegatiiList">
 
 			</ul>
 
 
 		</div>
-		<!-- /content -->
-
 
 
 	</div>
@@ -122,6 +141,7 @@
 	<div id="codAng" style="visibility: hidden">${sessionScope.user.cod}</div>
 	<div id="tipAng" style="visibility: hidden">${sessionScope.user.tipAng}</div>
 	<div id="unitLog" style="visibility: hidden">${sessionScope.user.unitLog}</div>
+	<div id="codDepart" style="visibility: hidden">${sessionScope.user.codDepart}</div>
 
 
 

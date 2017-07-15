@@ -10,8 +10,6 @@ $(document).on('pageshow', '#aproba', function() {
 
 });
 
-
-
 function showAprobDialog(delegatieId, tipAprobare) {
 
 	$("#aprob .aprob-1").text("Confirmare");
@@ -141,6 +139,7 @@ function afisDelegatiiAprob() {
 	var depart = $('#codDepart').text();
 
 	$.ajax({
+
 		type : "GET",
 		url : window.location.origin
 				+ "/flota.service/delegatii/afisDelegatiiAprob",
@@ -170,7 +169,7 @@ function afisDelegatiiAprob() {
 
 		}
 
-		$.mobile.loading('hide')
+		$.mobile.loading('hide');
 
 	}
 
@@ -237,7 +236,10 @@ function adaugaDelegatieAprob(delegatie) {
 				+ kmNeaprobati + '>' + '</div>';
 		content += '</div>';
 
-		content += '<br><div class="ui-grid-b ui-responsive">';
+		content += '<div style="margin:10px; position:relative"><b>'
+				+ delegatie.msgAtentionare + '</b></div>';
+
+		content += '<div class="ui-grid-b ui-responsive">';
 
 		content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" onclick="showAprobDialog('
 				+ delegatie.id + ',1);">Aproba total</a></div>';
@@ -246,7 +248,7 @@ function adaugaDelegatieAprob(delegatie) {
 				+ delegatie.id + ',2);">Aproba partial</a></div>';
 
 		content += '<div class="ui-block-c" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="showRespingDialog('
-				+ delegatie.id + ');">Respinge</a></div>';
+				+ delegatie.id + ');">Respinge</a></div></div>';
 
 	}
 
@@ -257,10 +259,10 @@ function adaugaDelegatieAprob(delegatie) {
 		content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" id="aprobaD" onclick="showAprobDialog('
 				+ delegatie.id + ',0);">Aproba </a></div>';
 		content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="showRespingDialog('
-				+ delegatie.id + ');">Respinge</a></div>';
+				+ delegatie.id + ');">Respinge</a></div></div>';
 	}
 
-	content += '<br><div  ><a href="#custDetails" class="ui-btn ui-corner-all" style="background: #87CEEB; " data-transition="slide" onclick="setDelSelected('
+	content += '<div  ><a href="#custDetails" class="ui-btn ui-corner-all" style="background: #87CEEB; " data-transition="slide" onclick="setDelSelected('
 			+ delegatie.id + ');">Harta traseu</a></div>';
 
 	content += '</div>';

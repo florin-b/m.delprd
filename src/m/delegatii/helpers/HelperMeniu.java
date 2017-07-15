@@ -15,6 +15,9 @@ public class HelperMeniu {
 
 		switch (tipAngajat) {
 		case AV:
+		case ATR:
+		case SSCFI:
+		case KA:
 			switch (nd.getNume()) {
 			case CREEAZA_DELEGATIE:
 			case MODIFICA_DELEGATIE:
@@ -30,6 +33,9 @@ public class HelperMeniu {
 			break;
 
 		case SD:
+		case DZ:
+		case DAG:
+		case DV:
 			switch (nd.getNume()) {
 			case CREEAZA_DELEGATIE:
 			case MODIFICA_DELEGATIE:
@@ -45,21 +51,8 @@ public class HelperMeniu {
 			}
 			break;
 
-		case DV:
-			switch (nd.getNume()) {
-			case APROBA_DELEGATIE:
-			case AFISEAZA_DELEGATIE:
-			case EXIT:
-				navigationLinks.add(nd);
-				break;
-
-			default:
-				break;
-
-			}
-			break;
-
 		default:
+
 			break;
 		}
 

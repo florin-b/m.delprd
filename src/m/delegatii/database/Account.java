@@ -2,6 +2,8 @@ package m.delegatii.database;
 
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -11,6 +13,8 @@ import org.apache.logging.log4j.Logger;
 import m.delegatii.beans.User;
 import m.delegatii.beans.UserInfo;
 import m.delegatii.model.OperatiiMasini;
+import m.delegatii.queries.SqlQueries;
+import m.delegatii.utils.DateUtils;
 import m.delegatii.utils.Utils;
 
 public class Account {
@@ -52,12 +56,6 @@ public class Account {
 				UserInfo.getInstance().setFiliala(user.getFiliala());
 				UserInfo.getInstance().setNume(user.getName());
 				UserInfo.getInstance().setTipAcces(callableStatement.getString(6));
-				UserInfo.getInstance().setTipAngajat(callableStatement.getString(6));
-				UserInfo.getInstance().setUnitLog(Utils.getUnitLog(user.getFiliala()));
-				
-				
-				UserInfo.getInstance().setCodDepart(Utils.getDepart(callableStatement.getString(4)));
-				
 
 				String codAgent = callableStatement.getString(8);
 
@@ -66,12 +64,20 @@ public class Account {
 				}
 
 				UserInfo.getInstance().setCod(codAgent);
-				
+
+				String tipPersNonV = getTipPersNonV(conn, codAgent);
+				if (tipPersNonV != null) {
+					UserInfo.getInstance().setTipAngajat(tipPersNonV);
+				} else {
+					UserInfo.getInstance().setTipAngajat(callableStatement.getString(6));
+				}
+
+				UserInfo.getInstance().setUnitLog(Utils.getUnitLog(user.getFiliala()));
+				UserInfo.getInstance().setCodDepart(Utils.getDepart(callableStatement.getString(4)));
+
 				List<String> listMasini = new OperatiiMasini().getMasiniAlocate(UserInfo.getInstance().getCod());
 
 				UserInfo.getInstance().setListMasini(listMasini.toString());
-				
-				
 
 				return true;
 			} else {
@@ -89,6 +95,30 @@ public class Account {
 				callableStatement.close();
 		}
 
+	}
+
+	private static String getTipPersNonV(Connection conn, String angajatId) {
+
+		String tipPers = null;
+
+		try (PreparedStatement stmt = conn.prepareStatement(SqlQueries.getTipPersNonV(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);) {
+
+			stmt.setString(1, angajatId);
+
+			stmt.executeQuery();
+
+			ResultSet rs = stmt.getResultSet();
+
+			while (rs.next()) {
+
+				tipPers = rs.getString("cod");
+			}
+
+		} catch (Exception ex) {
+			logger.error(Utils.getStackTrace(ex));
+		}
+
+		return tipPers;
 	}
 
 	private void setErrMessage(int msgId) {

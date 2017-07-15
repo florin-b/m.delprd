@@ -4,9 +4,21 @@ var rowid;
 
 $(document).on('pagecreate', '#afiseaza', function() {
 
+	setDivsVisibility();
 	initDateFields();
 
 });
+
+function setDivsVisibility() {
+
+	var tipAng = $('#tipAng').text();
+
+	if (hasSubords(tipAng))
+		$("#divTipDelegatie").show();
+	else
+		$("#divTipDelegatie").hide();
+
+}
 
 function afiseazaDelegatii() {
 	var dStart = $('#dateStart').val();
@@ -14,6 +26,11 @@ function afiseazaDelegatii() {
 	var dStop = $('#dateStop').val();
 
 	var codAng = $('#codAng').text();
+	var tipAng = $('#tipAng').text();
+	var unitLog = $('#unitLog').text();
+	var depart = $('#codDepart').text();
+
+	var tipDel = $('input[name=radio-del]:checked').val();
 
 	$.mobile.loading('show');
 	$.ajax({
@@ -23,7 +40,11 @@ function afiseazaDelegatii() {
 		data : ({
 			codAngajat : codAng,
 			dataStart : dStart,
-			dataStop : dStop
+			dataStop : dStop,
+			tipAngajat : tipAng,
+			unitLog : unitLog,
+			codDepart : depart,
+			tipAfis : tipDel
 		}),
 		cache : false,
 		dataType : "text",
@@ -54,6 +75,7 @@ function afiseazaDelegatii() {
 
 function afisDelegatii() {
 	afiseazaDelegatii();
+
 }
 
 function adaugaDelegatieAfis(delegatie) {
@@ -82,8 +104,7 @@ function adaugaDelegatieAfis(delegatie) {
 
 	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
 	content += '<div class="ui-block-a">Traseu:</div>';
-	content += '<div class="ui-block-b">' + decodeOpriri(delegatie)
-			+ '</div>';
+	content += '<div class="ui-block-b">' + decodeOpriri(delegatie) + '</div>';
 	content += '</div>';
 
 	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
