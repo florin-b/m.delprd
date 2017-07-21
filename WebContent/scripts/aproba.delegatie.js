@@ -15,13 +15,16 @@ function showAprobDialog(delegatieId, tipAprobare) {
 	$("#aprob .aprob-1").text("Confirmare");
 	$("#aprob .aprob-2").text("Aprobati delegatia?");
 
+	$.mobile.changePage("#aprob");
+
 	$("#aprob .aprob-da").text("Da").unbind("click.aprob").on("click.aprob",
 			function() {
+
 				aprobaDelegatie(delegatieId, tipAprobare);
-				$(this).off("click.aprob");
+				$("#aprob").popup("close");
+
 			});
 
-	$.mobile.changePage("#aprob");
 }
 
 function showRespingDialog(delegatieId) {
@@ -52,12 +55,14 @@ function aprobaDelegatie(delegatieId, tipAprobare) {
 	else {
 		if (tipAprobare == 2) {
 			if (!$.isNumeric(kmResp)) {
-				showAlertAprob('Atentie!', 'Valoare km aprobati invalida.');
+
+				alert('Atentie, valoare km aprobati invalida!');
 				return;
 			}
 
 			if (kmResp <= 0) {
-				showAlertAprob('Atentie!', 'Valoare km aprobati invalida.');
+
+				alert('Atentie, pentru aprobarea partiala precizati numarul de km respinsi!');
 				return;
 			}
 		}

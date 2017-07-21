@@ -28,9 +28,14 @@ public class Account {
 		this.conn = conn;
 	}
 
+	public Account() {
+
+	}
+
 	public boolean loginUser(User user) throws SQLException {
 
 		String storedProcedure = "{ call web_pkg.wlogin(?,?,?,?,?,?,?,?,?,?) }";
+
 		CallableStatement callableStatement = null;
 
 		try {
@@ -145,6 +150,10 @@ public class Account {
 
 		}
 
+	}
+
+	public void setConn(Connection conn) {
+		this.conn = conn;
 	}
 
 	public String getErrMessage() {

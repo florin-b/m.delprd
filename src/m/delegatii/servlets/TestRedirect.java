@@ -13,13 +13,13 @@ import javax.servlet.http.HttpSession;
 import m.delegatii.beans.User;
 import m.delegatii.beans.UserInfo;
 import m.delegatii.model.OperatiiMasini;
-import m.delegatii.utils.MailOperations;
 
-@WebServlet("/redirect")
-public class RedirectToWebApp extends HttpServlet {
+
+@WebServlet("/redirectMe")
+public class TestRedirect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public RedirectToWebApp() {
+	public TestRedirect() {
 		super();
 
 	}
@@ -50,6 +50,8 @@ public class RedirectToWebApp extends HttpServlet {
 		user.setTipAng(UserInfo.getInstance().getTipAngajat().name());
 		user.setListMasini(UserInfo.getInstance().getListMasini());
 		user.setCodDepart(UserInfo.getInstance().getCodDepart());
+		
+		
 
 		session.setAttribute("userAuthLevel", "1");
 		session.setAttribute("user", user);
@@ -59,9 +61,12 @@ public class RedirectToWebApp extends HttpServlet {
 		String ctx = request.getContextPath();
 		String base = url.substring(0, url.length() - uri.length() + ctx.length()) + "/";
 
-		String redirectAddr = base + "auth/mainMenu.jsp";
+		String redirectAddr = "https://delegatii.arabesque.ro/auth/mainMenu.jsp";
 
-		response.sendRedirect(redirectAddr);
+		//response.sendRedirect(redirectAddr);
+		
+		request.getRequestDispatcher("/auth/mainMenu.jsp").include(request, response);
+		
 
 	}
 

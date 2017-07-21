@@ -72,6 +72,10 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.SD;
 		} else if (codAcces.equals("10")) {
 			tipAngajat = TipAnjagat.SD;
+		} else if (codAcces.equals("12") || codAcces.equals("14")) {
+			tipAngajat = TipAnjagat.DV;
+		} else if (codAcces.equals("27")) {
+			tipAngajat = TipAnjagat.KA;
 		} else if (codAcces.equals("ATR")) {
 			tipAngajat = TipAnjagat.ATR;
 		} else if (codAcces.equals("DAG")) {

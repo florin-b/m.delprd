@@ -51,6 +51,9 @@ public class DBManager {
 		return oracleDS;
 	}
 
+	
+	/*
+	
 	public static DataSource getTestInstance() {
 		if (dataSourceTest == null)
 			dataSourceTest = getTestDataSource();
@@ -73,6 +76,8 @@ public class DBManager {
 		}
 		return oracleDS;
 	}
+	
+	*/
 	
 	
 	private static DataSource getTestDataSource1() {

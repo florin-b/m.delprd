@@ -30,12 +30,15 @@ public class AuthorizationFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse res = (HttpServletResponse) response;
 
+		StringBuffer url = req.getRequestURL();
+		String uri = req.getRequestURI();
+		String ctx = req.getContextPath();
+		String base = url.substring(0, url.length() - uri.length() + ctx.length()) + "/";
+
 		HttpSession s = req.getSession();
 
 		if (s.getAttribute("userAuthLevel") == null) {
-			res.sendRedirect("/m.delegatii/logon.jsp");
-			
-			
+			res.sendRedirect(base + "logon.jsp");
 
 		} else {
 			chain.doFilter(request, response);

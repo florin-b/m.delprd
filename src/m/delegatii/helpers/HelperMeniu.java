@@ -14,28 +14,28 @@ public class HelperMeniu {
 		TipAnjagat tipAngajat = UserInfo.getInstance().getTipAngajat();
 
 		switch (tipAngajat) {
-		case AV:
-		case ATR:
-		case SSCFI:
-		case KA:
-			switch (nd.getNume()) {
-			case CREEAZA_DELEGATIE:
-			case MODIFICA_DELEGATIE:
-			case AFISEAZA_DELEGATIE:
-			case EXIT:
-				navigationLinks.add(nd);
-				break;
-
-			default:
-				break;
-
-			}
-			break;
 
 		case SD:
 		case DZ:
 		case DAG:
 		case DV:
+		case DADMIN:
+		case DD:
+		case DE:
+		case DEA:
+		case DENDET:
+		case DFIN:
+		case DG:
+		case DHR:
+		case DINV:
+		case DIT:
+		case DJ:
+		case DMK:
+		case DRU:
+		case DTR:
+		case DZBUC:
+		case SSJ:
+
 			switch (nd.getNume()) {
 			case CREEAZA_DELEGATIE:
 			case MODIFICA_DELEGATIE:
@@ -52,10 +52,19 @@ public class HelperMeniu {
 			break;
 
 		default:
+			switch (nd.getNume()) {
+			case CREEAZA_DELEGATIE:
+			case MODIFICA_DELEGATIE:
+			case AFISEAZA_DELEGATIE:
+			case EXIT:
+				navigationLinks.add(nd);
+				break;
 
-			break;
+			default:
+				break;
+
+			}
+
 		}
-
 	}
-
 }

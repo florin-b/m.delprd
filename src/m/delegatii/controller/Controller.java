@@ -32,7 +32,9 @@ public class Controller extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		//doPost(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,14 +43,16 @@ public class Controller extends HttpServlet {
 
 		Connection conn = null;
 
+		Account account = new Account();
+
 		try {
 			conn = DBManager.getProdInstance().getConnection();
+			account.setConn(conn);
 		} catch (SQLException e) {
 			logger.error(Utils.getStackTrace(e));
+			account.setErrMessage(e.toString());
 			throw new ServletException();
 		}
-
-		Account account = new Account(conn);
 
 		if (action.equals("dologin")) {
 
@@ -96,7 +100,7 @@ public class Controller extends HttpServlet {
 			request.setAttribute("name", "");
 			request.setAttribute("password", "");
 			request.setAttribute("message", "");
-			request.getRequestDispatcher("/login.jsp").forward(request, response);
+			request.getRequestDispatcher("/logon.jsp").forward(request, response);
 		}
 
 		if (conn != null)
