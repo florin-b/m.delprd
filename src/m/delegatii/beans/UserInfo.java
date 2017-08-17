@@ -104,6 +104,10 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.DADMIN;
 		} else if (codAcces.equals("CAG")) {
 			tipAngajat = TipAnjagat.CAG;
+		} else if (codAcces.equals("CAG1")) {
+			tipAngajat = TipAnjagat.CAG;
+		} else if (codAcces.equals("CAG2")) {
+			tipAngajat = TipAnjagat.CAG;
 		} else if (codAcces.equals("SM")) {
 			tipAngajat = TipAnjagat.SM;
 		} else if (codAcces.equals("SSDTI")) {

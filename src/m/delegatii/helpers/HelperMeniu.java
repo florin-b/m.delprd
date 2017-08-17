@@ -41,6 +41,7 @@ public class HelperMeniu {
 			case MODIFICA_DELEGATIE:
 			case APROBA_DELEGATIE:
 			case AFISEAZA_DELEGATIE:
+			case AFISEAZA_TRASEU:
 			case EXIT:
 				navigationLinks.add(nd);
 				break;

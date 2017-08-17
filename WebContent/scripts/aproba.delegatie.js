@@ -85,7 +85,8 @@ function aprobaDelegatie(delegatieId, tipAprobare) {
 			idDelegatie : delegatieId,
 			tipAngajat : tipAng,
 			kmRespinsi : kmResp,
-			codAngajat : codAng
+			codAngajat : codAng,
+			tipAprobare : tipAprobare
 		}),
 		cache : false,
 		dataType : "text",
@@ -190,7 +191,7 @@ function adaugaDelegatieAprob(delegatie) {
 
 	var content = '<div class="ui-corner-all custom-corners">';
 
-	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat
+	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat + ' ' + delegatie.id
 			+ "</div>";
 
 	content += '<div class="ui-body ui-body-a">';

@@ -14,7 +14,6 @@ import m.delegatii.beans.User;
 import m.delegatii.beans.UserInfo;
 import m.delegatii.model.OperatiiMasini;
 import m.delegatii.queries.SqlQueries;
-import m.delegatii.utils.DateUtils;
 import m.delegatii.utils.Utils;
 
 public class Account {

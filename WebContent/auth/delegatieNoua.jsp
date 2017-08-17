@@ -195,7 +195,8 @@
 						<div class="ui-block-a">Data</div>
 
 						<div class="ui-block-b">
-							<input id="dateStart" type="text" readonly="readonly" />
+							<input id="dateStart" type="text" readonly="readonly"
+								style="position: relative; z-index: 100000;" />
 
 						</div>
 
@@ -261,7 +262,8 @@
 						<div class="ui-block-a">Data</div>
 
 						<div class="ui-block-b">
-							<input type="text" id="dateStop" readonly="readonly" />
+							<input type="text" id="dateStop" readonly="readonly"
+								style="position: relative; z-index: 100000;" />
 						</div>
 
 					</div>

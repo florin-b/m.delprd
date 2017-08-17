@@ -13,6 +13,11 @@
 	href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
 <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
 
+<link rel="stylesheet" type="text/css"
+	href="../css/markers/OneMarkerStyle.css">
+<link rel="stylesheet" type="text/css"
+	href="../css/markers/MarkerLabelStyle.css">
+
 
 
 <script type="text/javascript" src="../scripts/helpers/helper.adrese.js"></script>
@@ -30,11 +35,14 @@
 <script type="text/javascript"
 	src="../scripts/helpers/helper.angajat.js"></script>
 
+
+
+
 </head>
 <body>
 
 
-	<div data-role="page" id="afiseaza" data-theme="d" data-url="">
+	<div data-role="page" id="traseu" data-theme="d" data-url="">
 
 
 		<div data-role="panel" data-display="overlay" data-position="left"
@@ -44,7 +52,7 @@
 			</ul>
 		</div>
 		<div data-role="header" data-theme="a">
-			<h1>Afiseaza delegatie</h1>
+			<h1>Afiseaza traseu</h1>
 			<a href="#left-panel" data-theme="d" data-icon="arrow-r"
 				data-iconpos="notext" data-shadow="false" data-iconshadow="false"
 				class="ui-icon-nodisc">Meniu</a>
@@ -55,17 +63,17 @@
 
 			<div class="ui-corner-all custom-corners">
 
-				<div class="ui-bar ui-bar-a">Interval cautare</div>
+				<div class="ui-bar ui-bar-a">Criterii</div>
 
 				<div class="ui-body ui-body-a">
 
 					<div class="ui-grid-a ui-responsive">
 
-						<div class="ui-block-a">Start</div>
+						<div class="ui-block-a">Inceput interval</div>
 
 						<div class="ui-block-b">
 							<input id="dateStart" type="text" readonly="readonly"
-								style="position: relative; z-index: 100000;" />
+								style='position: relative; z-index: 100000;' />
 						</div>
 
 
@@ -75,33 +83,48 @@
 
 					<div class="ui-grid-a ui-responsive">
 
-						<div class="ui-block-a">Stop</div>
+						<div class="ui-block-a">Sfarsit interval</div>
 
 						<div class="ui-block-b">
 							<input id="dateStop" type="text" readonly="readonly"
-								style="position: relative; z-index: 100000;" />
+								style='position: relative; z-index: 100000;' />
 						</div>
 
 					</div>
 
 
 
-					<div class="ui-grid-a ui-responsive" id='divTipDelegatie'>
+					<div class="ui-grid-a ui-responsive" id='divAngajat'>
 
-						<div class="ui-block-a"></div>
+						<div class="ui-block-a">Angajat</div>
 
 						<div class="ui-block-b">
-							<fieldset data-role="controlgroup" data-type="vertical">
+							<div class="ui-field-contain">
+								<select name="select-angajat-traseu" id="select-angajat-traseu">
 
-								<input type="radio" name="radio-del" id="radio-proprii"
-									value="P" checked="checked"> <label for="radio-proprii">Delegatii
-									proprii</label> <input type="radio" name="radio-del" id="radio-subord"
-									value="S"> <label for="radio-subord">Delegatii
-									subordonati</label>
-							</fieldset>
+								</select>
+
+							</div>
 						</div>
 
 					</div>
+
+
+					<div class="ui-grid-a ui-responsive" id='divMasina'>
+
+						<div class="ui-block-a">Masina</div>
+
+						<div class="ui-block-b">
+							<div class="ui-field-contain">
+								<select name="select-masina-traseu" id="select-masina-traseu">
+
+								</select>
+
+							</div>
+						</div>
+
+					</div>
+
 
 
 					<div class="ui-grid-a ui-responsive">
@@ -109,12 +132,10 @@
 						<div class="ui-block-a"></div>
 
 						<div class="ui-block-b">
-							<a href="#" class="ui-btn ui-corner-all"
-								onclick="afisDelegatii();">Cauta</a>
+							<a href="#" class="ui-btn ui-corner-all" onclick="afisTraseu();">Afiseaza</a>
 						</div>
 
 					</div>
-
 
 				</div>
 
@@ -122,16 +143,26 @@
 
 
 
-			<script type="text/javascript"
-				src="../scripts/helpers/helper.aprob.delegatie.js"></script>
-			<script type="text/javascript" src="../scripts/afiseaza.delegatie.js"></script>
+
+			<script type="text/javascript" src="../scripts/afiseaza.traseu.js"></script>
 
 
 			<br>
 
-			<ul data-role="listview" id="delegatiiList">
+			<div data-role="content" id="div_traseu">
+				<div id="map_traseu" style="height: 500px">
 
-			</ul>
+					<script
+						src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhGZckc6WAio9WiiLstQTTpVtAvQ7kIEc'></script>
+
+					<script type="text/javascript"
+						src='../scripts/helpers/markerwithlabel.js'></script>
+					<script type="text/javascript" src="../scripts/traseu.maps.js"></script>
+
+				</div>
+
+			</div>
+
 
 
 		</div>

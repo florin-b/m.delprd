@@ -82,7 +82,7 @@ function adaugaDelegatieAfis(delegatie) {
 
 	var content = '<div class="ui-corner-all custom-corners">';
 
-	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat
+	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat + '  ' + delegatie.id
 			+ "</div>";
 
 	content += '<div class="ui-body ui-body-a">';

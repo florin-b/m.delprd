@@ -49,6 +49,12 @@ public class Navigator extends SimpleTagSupport {
 		HelperMeniu.addMenuOption(navigationLinks, nd);
 
 		nd = new NavigationDetails();
+		nd.setLink(String.format("%s/auth/afiseazaTraseu.jsp", root));
+		nd.setText("Afiseaza traseu");
+		nd.setNume(EnumMeniu.AFISEAZA_TRASEU);
+		HelperMeniu.addMenuOption(navigationLinks, nd);
+
+		nd = new NavigationDetails();
 		nd.setLink(String.format("%s/exit.jsp", root));
 		nd.setText("Iesire");
 		nd.setNume(EnumMeniu.EXIT);
