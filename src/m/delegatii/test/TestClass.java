@@ -16,7 +16,7 @@ public class TestClass {
 
 		
 		
-		System.out.println(new OperatiiMasini().getMasiniAlocate("00083215"));
+		System.out.println(new OperatiiMasini().getMasiniAlocate("00000697"));
 		
 		User user = new User();
 		

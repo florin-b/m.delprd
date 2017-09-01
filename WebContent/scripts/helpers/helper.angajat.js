@@ -25,6 +25,8 @@ function hasSubords(tipAngajat) {
 	case 'SSJ':
 	case 'DV':
 	case 'SD':
+	case 'SDCVA':
+	case 'SDKA':
 		subords = true;
 		break;
 	default:

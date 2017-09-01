@@ -185,7 +185,7 @@
 			<div class="ui-corner-all custom-corners">
 
 
-				<div class="ui-bar ui-bar-a">Plecare</div>
+				<div class="ui-bar ui-bar-a">Plecare in delegatie</div>
 
 
 				<div class="ui-body ui-body-a">
@@ -252,7 +252,7 @@
 
 			<div class="ui-corner-all custom-corners">
 
-				<div class="ui-bar ui-bar-a">Sosire</div>
+				<div class="ui-bar ui-bar-a">Intoarcere din delegatie</div>
 
 
 				<div class="ui-body ui-body-a">

@@ -40,11 +40,15 @@ function showMap(data) {
 
 	if (objTraseu.coordonate == null) {
 		$("#map_traseu").hide();
+		$("#divDistanta").hide();
 		alert('Nu exista informatii');
 		return;
 	}
 
 	$("#map_traseu").show();
+
+	$("#divDistanta").show();
+	$('#kmDistanta').text(objTraseu.distanta + ' km');
 
 	var coordTraseu = [];
 	var position;
@@ -54,6 +58,9 @@ function showMap(data) {
 				objTraseu.coordonate[i].lng);
 		coordTraseu.push(position);
 	}
+
+	if (coordTraseu.length == 0)
+		$("#map_traseu").hide();
 
 	var minZoomLevel = 12;
 	var map = new google.maps.Map(document.getElementById('map_traseu'), {

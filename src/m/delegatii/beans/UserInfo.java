@@ -216,6 +216,8 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.TO;
 		} else if (codAcces.equals("ICL")) {
 			tipAngajat = TipAnjagat.ICL;
+		} else if (codAcces.equals("DAP")) {
+			tipAngajat = TipAnjagat.DAP;
 		}
 
 	}

@@ -9,6 +9,11 @@ $(document).on('pagecreate', '#afiseaza', function() {
 
 });
 
+function book(title, author) {
+	this.title = title;
+	this.author = author;
+}
+
 function setDivsVisibility() {
 
 	var tipAng = $('#tipAng').text();
@@ -17,6 +22,41 @@ function setDivsVisibility() {
 		$("#divTipDelegatie").show();
 	else
 		$("#divTipDelegatie").hide();
+
+}
+
+function TestObject(prop1, prop2) {
+	this.prop1 = prop1;
+	this.prop2 = prop2;
+
+}
+
+function afiseazaDelegatii_test() {
+	var myObj = new TestObject("Perl", "Python");
+
+	alert(JSON.stringify(myObj));
+
+	$.mobile.loading('show');
+	$.ajax({
+		type : "POST",
+		url : window.location.origin + "/flota.service/delegatii/getObject",
+		data : JSON.stringify(myObj),
+		cache : false,
+		dataType : "json",
+		contentType : "application/json; charset=utf-8",
+		success : onSuccess1,
+		error : function(data) {
+			alert(JSON.stringify(data));
+		}
+	});
+
+	function onSuccess1(data) {
+
+		alert(data);
+
+	}
+
+	$.mobile.loading('hide');
 
 }
 
@@ -82,8 +122,8 @@ function adaugaDelegatieAfis(delegatie) {
 
 	var content = '<div class="ui-corner-all custom-corners">';
 
-	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat + '  ' + delegatie.id
-			+ "</div>";
+	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat + '  '
+			+ delegatie.id + "</div>";
 
 	content += '<div class="ui-body ui-body-a">';
 

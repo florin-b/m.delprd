@@ -76,6 +76,7 @@ $(document).on('pageshow', '#modifica', function() {
 
 	afisListDelegatii();
 	initNrAutoFields();
+	initDateFields();
 
 	$("#detaliiDelegatie").hide();
 	$("#labelInfo").html('Incarcare lista delegatii. Asteptati...');
@@ -413,6 +414,27 @@ function salveazaDelegatieM() {
 	function onError() {
 		$.mobile.loading('hide');
 	}
+
+}
+
+function initDateFields() {
+	$("#dateStartM").datepicker({
+		minDate : "-1D",
+		maxDate : "+10D",
+		dateFormat : "dd-mm-yy",
+		onSelect : function(selected) {
+			$("#dateStopM").datepicker("option", "minDate", selected)
+
+		}
+
+	});
+
+	$("#dateStopM").datepicker({
+		minDate : 0,
+		maxDate : "+30D",
+		dateFormat : "dd-mm-yy",
+
+	});
 
 }
 

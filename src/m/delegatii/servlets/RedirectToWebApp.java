@@ -60,6 +60,7 @@ public class RedirectToWebApp extends HttpServlet {
 		String base = url.substring(0, url.length() - uri.length() + ctx.length()) + "/";
 
 		String redirectAddr = base + "auth/mainMenu.jsp";
+		
 
 		response.sendRedirect(redirectAddr);
 

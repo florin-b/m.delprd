@@ -6,17 +6,28 @@ function decodeOpriri(delegatie) {
 	var nevizitatStr = '<img src="../img/cancel.png">';
 
 	var status = '';
+	var adresa = '';
 	for (var i = 0; i < delegatie.listOpriri.length; i++) {
 
+		
+		adresa = '<b>' + delegatie.listOpriri[i].adresa + '</b>';
+		
 		if (i > 0 && i < delegatie.listOpriri.length
 				&& delegatie.distantaEfectuata > 0) {
 			if (delegatie.listOpriri[i].vizitat)
 				status = vizitatStr;
 			else
 				status = nevizitatStr;
+			
+			
+			if (delegatie.listOpriri[i].init)
+				adresa = '<b>' + delegatie.listOpriri[i].adresa + '</b>';
+			else
+				adresa =  delegatie.listOpriri[i].adresa ;
+			
 		}
 
-		content += '<tr><td>' + delegatie.listOpriri[i].adresa + '</td><td>'
+		content += '<tr><td>' + adresa + '</td><td>'
 				+ status + '</td></tr>';
 
 		status = '';

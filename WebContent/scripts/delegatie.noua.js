@@ -76,6 +76,22 @@ $(document).on("pagecreate", "#new-page", function() {
 
 });
 
+$('#punct-loc-input').on('focus', function() {
+	/*
+	$(function() {
+		$('html, body').animate({
+			scrollTop : $('#punct-loc-input').offset().top
+		});
+	});
+	
+	
+	$('#punct-loc-input').focus();
+	*/
+});
+$('#punct-loc-input').on('blur', function() {
+	//$.mobile.silentScroll($('#punct-loc-input').position().top);
+});
+
 function adaugaStop() {
 
 	var locStop = $('#punct-loc-input').val();
@@ -249,7 +265,7 @@ function hideControls() {
 
 function initDateFields() {
 	$("#dateStart").datepicker({
-		minDate : "-20D",
+		minDate : "-1D",
 		maxDate : "+10D",
 		dateFormat : "dd-mm-yy",
 		onSelect : function(selected) {
@@ -261,7 +277,7 @@ function initDateFields() {
 
 	$("#dateStop").datepicker({
 		minDate : 0,
-		maxDate : "+20D",
+		maxDate : "+30D",
 		dateFormat : "dd-mm-yy",
 
 	});

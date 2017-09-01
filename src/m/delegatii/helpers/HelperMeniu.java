@@ -6,6 +6,9 @@ import m.delegatii.beans.NavigationDetails;
 import m.delegatii.beans.UserInfo;
 import m.delegatii.enums.TipAnjagat;
 
+
+
+
 public class HelperMeniu {
 
 	public static void addMenuOption(List<NavigationDetails> navigationLinks, NavigationDetails nd) {
@@ -35,6 +38,8 @@ public class HelperMeniu {
 		case DTR:
 		case DZBUC:
 		case SSJ:
+		case SDKA:
+		case SDCVA:
 
 			switch (nd.getNume()) {
 			case CREEAZA_DELEGATIE:

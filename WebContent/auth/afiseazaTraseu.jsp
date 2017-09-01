@@ -142,6 +142,31 @@
 			</div>
 
 
+<br>
+
+
+			<div class="ui-corner-all custom-corners" id="divDistanta">
+
+				<div class="ui-bar ui-bar-a">Date traseu</div>
+
+
+				<div class="ui-body ui-body-a">
+
+					<div class="ui-grid-a ui-responsive">
+
+						<div class="ui-block-a">Distanta parcursa</div>
+
+						<div class="ui-block-b" id="kmDistanta">
+							
+						</div>
+
+					</div>
+
+					
+
+				</div>
+
+			</div>
 
 
 			<script type="text/javascript" src="../scripts/afiseaza.traseu.js"></script>

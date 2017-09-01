@@ -82,6 +82,9 @@ public class Utils {
 			fl = "HD10";
 		else if (numeFiliala.equals("GL_CENTRAL"))
 			fl = "GL90";
+		else if (numeFiliala.equals("TOATE"))
+			fl = "BU90";
+		
 
 		return fl;
 

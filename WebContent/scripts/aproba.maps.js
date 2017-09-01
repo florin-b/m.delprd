@@ -6,8 +6,6 @@ $(document).on(
 			var currentId = document.getElementById("delid").value;
 
 			listOpririTest = getOpriri(currentId, json_parsed);
-			
-		
 
 			var coordsTraseu = getCoordsTraseu(currentId).replace('[', '')
 					.replace(']', '').split(",");

@@ -6,6 +6,8 @@ $(document).on('pagecreate', '#traseu', function() {
 
 	initDateFields();
 	afisAngajati();
+	
+	$("#divDistanta").hide();
 
 });
 

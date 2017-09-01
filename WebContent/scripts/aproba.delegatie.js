@@ -191,8 +191,8 @@ function adaugaDelegatieAprob(delegatie) {
 
 	var content = '<div class="ui-corner-all custom-corners">';
 
-	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat + ' ' + delegatie.id
-			+ "</div>";
+	content += '<div class="ui-bar ui-bar-a">' + delegatie.numeAngajat + ' '
+			+ delegatie.id + "</div>";
 
 	content += '<div class="ui-body ui-body-a">';
 
@@ -217,12 +217,18 @@ function adaugaDelegatieAprob(delegatie) {
 	content += '</div>';
 
 	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
-	content += '<div class="ui-block-a"  >Km alocati:</div>';
+	content += '<div class="ui-block-a"  >Km alocati initial:</div>';
 	content += '<div class="ui-block-b">' + delegatie.distantaCalculata
 			+ '</div>';
 	content += '</div>';
 
 	if (delegatie.distantaEfectuata > 0) {
+
+		content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+		content += '<div class="ui-block-a"  >Km recalculati:</div>';
+		content += '<div class="ui-block-b">' + delegatie.distantaRecalculata
+				+ '</div>';
+		content += '</div>';
 
 		content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
 		content += '<div class="ui-block-a">Km realizati:</div>';
@@ -232,9 +238,13 @@ function adaugaDelegatieAprob(delegatie) {
 
 		var kmNeaprobati = 0;
 
-		if (delegatie.distantaEfectuata > delegatie.distantaCalculata)
+		if (delegatie.distantaRecalculata == 0) {
+			if (delegatie.distantaEfectuata > delegatie.distantaCalculata)
+				kmNeaprobati = delegatie.distantaEfectuata
+						- delegatie.distantaCalculata;
+		} else if (delegatie.distantaEfectuata > delegatie.distantaRecalculata)
 			kmNeaprobati = delegatie.distantaEfectuata
-					- delegatie.distantaCalculata;
+					- delegatie.distantaRecalculata;
 
 		content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
 		content += '<div class="ui-block-a">Km respinsi:</div>';
