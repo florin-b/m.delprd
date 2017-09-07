@@ -3,43 +3,35 @@ package m.delegatii.helpers;
 import java.util.List;
 
 import m.delegatii.beans.NavigationDetails;
-import m.delegatii.beans.UserInfo;
-import m.delegatii.enums.TipAnjagat;
-
-
-
 
 public class HelperMeniu {
 
-	public static void addMenuOption(List<NavigationDetails> navigationLinks, NavigationDetails nd) {
+	public static void addMenuOption(List<NavigationDetails> navigationLinks, NavigationDetails nd, String tipUser) {
 
-		// tratare situatie expirare sesiune
-		TipAnjagat tipAngajat = UserInfo.getInstance().getTipAngajat();
+		switch (tipUser) {
 
-		switch (tipAngajat) {
-
-		case SD:
-		case DZ:
-		case DAG:
-		case DV:
-		case DADMIN:
-		case DD:
-		case DE:
-		case DEA:
-		case DENDET:
-		case DFIN:
-		case DG:
-		case DHR:
-		case DINV:
-		case DIT:
-		case DJ:
-		case DMK:
-		case DRU:
-		case DTR:
-		case DZBUC:
-		case SSJ:
-		case SDKA:
-		case SDCVA:
+		case "SD":
+		case "DZ":
+		case "DAG":
+		case "DV":
+		case "DADMIN":
+		case "DD":
+		case "DE":
+		case "DEA":
+		case "DENDET":
+		case "DFIN":
+		case "DG":
+		case "DHR":
+		case "DINV":
+		case "DIT":
+		case "DJ":
+		case "DMK":
+		case "DRU":
+		case "DTR":
+		case "DZBUC":
+		case "SSJ":
+		case "SDKA":
+		case "SDCVA":
 
 			switch (nd.getNume()) {
 			case CREEAZA_DELEGATIE:

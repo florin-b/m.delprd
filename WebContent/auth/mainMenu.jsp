@@ -25,7 +25,9 @@
 		<div data-role="panel" data-display="overlay" id="left-panel1"
 			data-position="left" data-theme="a">
 			<ul data-role="listview">
-				<jsp:include page="navbar.jsp" />
+				<jsp:include page="navbar.jsp">
+					<jsp:param name="tipuser" value="${sessionScope.user.tipAng }" />
+				</jsp:include>
 			</ul>
 			<script type="text/javascript">
 				$(document).on('pageshow', function() {

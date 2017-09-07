@@ -219,6 +219,17 @@
 								<option value="1100">11:00</option>
 								<option value="1200">12:00</option>
 								<option value="1300">13:00</option>
+								<option value="1400">14:00</option>
+								<option value="1500">15:00</option>
+								<option value="1600">16:00</option>
+								<option value="1700">17:00</option>
+								<option value="1800">18:00</option>
+								<option value="1900">19:00</option>
+								<option value="2000">20:00</option>
+								<option value="2100">21:00</option>
+								<option value="2200">22:00</option>
+								<option value="2300">23:00</option>
+								<option value="2400">24:00</option>
 							</select>
 						</div>
 					</div>
@@ -390,7 +401,9 @@
 		<div data-role="panel" data-display="overlay" id="left-panel"
 			data-theme="a">
 			<ul data-role="listview">
-				<jsp:include page="navbar.jsp" />
+				<jsp:include page="navbar.jsp">
+					<jsp:param name="tipuser" value="${sessionScope.user.tipAng }" />
+				</jsp:include>
 			</ul>
 		</div>
 

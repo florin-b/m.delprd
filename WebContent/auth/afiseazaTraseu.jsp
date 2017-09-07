@@ -48,7 +48,9 @@
 		<div data-role="panel" data-display="overlay" data-position="left"
 			id="left-panel" data-theme="a">
 			<ul data-role="listview">
-				<jsp:include page="navbar.jsp" />
+				<jsp:include page="navbar.jsp">
+					<jsp:param name="tipuser" value="${sessionScope.user.tipAng }" />
+				</jsp:include>
 			</ul>
 		</div>
 		<div data-role="header" data-theme="a">
@@ -142,7 +144,7 @@
 			</div>
 
 
-<br>
+			<br>
 
 
 			<div class="ui-corner-all custom-corners" id="divDistanta">
@@ -156,13 +158,11 @@
 
 						<div class="ui-block-a">Distanta parcursa</div>
 
-						<div class="ui-block-b" id="kmDistanta">
-							
-						</div>
+						<div class="ui-block-b" id="kmDistanta"></div>
 
 					</div>
 
-					
+
 
 				</div>
 

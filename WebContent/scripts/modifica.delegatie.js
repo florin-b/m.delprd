@@ -419,7 +419,7 @@ function salveazaDelegatieM() {
 
 function initDateFields() {
 	$("#dateStartM").datepicker({
-		minDate : "-1D",
+		minDate : getDaysBack(),
 		maxDate : "+10D",
 		dateFormat : "dd-mm-yy",
 		onSelect : function(selected) {
@@ -437,6 +437,30 @@ function initDateFields() {
 	});
 
 }
+
+
+function getDaysBack() {
+
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1;
+	var yyyy = today.getFullYear();
+
+	if (dd < 12 && mm < 10 && yyyy == 2017)
+		return new Date('2017/09/01');
+
+	else {
+
+		var d = new Date();
+		var n = d.getDay();
+
+		if (n == 1)
+			return "-3D";
+
+		return "-1D";
+	}
+}
+
 
 function hideControlsM() {
 

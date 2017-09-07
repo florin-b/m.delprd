@@ -57,6 +57,8 @@ public class Account {
 				user.setFiliala(callableStatement.getString(5));
 				user.setUserName(callableStatement.getString(9));
 
+				UserInfo.getInstance().clearData();
+
 				UserInfo.getInstance().setFiliala(user.getFiliala());
 				UserInfo.getInstance().setNume(user.getName());
 				UserInfo.getInstance().setTipAcces(callableStatement.getString(6));

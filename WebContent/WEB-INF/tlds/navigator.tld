@@ -10,6 +10,10 @@
 		<name>navigator</name>
 		<tag-class>m.delegatii.tags.Navigator</tag-class>
 		<body-content>scriptless</body-content>
-		
+		<attribute>
+			<name>tipUser</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+		</attribute>
 	</tag>
 </taglib>

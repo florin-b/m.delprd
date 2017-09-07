@@ -36,7 +36,9 @@
 		<div data-role="panel" data-display="overlay" data-position="left"
 			id="left-panel2" data-theme="a">
 			<ul data-role="listview">
-				<jsp:include page="navbar.jsp" />
+				<jsp:include page="navbar.jsp">
+					<jsp:param name="tipuser" value="${sessionScope.user.tipAng }" />
+				</jsp:include>
 			</ul>
 		</div>
 		<div data-role="header" data-theme="a">

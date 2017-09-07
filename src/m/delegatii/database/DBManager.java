@@ -22,21 +22,7 @@ public class DBManager {
 
 	private static final Logger logger = LogManager.getLogger(DBManager.class);
 
-	private DBManager() {
-
-	}
-
-	public static DataSource getProdInstance() {
-		if (dataSourcePrd == null)
-			dataSourcePrd = getProdDataSource();
-
-		return dataSourcePrd;
-	}
-
-
-	
-	
-	private static DataSource getProdDataSource() {
+	public DataSource getProdDataSource() {
 
 		OracleDataSource oracleDS = null;
 		try {
@@ -51,35 +37,25 @@ public class DBManager {
 		return oracleDS;
 	}
 
-	
 	/*
-	
-	public static DataSource getTestInstance() {
-		if (dataSourceTest == null)
-			dataSourceTest = getTestDataSource();
+	 * 
+	 * public static DataSource getTestInstance() { if (dataSourceTest == null)
+	 * dataSourceTest = getTestDataSource();
+	 * 
+	 * return dataSourceTest; }
+	 * 
+	 * 
+	 * public static DataSource getTestDataSource() {
+	 * 
+	 * OracleDataSource oracleDS = null; try {
+	 * 
+	 * oracleDS = new OracleDataSource();
+	 * oracleDS.setURL("jdbc:oracle:thin:@10.1.3.89:1527:tes");
+	 * oracleDS.setUser("WEBSAP"); oracleDS.setPassword("2INTER7"); } catch
+	 * (Exception e) { e.printStackTrace(); } return oracleDS; }
+	 * 
+	 */
 
-		return dataSourceTest;
-	}
-
-	
-	public static DataSource getTestDataSource() {
-
-		OracleDataSource oracleDS = null;
-		try {
-
-			oracleDS = new OracleDataSource();
-			oracleDS.setURL("jdbc:oracle:thin:@10.1.3.89:1527:tes");
-			oracleDS.setUser("WEBSAP");
-			oracleDS.setPassword("2INTER7");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return oracleDS;
-	}
-	
-	*/
-	
-	
 	private static DataSource getTestDataSource1() {
 		InitialContext initContext;
 		DataSource ds = null;

@@ -1,5 +1,7 @@
 package m.delegatii.beans;
 
+import java.util.List;
+
 import m.delegatii.enums.TipAnjagat;
 
 public class UserInfo {
@@ -12,6 +14,7 @@ public class UserInfo {
 	private String codDepart;
 	private String unitLog;
 	private String listMasini;
+	private List<NavigationDetails> menuOptions;
 
 	private static UserInfo instance;
 
@@ -76,6 +79,8 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.DV;
 		} else if (codAcces.equals("27")) {
 			tipAngajat = TipAnjagat.KA;
+		} else if (codAcces.equals("DV")) {
+			tipAngajat = TipAnjagat.DV;
 		} else if (codAcces.equals("ATR")) {
 			tipAngajat = TipAnjagat.ATR;
 		} else if (codAcces.equals("DAG")) {
@@ -218,6 +223,10 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.ICL;
 		} else if (codAcces.equals("DAP")) {
 			tipAngajat = TipAnjagat.DAP;
+		} else if (codAcces.equals("GS")) {
+			tipAngajat = TipAnjagat.GS;
+		} else if (codAcces.equals("KA08")) {
+			tipAngajat = TipAnjagat.KA;
 		}
 
 	}
@@ -244,6 +253,28 @@ public class UserInfo {
 
 	public void setCodDepart(String codDepart) {
 		this.codDepart = codDepart;
+	}
+
+	public List<NavigationDetails> getMenuOptions() {
+		return menuOptions;
+	}
+
+	public void setMenuOptions(List<NavigationDetails> menuOptions) {
+		this.menuOptions = menuOptions;
+	}
+
+	public void clearData() {
+
+		nume = "";
+		filiala = "";
+		tipAcces = "";
+		cod = "";
+		tipAngajat = null;
+		codDepart = "";
+		unitLog = "";
+		listMasini = "";
+		menuOptions = null;
+
 	}
 
 	@Override

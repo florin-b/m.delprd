@@ -22,7 +22,7 @@ public class OperatiiMasini {
 
 		List<String> listMasini = new ArrayList<>();
 
-		try (Connection conn = DBManager.getProdInstance().getConnection();
+		try (Connection conn = new DBManager().getProdDataSource().getConnection();
 				PreparedStatement stmt = conn.prepareStatement(SqlQueries.getMasiniAlocate(), ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);) {
 
 			stmt.setString(1, codAngajat);
@@ -44,8 +44,5 @@ public class OperatiiMasini {
 		return listMasini;
 
 	}
-	
-	
-
 
 }

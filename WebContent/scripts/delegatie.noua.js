@@ -78,18 +78,15 @@ $(document).on("pagecreate", "#new-page", function() {
 
 $('#punct-loc-input').on('focus', function() {
 	/*
-	$(function() {
-		$('html, body').animate({
-			scrollTop : $('#punct-loc-input').offset().top
-		});
-	});
-	
-	
-	$('#punct-loc-input').focus();
-	*/
+	 * $(function() { $('html, body').animate({ scrollTop :
+	 * $('#punct-loc-input').offset().top }); });
+	 * 
+	 * 
+	 * $('#punct-loc-input').focus();
+	 */
 });
 $('#punct-loc-input').on('blur', function() {
-	//$.mobile.silentScroll($('#punct-loc-input').position().top);
+	// $.mobile.silentScroll($('#punct-loc-input').position().top);
 });
 
 function adaugaStop() {
@@ -265,7 +262,7 @@ function hideControls() {
 
 function initDateFields() {
 	$("#dateStart").datepicker({
-		minDate : "-1D",
+		minDate : getDaysBack(),
 		maxDate : "+10D",
 		dateFormat : "dd-mm-yy",
 		onSelect : function(selected) {
@@ -288,6 +285,29 @@ function initDateFields() {
 
 	$("#dateStart").datepicker("setDate", cDate);
 	$("#dateStop").datepicker("setDate", cDate);
+
+}
+
+function getDaysBack() {
+
+	var today = new Date();
+	var dd = today.getDate();
+	var mm = today.getMonth() + 1;
+	var yyyy = today.getFullYear();
+
+	if (dd < 12 && mm < 10 && yyyy == 2017)
+		return new Date('2017/09/01');
+
+	else {
+
+		var d = new Date();
+		var n = d.getDay();
+
+		if (n == 1)
+			return "-3D";
+
+		return "-1D";
+	}
 }
 
 function initNrAutoFields() {

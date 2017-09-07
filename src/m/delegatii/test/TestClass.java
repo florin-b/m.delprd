@@ -14,23 +14,17 @@ public class TestClass {
 
 	public static void main(String[] args) throws Exception {
 
-		
-		
 		System.out.println(new OperatiiMasini().getMasiniAlocate("00000697"));
-		
+
 		User user = new User();
-		
+
 		user.setName("MCOMAN");
 		user.setPassword("p9n2PW");
-		
+
 		Account acc = new Account();
-		acc.setConn(DBManager.getProdInstance().getConnection());
-		
-		
-		
+		acc.setConn(new DBManager().getProdDataSource().getConnection());
+
 		System.out.println(acc.loginUser(user));
-		
-		
 
 	}
 

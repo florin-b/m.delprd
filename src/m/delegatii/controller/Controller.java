@@ -32,9 +32,7 @@ public class Controller extends HttpServlet {
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		//doPost(request, response);
+
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -46,7 +44,7 @@ public class Controller extends HttpServlet {
 		Account account = new Account();
 
 		try {
-			conn = DBManager.getProdInstance().getConnection();
+			conn = new DBManager().getProdDataSource().getConnection();
 			account.setConn(conn);
 		} catch (SQLException e) {
 			logger.error(Utils.getStackTrace(e));
@@ -84,8 +82,7 @@ public class Controller extends HttpServlet {
 					request.getRequestDispatcher("/auth/mainMenu.jsp").include(request, response);
 
 				} else {
-					session.setAttribute("account", account);
-					session.setAttribute("user", user);
+					session.invalidate();
 					request.getRequestDispatcher("/logon.jsp").forward(request, response);
 				}
 			} catch (SQLException e) {
@@ -96,6 +93,7 @@ public class Controller extends HttpServlet {
 		}
 
 		else if (action.equals("dologout")) {
+
 			request.getSession().invalidate();
 			request.setAttribute("name", "");
 			request.setAttribute("password", "");
