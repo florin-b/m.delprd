@@ -115,10 +115,7 @@ $(document)
 															});
 										}
 									});
-					
-					
-					
-					
+
 					$('#list-punct-loc').on('click', 'li', function() {
 
 						$('#punct-loc-input').val($(this).text());
@@ -173,8 +170,62 @@ $(document)
 																		.trigger("updatelayout");
 															});
 										}
-									});					
-					
-					
+									});
 
 				});
+
+function loadjsfile() {
+
+	var googleSrc = 'https://maps.googleapis.com/maps/api/js?key='
+			+ getMapKey();
+
+	var fileref = document.createElement('script');
+	fileref.setAttribute("type", "text/javascript");
+	fileref.setAttribute("src", googleSrc);
+
+	document.getElementsByTagName("head")[0].appendChild(fileref)
+}
+
+function getMapKey() {
+
+	var key1 = "AIzaSyC6KA9_ltzZ7nJOnZdZlJv4N9YTiaGYG5Y";
+	var key2 = "AIzaSyBsFNT-vjdopb3dI_4hSDfXb2Qv3wqTwZ4";
+	var key3 = "AIzaSyC5LRmkHjtEYCRB99GJrZkoKTZ0Xh3uGJw";
+	var key4 = "AIzaSyCOSA-8X5rldxSzkJVDJzvNcC7nVNZPtKA";
+	var key5 = "AIzaSyCduykhBCHNaIGtZyQ2dtNOzjvEquWQxWs";
+	var key6 = "AIzaSyDOS5_XfXpFBIjJ1-X_N3nGGT7Csx-X-Po";
+	var key7 = "AIzaSyDmwmvsWujoSasKPneKKese-3yp4r_hQyY";
+
+	var rnd = Math.floor((Math.random() * 7) + 1);
+
+	var key;
+
+	switch (rnd) {
+	case 2:
+		key = key2;
+		break;
+	case 3:
+		key = key3;
+		break;
+	case 4:
+		key = key4;
+		break;
+	case 5:
+		key = key5;
+		break;
+	case 6:
+		key = key6;
+		break;
+	case 7:
+		key = key7;
+		break;
+	case 1:
+	default:
+		key = key1;
+		break;
+
+	}
+
+	return key;
+
+}

@@ -295,7 +295,7 @@ function getDaysBack() {
 	var mm = today.getMonth() + 1;
 	var yyyy = today.getFullYear();
 
-	if (dd < 12 && mm < 10 && yyyy == 2017)
+	if (dd < 16 && mm < 10 && yyyy == 2017)
 		return new Date('2017/09/01');
 
 	else {

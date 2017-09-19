@@ -31,7 +31,63 @@ function TestObject(prop1, prop2) {
 
 }
 
+function testLocalitati() {
+
+	$.ajax({
+		type : "POST",
+		url : "http://10.1.5.28:8080/flota.service/delegatii/localitatiPost",
+		data : ({
+			codJudet : '20'
+		}),
+		cache : false,
+		dataType : "text",
+		success : onSuccess
+	});
+
+	function onSuccess(data) {
+
+		alert(data);
+
+	}
+
+}
+
 function afiseazaDelegatii_test() {
+	var myObj = new TestObject("Perl", "Python");
+
+	alert(JSON.stringify(myObj));
+
+	var url = "http://10.1.3.72:8080/flota.service.test/delegatii/getObjectRemote";
+
+	alert(url);
+
+	$.mobile.loading('show');
+	$.ajax({
+		type : "POST",
+		url : url,
+		data : ({
+			codJudet : JSON.stringify(myObj)
+
+		}),
+		cache : false,
+		dataType : "text",
+		success : onSuccess1,
+		error : function(data) {
+			alert(JSON.stringify(data));
+		}
+	});
+
+	function onSuccess1(data) {
+
+		alert(data);
+
+	}
+
+	$.mobile.loading('hide');
+
+}
+
+function afiseazaDelegatii_OK() {
 	var myObj = new TestObject("Perl", "Python");
 
 	alert(JSON.stringify(myObj));

@@ -5,26 +5,13 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import m.delegatii.beans.User;
-import m.delegatii.database.Account;
-import m.delegatii.database.DBManager;
-import m.delegatii.model.OperatiiMasini;
+import m.delegatii.model.OperatiiAngajat;
 
 public class TestClass {
 
 	public static void main(String[] args) throws Exception {
 
-		System.out.println(new OperatiiMasini().getMasiniAlocate("00000697"));
-
-		User user = new User();
-
-		user.setName("MCOMAN");
-		user.setPassword("p9n2PW");
-
-		Account acc = new Account();
-		acc.setConn(new DBManager().getProdDataSource().getConnection());
-
-		System.out.println(acc.loginUser(user));
+		System.out.println(new OperatiiAngajat().getTipAngajat("00002173"));
 
 	}
 

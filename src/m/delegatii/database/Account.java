@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import m.delegatii.beans.User;
 import m.delegatii.beans.UserInfo;
+import m.delegatii.model.OperatiiAngajat;
 import m.delegatii.model.OperatiiMasini;
 import m.delegatii.queries.SqlQueries;
 import m.delegatii.utils.Utils;
@@ -78,8 +79,15 @@ public class Account {
 					UserInfo.getInstance().setTipAngajat(callableStatement.getString(6));
 				}
 
+				String numeDepart = callableStatement.getString(4);
+
+				String codDepart = Utils.getDepart(numeDepart);
+
+				if (numeDepart.equalsIgnoreCase("TOAT"))
+					codDepart = new OperatiiAngajat().getDepartAngajat(codAgent);
+
 				UserInfo.getInstance().setUnitLog(Utils.getUnitLog(user.getFiliala()));
-				UserInfo.getInstance().setCodDepart(Utils.getDepart(callableStatement.getString(4)));
+				UserInfo.getInstance().setCodDepart(codDepart);
 
 				List<String> listMasini = new OperatiiMasini().getMasiniAlocate(UserInfo.getInstance().getCod());
 

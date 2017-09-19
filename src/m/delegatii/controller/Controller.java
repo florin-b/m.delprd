@@ -79,10 +79,12 @@ public class Controller extends HttpServlet {
 
 					session.setAttribute("userAuthLevel", "1");
 					session.setAttribute("user", user);
+
 					request.getRequestDispatcher("/auth/mainMenu.jsp").include(request, response);
 
 				} else {
 					session.invalidate();
+					request.setAttribute("account", account);
 					request.getRequestDispatcher("/logon.jsp").forward(request, response);
 				}
 			} catch (SQLException e) {

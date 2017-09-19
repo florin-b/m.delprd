@@ -48,6 +48,8 @@
 	src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 
+
+
 <script type="text/javascript" src="../scripts/delegatie.noua.auto.js"></script>
 
 
@@ -378,10 +380,19 @@
 					<div data-role="content" id="mapcontentdelegatie">
 						<div id="map_canvas_delegatie" style="height: 400px">
 
-							<script
-								src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhGZckc6WAio9WiiLstQTTpVtAvQ7kIEc'></script>
+
+
+							<script>
+								loadjsfile();
+							</script>
+
 							<script type="text/javascript"
 								src="../scripts/delegatie.noua.maps.js"></script>
+
+
+
+
+
 						</div>
 
 					</div>
