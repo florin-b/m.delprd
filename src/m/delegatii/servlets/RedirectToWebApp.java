@@ -54,7 +54,12 @@ public class RedirectToWebApp extends HttpServlet {
 				strUnitLog = "BU90";
 
 			UserInfo.getInstance().setUnitLog(strUnitLog);
-			UserInfo.getInstance().setCodDepart(request.getParameter("codDepart"));
+
+			// Exceptie CMATEI2
+			if (UserInfo.getInstance().getCod().equals("00010281"))
+				UserInfo.getInstance().setCodDepart("11");
+			else
+				UserInfo.getInstance().setCodDepart(request.getParameter("codDepart"));
 
 			List<String> listMasini = new OperatiiMasini().getMasiniAlocate(UserInfo.getInstance().getCod());
 

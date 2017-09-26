@@ -32,6 +32,7 @@ public class HelperMeniu {
 		case "SSJ":
 		case "SDKA":
 		case "SDCVA":
+		case "SM":
 
 			switch (nd.getNume()) {
 			case CREEAZA_DELEGATIE:

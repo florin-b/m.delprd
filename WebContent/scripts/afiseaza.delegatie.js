@@ -31,24 +31,90 @@ function TestObject(prop1, prop2) {
 
 }
 
-function testLocalitati() {
+function testBeanObiectiv() {
 
+	var myObj = new Object();
+
+	myObj.tip = 'tip';
+	myObj.nume = 'nume';
+	myObj.stare = 1;
+	myObj.categorie = 2;
+	myObj.etapa = 4;
+	myObj.faza = 11;
+
+	myObj.valoareEstimata = 222;
+	myObj.dataStartAutorizatie = '';
+	myObj.dataSfarsitAutorizatie = '';
+
+	myObj.dataInceput = '';
+	myObj.dataSfarist = '';
+	myObj.durataFaza = 22;
+
+	myObj.numeMeserias = 'meserias 123';
+	myObj.telMeserias = 'tel meserias';
+	myObj.codExecutant = 'cod exec';
+	myObj.numeExecutant = 'nume exec';
+	myObj.cuiExecutant = 'cui exec';
+	myObj.tipBeneficiar = 22;
+	myObj.numeBeneficiar = 'nume benef';
+	myObj.cuiPersJuridica = 'cui';
+	myObj.nrRcPersJuridica = 'nr c';
+	myObj.codJudetBenef = '22';
+	myObj.localitateBenef = 'localitate';
+	myObj.adresaBenef = 'adresa';
+
+	alert(JSON.stringify(myObj));
+
+	$.mobile.loading('show');
 	$.ajax({
 		type : "POST",
-		url : "http://10.1.5.28:8080/flota.service/delegatii/localitatiPost",
-		data : ({
-			codJudet : '20'
-		}),
+		url : "http://10.1.5.28:8080/obiective.service/obiective/adauga",
+		data : myObj,
 		cache : false,
-		dataType : "text",
-		success : onSuccess
+		success : onSuccess1,
+		error : function(data) {
+			alert(JSON.stringify(data));
+		}
 	});
 
-	function onSuccess(data) {
+	function onSuccess1(data) {
 
 		alert(data);
 
 	}
+
+	$.mobile.loading('hide');
+
+}
+
+function testBean() {
+
+	var myObj = new Object();
+
+	myObj.name = "Bean Name";
+	myObj.address = "Bean Address";
+
+	alert(JSON.stringify(myObj));
+
+	$.mobile.loading('show');
+	$.ajax({
+		type : "POST",
+		url : "http://10.1.5.28:8080/flota.service/delegatii/testBean",
+		data : myObj,
+		cache : false,
+		success : onSuccess1,
+		error : function(data) {
+			alert(JSON.stringify(data));
+		}
+	});
+
+	function onSuccess1(data) {
+
+		alert(data);
+
+	}
+
+	$.mobile.loading('hide');
 
 }
 

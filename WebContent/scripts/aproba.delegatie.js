@@ -143,10 +143,6 @@ function afisDelegatiiAprob() {
 	var tipAng = $('#tipAng').text();
 	var unitLog = $('#unitLog').text();
 	var depart = $('#codDepart').text();
-	
-	
-	
-	
 
 	$.ajax({
 

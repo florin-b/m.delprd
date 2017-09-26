@@ -116,105 +116,111 @@ function showAlertCreare(tipAlert, mesajAlert) {
 
 function salveazaDelegatie() {
 
-	var judetPlecare = $('#start-loc-input').val().split('/')[1];
-	var locPlecare = $('#start-loc-input').val().split('/')[0];
+	try {
 
-	var judetSosire = $('#stop-loc-input').val().split('/')[1];
-	var locSosire = $('#stop-loc-input').val().split('/')[0];
+		var judetPlecare = $('#start-loc-input').val().split('/')[1];
+		var locPlecare = $('#start-loc-input').val().split('/')[0];
 
-	var nrAuto = $('#nrAuto').val();
-	var dataPlecare = $('#dateStart').val();
-	var oraPlecare = $('#select-ora').val();
-	var distkm = $('#kmtraseu').text();
-	var dataSosire = $('#dateStop').val();
+		var judetSosire = $('#stop-loc-input').val().split('/')[1];
+		var locSosire = $('#stop-loc-input').val().split('/')[0];
 
-	var tipAng = $('#tipAng').text();
-	var codAng = $('#codAng').text();
+		var nrAuto = $('#nrAuto').val();
+		var dataPlecare = $('#dateStart').val();
+		var oraPlecare = $('#select-ora').val();
+		var distkm = $('#kmtraseu').text();
+		var dataSosire = $('#dateStop').val();
 
-	if (locPlecare == '') {
-		showAlertCreare('Atentie!', 'Selectati localitatea de plecare.');
-		return false;
-	}
+		var tipAng = $('#tipAng').text();
+		var codAng = $('#codAng').text();
 
-	if (locSosire == '') {
-		showAlertCreare('Atentie!', 'Selectati localitatea de sosire.');
-		return false;
-	}
+		if (locPlecare == '') {
+			showAlertCreare('Atentie!', 'Selectati localitatea de plecare.');
+			return false;
+		}
 
-	if (nrAuto == '') {
-		showAlertCreare('Atentie!', 'Completati nr. auto.');
-		return false;
-	}
+		if (locSosire == '') {
+			showAlertCreare('Atentie!', 'Selectati localitatea de sosire.');
+			return false;
+		}
 
-	if (dataPlecare == '') {
-		showAlertCreare('Atentie!', 'Selectati data plecare.');
-		return false;
-	}
+		if (nrAuto == '') {
+			showAlertCreare('Atentie!', 'Completati nr. auto.');
+			return false;
+		}
 
-	if (oraPlecare == '') {
-		showAlertCreare('Atentie!', 'Selectati ora plecare.');
-		return false;
-	}
+		if (dataPlecare == '') {
+			showAlertCreare('Atentie!', 'Selectati data plecare.');
+			return false;
+		}
 
-	if (dataSosire == '') {
-		showAlertCreare('Atentie!', 'Selectati data sosire.');
-		return false;
-	}
+		if (oraPlecare == '') {
+			showAlertCreare('Atentie!', 'Selectati ora plecare.');
+			return false;
+		}
 
-	var opriri = locPlecare + ' / ' + judetPlecare;
+		if (dataSosire == '') {
+			showAlertCreare('Atentie!', 'Selectati data sosire.');
+			return false;
+		}
 
-	$('.stopsList').each(
-			function() {
-				var list = $(this).find('li');
-				$(list.get()).each(
-						function() {
-							var currentStop = $(this).text().split('/')[0]
-									+ ' / ' + $(this).text().split('/')[1];
+		var opriri = locPlecare + ' / ' + judetPlecare;
 
-							opriri += "," + currentStop;
+		$('.stopsList').each(
+				function() {
+					var list = $(this).find('li');
+					$(list.get()).each(
+							function() {
+								var currentStop = $(this).text().split('/')[0]
+										+ ' / ' + $(this).text().split('/')[1];
 
-						});
+								opriri += "," + currentStop;
 
-			})
+							});
 
-	opriri += ',' + locSosire + ' / ' + judetSosire;
+				})
 
-	$.mobile.loading('show');
+		opriri += ',' + locSosire + ' / ' + judetSosire;
 
-	$.ajax({
-		type : "POST",
-		url : window.location.origin
-				+ "/flota.service/delegatii/adaugaDelegatie",
-		data : ({
-			codAngajat : codAng,
-			tipAngajat : tipAng,
-			dataP : dataPlecare,
-			oraP : oraPlecare,
-			dataS : dataSosire,
-			distcalc : distkm,
-			stops : opriri,
-			nrAuto : nrAuto
-		}),
-		cache : false,
-		dataType : "text",
-		success : onSuccess,
-		error : onError
-	});
+		$.mobile.loading('show');
 
-	function onSuccess(data) {
+		$.ajax({
+			type : "POST",
+			url : window.location.origin
+					+ "/flota.service/delegatii/adaugaDelegatie",
+			data : ({
+				codAngajat : codAng,
+				tipAngajat : tipAng,
+				dataP : dataPlecare,
+				oraP : oraPlecare,
+				dataS : dataSosire,
+				distcalc : distkm,
+				stops : opriri,
+				nrAuto : nrAuto
+			}),
+			cache : false,
+			dataType : "text",
+			success : onSuccess,
+			error : onError
+		});
 
-		$.mobile.loading('hide');
+		function onSuccess(data) {
 
-		if (data == 1)
-			showAlertCreare('Status', 'Date salvate cu succes.');
-		else
-			showAlertCreare('Status', 'Eroare salvare date.');
-		hideControls();
+			$.mobile.loading('hide');
 
-	}
+			if (data == 1)
+				showAlertCreare('Status', 'Date salvate cu succes.');
+			else
+				showAlertCreare('Status', 'Eroare salvare date.');
+			hideControls();
 
-	function onError() {
-		$.mobile.loading('hide');
+		}
+
+		function onError() {
+			$.mobile.loading('hide');
+		}
+
+	} catch (err) {
+		alert(err.message);
 	}
 
 }
@@ -295,7 +301,7 @@ function getDaysBack() {
 	var mm = today.getMonth() + 1;
 	var yyyy = today.getFullYear();
 
-	if (dd < 16 && mm < 10 && yyyy == 2017)
+	if (dd <=30 && mm < 10 && yyyy == 2017)
 		return new Date('2017/09/01');
 
 	else {

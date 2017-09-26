@@ -184,6 +184,7 @@ function loadjsfile() {
 	fileref.setAttribute("src", googleSrc);
 
 	document.getElementsByTagName("head")[0].appendChild(fileref)
+
 }
 
 function getMapKey() {

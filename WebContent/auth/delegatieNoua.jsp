@@ -48,12 +48,7 @@
 	src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 
-
-
 <script type="text/javascript" src="../scripts/delegatie.noua.auto.js"></script>
-
-
-
 
 
 <style>
@@ -205,9 +200,6 @@
 					</div>
 
 
-
-
-
 					<div class="ui-grid-a ui-responsive">
 						<div class="ui-block-a">Ora</div>
 						<div class="ui-block-b">
@@ -341,7 +333,7 @@
 						<div class="ui-block-b">
 
 							<input type="button" class="ui-btn ui-corner-all" data-theme="a"
-								onclick="adaugaStop();" value="Adauga"></a>
+								onclick="adaugaStop();" value="Adauga">
 
 						</div>
 					</div>
