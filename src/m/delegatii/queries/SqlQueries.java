@@ -115,5 +115,14 @@ public class SqlQueries {
 		return sqlString.toString();
 	}	
 	
+	
+	public static String getExtraFilialeAngajat() {
+		StringBuilder sqlString = new StringBuilder();
+
+		sqlString.append(" select ul from sapprd.zextrafildlg where mandt='900' and codangajat=? ");
+
+		return sqlString.toString();
+	}
+
 
 }

@@ -18,6 +18,7 @@ import m.delegatii.beans.User;
 import m.delegatii.beans.UserInfo;
 import m.delegatii.database.Account;
 import m.delegatii.database.DBManager;
+import m.delegatii.model.OperatiiAngajat;
 import m.delegatii.utils.Utils;
 
 @WebServlet("/Controller")
@@ -76,6 +77,19 @@ public class Controller extends HttpServlet {
 					user.setTipAng(UserInfo.getInstance().getTipAngajat().name());
 					user.setListMasini(UserInfo.getInstance().getListMasini());
 					user.setCodDepart(UserInfo.getInstance().getCodDepart());
+
+					// DD 01 are acces si la 02
+					if (user.getCod().equals("00006321"))
+						user.setCodDepart("01,02");
+
+					if (user.getTipAng().toUpperCase().startsWith("SD") || user.getTipAng().equalsIgnoreCase("DMK") || user.getTipAng().equalsIgnoreCase("DIT")) {
+						String extraFiliale = new OperatiiAngajat().getExtraFiliale(UserInfo.getInstance().getCod());
+
+						if (!extraFiliale.isEmpty()) {
+							extraFiliale = user.getUnitLog() + "," + extraFiliale;
+							user.setUnitLog(extraFiliale);
+						}
+					}
 
 					session.setAttribute("userAuthLevel", "1");
 					session.setAttribute("user", user);

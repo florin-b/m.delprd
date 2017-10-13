@@ -111,7 +111,9 @@ function adaugaStop() {
 function showAlertCreare(tipAlert, mesajAlert) {
 	$('#tipAlertC').text(tipAlert);
 	$('#textAlertC').text(mesajAlert);
-	$.mobile.changePage('#dialogCreare');
+	$.mobile.changePage('#dialogCreare', {
+		transition : "none"
+	});
 }
 
 function salveazaDelegatie() {
@@ -267,23 +269,34 @@ function hideControls() {
 }
 
 function initDateFields() {
-	$("#dateStart").datepicker({
-		minDate : getDaysBack(),
-		maxDate : "+10D",
-		dateFormat : "dd-mm-yy",
-		onSelect : function(selected) {
-			$("#dateStop").datepicker("option", "minDate", selected)
+	$("#dateStart").datepicker(
+			{
+				//minDate : getDaysBack(),
+				minDate : -40,
+				maxDate : "+10D",
+				dateFormat : "dd-mm-yy",
+				onSelect : function(selected) {
+					$("#dateStop").datepicker("option", "minDate", selected)
 
-		}
+					calcDays($('#dateStart').datepicker('getDate'), $(
+							'#dateStop').datepicker('getDate'));
 
-	});
+				}
 
-	$("#dateStop").datepicker({
-		minDate : 0,
-		maxDate : "+30D",
-		dateFormat : "dd-mm-yy",
+			});
 
-	});
+	$("#dateStop").datepicker(
+			{
+				minDate : 0,
+				maxDate : "+30D",
+				dateFormat : "dd-mm-yy",
+				onSelect : function() {
+					calcDays($('#dateStart').datepicker('getDate'), $(
+							'#dateStop').datepicker('getDate'));
+
+				}
+
+			});
 
 	var cDate = new Date();
 	var daysToAdd = 1;
@@ -294,6 +307,16 @@ function initDateFields() {
 
 }
 
+function calcDays(dateStart, dateEnd) {
+
+	var days = (dateEnd - dateStart) / 1000 / 60 / 60 / 24;
+
+	if (days > 0)
+		showAlertCreare('Info', 'Durata delegatiei este de ' + (days + 1)
+				+ ' zile.');
+
+}
+
 function getDaysBack() {
 
 	var today = new Date();
@@ -301,7 +324,7 @@ function getDaysBack() {
 	var mm = today.getMonth() + 1;
 	var yyyy = today.getFullYear();
 
-	if (dd <=30 && mm < 10 && yyyy == 2017)
+	if (dd <= 30 && mm < 10 && yyyy == 2017)
 		return new Date('2017/09/01');
 
 	else {

@@ -231,6 +231,8 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.CONS_GED;
 		} else if (codAcces.equals("SSIC")) {
 			tipAngajat = TipAnjagat.SSIC;
+		} else if (codAcces.equals("DDEZ")) {
+			tipAngajat = TipAnjagat.DDEZ;
 		}
 
 	}

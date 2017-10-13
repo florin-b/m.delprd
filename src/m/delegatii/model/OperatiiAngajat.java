@@ -67,5 +67,37 @@ public class OperatiiAngajat {
 
 		return tipAngajat;
 	}
+	
+	public String getExtraFiliale(String codAngajat) {
+		StringBuilder extraFil = new StringBuilder();
+
+		try (Connection conn = new DBManager().getProdDataSource().getConnection();
+				PreparedStatement stmt = conn.prepareStatement(SqlQueries.getExtraFilialeAngajat())) {
+
+			stmt.setString(1, codAngajat);
+			stmt.executeQuery();
+
+			ResultSet rs = stmt.getResultSet();
+
+			while (rs.next()) {
+
+				if (extraFil.toString().isEmpty())
+					extraFil.append(rs.getString("ul"));
+				else {
+					extraFil.append(",");
+					extraFil.append(rs.getString("ul"));
+				}
+
+			}
+
+		}
+
+		catch (SQLException e) {
+			logger.error(Utils.getStackTrace(e));
+
+		}
+
+		return extraFil.toString();
+	}
 
 }

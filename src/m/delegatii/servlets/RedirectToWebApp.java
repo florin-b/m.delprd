@@ -40,7 +40,7 @@ public class RedirectToWebApp extends HttpServlet {
 
 			String codAcces = request.getParameter("tipAcces");
 
-			if (codAcces.equalsIgnoreCase("12")) {
+			if (codAcces.equals("12") || codAcces.equals("27")) {
 				codAcces = new OperatiiAngajat().getTipAngajat(UserInfo.getInstance().getCod());
 
 			}
@@ -52,6 +52,15 @@ public class RedirectToWebApp extends HttpServlet {
 
 			if (request.getParameter("filiala").equalsIgnoreCase("TOATE"))
 				strUnitLog = "BU90";
+
+			if (codAcces.equals("10") || codAcces.equals("27") || codAcces.equals("SDKA")) {
+				String extraFiliale = new OperatiiAngajat().getExtraFiliale(UserInfo.getInstance().getCod());
+
+				if (!extraFiliale.isEmpty()) {
+					strUnitLog = strUnitLog + "," + extraFiliale;
+
+				}
+			}
 
 			UserInfo.getInstance().setUnitLog(strUnitLog);
 

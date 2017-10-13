@@ -430,7 +430,7 @@ function initDateFields() {
 	});
 
 	$("#dateStopM").datepicker({
-		minDate : 0,
+		minDate : getDaysBack(),
 		maxDate : "+30D",
 		dateFormat : "dd-mm-yy",
 

@@ -6,6 +6,7 @@ $(document).on('pagecreate', '#afiseaza', function() {
 
 	setDivsVisibility();
 	initDateFields();
+	
 
 });
 
@@ -35,7 +36,9 @@ function testBeanObiectiv() {
 
 	var myObj = new Object();
 
-	myObj.tip = 'tip';
+
+
+	myObj.tip = 'tip 6666';
 	myObj.nume = 'nume';
 	myObj.stare = 1;
 	myObj.categorie = 2;
