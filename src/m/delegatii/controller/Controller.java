@@ -77,12 +77,13 @@ public class Controller extends HttpServlet {
 					user.setTipAng(UserInfo.getInstance().getTipAngajat().name());
 					user.setListMasini(UserInfo.getInstance().getListMasini());
 					user.setCodDepart(UserInfo.getInstance().getCodDepart());
+					user.setNumeAng(UserInfo.getInstance().getNumeAngajat());
 
 					// DD 01 are acces si la 02
 					if (user.getCod().equals("00006321"))
 						user.setCodDepart("01,02");
 
-					if (user.getTipAng().toUpperCase().startsWith("SD") || user.getTipAng().equalsIgnoreCase("DMK") || user.getTipAng().equalsIgnoreCase("DIT")) {
+					if (isUserExceptieExtraFiliale(user.getTipAng())) {
 						String extraFiliale = new OperatiiAngajat().getExtraFiliale(UserInfo.getInstance().getCod());
 
 						if (!extraFiliale.isEmpty()) {
@@ -124,6 +125,11 @@ public class Controller extends HttpServlet {
 				e.printStackTrace();
 			}
 
+	}
+
+	private boolean isUserExceptieExtraFiliale(String tipUser) {
+		return tipUser.toUpperCase().startsWith("SD") || tipUser.equalsIgnoreCase("DMK") || tipUser.equalsIgnoreCase("DIT")
+				|| tipUser.equalsIgnoreCase("DADMIN");
 	}
 
 }

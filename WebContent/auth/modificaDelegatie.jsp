@@ -70,6 +70,7 @@
 			<ul data-role="listview">
 				<jsp:include page="navbar.jsp">
 					<jsp:param name="tipuser" value="${sessionScope.user.tipAng }" />
+					<jsp:param name="numeuser" value="${sessionScope.user.numeAng }" />
 				</jsp:include>
 			</ul>
 		</div>
@@ -99,7 +100,20 @@
 			<div id='detaliiDelegatie'>
 
 
-				<div id='selectedDel' style="margin: 5px;"></div>
+				<br>
+				<div class="ui-grid-a ui-responsive">
+
+					<div class="ui-block-a" id='selectedDel'></div>
+
+					<div class="ui-block-b">
+						<a href="#" class="ui-btn ui-corner-all" id="stergeDelegatie"
+							style="background: #FF8C69;" onclick="stergeDelegatie();">Sterge
+							delegatia</a>
+					</div>
+
+
+
+				</div>
 				<br>
 
 
@@ -377,6 +391,17 @@
 		</div>
 		<div data-role="content">
 			<div id="textAlertM"></div>
+		</div>
+	</div>
+
+
+	<div data-role="dialog" id="confirmStergeDel" data-title="Confirmati?">
+		<div data-role="content">
+			<h3 class="textHeader">???</h3>
+			<p class="textDet">???</p>
+			<a href="#" class="conf-da" data-role="button" data-theme="b"
+				data-rel="back">Da</a> <a href="#" class="conf-nu"
+				data-role="button" data-theme="c" data-rel="back">Nu</a>
 		</div>
 	</div>
 

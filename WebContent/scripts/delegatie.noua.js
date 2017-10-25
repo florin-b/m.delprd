@@ -53,6 +53,8 @@
 	};
 })(jQuery);
 
+var serverDate;
+
 $(document).on("pagecreate", "#new-page", function() {
 
 	$('body').on('click', '.deleteMe', function() {
@@ -74,21 +76,27 @@ $(document).on("pagecreate", "#new-page", function() {
 
 	initDateFields();
 
+	var unitLog = $('#unitLog').text();
+
+	if (unitLog == 'GL10')
+		$('#field_tip_del').show();
+	else
+		$('#field_tip_del').hide();
+
+	showDelegatieNoua();
+
 });
 
-$('#punct-loc-input').on('focus', function() {
-	/*
-	 * $(function() { $('html, body').animate({ scrollTop :
-	 * $('#punct-loc-input').offset().top }); });
-	 * 
-	 * 
-	 * $('#punct-loc-input').focus();
-	 */
-});
-$('#punct-loc-input').on('blur', function() {
-	// $.mobile.silentScroll($('#punct-loc-input').position().top);
-});
+$("form input:radio").change(function() {
+	if ($(this).val() == "dnoua") {
 
+		showDelegatieNoua();
+
+	} else if ($(this).val() == "defectuata") {
+
+		showDelegatieEfectuata();
+	}
+});
 function adaugaStop() {
 
 	var locStop = $('#punct-loc-input').val();
@@ -134,6 +142,7 @@ function salveazaDelegatie() {
 
 		var tipAng = $('#tipAng').text();
 		var codAng = $('#codAng').text();
+		var unitLog = $('#unitLog').text();
 
 		if (locPlecare == '') {
 			showAlertCreare('Atentie!', 'Selectati localitatea de plecare.');
@@ -165,6 +174,20 @@ function salveazaDelegatie() {
 			return false;
 		}
 
+		var delegatiiSuprapuse = getDelegatiiSuprapuse(codAng, dataPlecare,
+				dataSosire);
+
+		var subst = 'delegatia ';
+		if (delegatiiSuprapuse.indexOf(',') != -1)
+			subst = 'delegatiile ';
+
+		if (delegatiiSuprapuse != '') {
+			showAlertCreare('Atentie!', 'Aceasta delegatie se suprapune cu '
+					+ subst + delegatiiSuprapuse + ' si nu poate fi salvata.');
+			return false;
+
+		}
+
 		var opriri = locPlecare + ' / ' + judetPlecare;
 
 		$('.stopsList').each(
@@ -183,24 +206,26 @@ function salveazaDelegatie() {
 
 		opriri += ',' + locSosire + ' / ' + judetSosire;
 
+		var delegatie = new Object();
+		delegatie.codAngajat = codAng;
+		delegatie.tipAngajat = tipAng;
+		delegatie.dataP = dataPlecare;
+		delegatie.oraP = oraPlecare;
+		delegatie.dataS = dataSosire;
+		delegatie.distcalc = distkm;
+		delegatie.stops = opriri;
+		delegatie.nrAuto = nrAuto;
+		delegatie.distreal = '0';
+		delegatie.unitlog = unitLog;
+
 		$.mobile.loading('show');
 
 		$.ajax({
 			type : "POST",
 			url : window.location.origin
 					+ "/flota.service/delegatii/adaugaDelegatie",
-			data : ({
-				codAngajat : codAng,
-				tipAngajat : tipAng,
-				dataP : dataPlecare,
-				oraP : oraPlecare,
-				dataS : dataSosire,
-				distcalc : distkm,
-				stops : opriri,
-				nrAuto : nrAuto
-			}),
+			data : delegatie,
 			cache : false,
-			dataType : "text",
 			success : onSuccess,
 			error : onError
 		});
@@ -269,9 +294,13 @@ function hideControls() {
 }
 
 function initDateFields() {
+
+	var dateStart;
+	var dateStop;
+
 	$("#dateStart").datepicker(
 			{
-				//minDate : getDaysBack(),
+				// minDate : getDaysBack(),
 				minDate : -40,
 				maxDate : "+10D",
 				dateFormat : "dd-mm-yy",
@@ -305,6 +334,8 @@ function initDateFields() {
 	$("#dateStart").datepicker("setDate", cDate);
 	$("#dateStop").datepicker("setDate", cDate);
 
+	initDateDelegatieEfectuata();
+
 }
 
 function calcDays(dateStart, dateEnd) {
@@ -312,8 +343,11 @@ function calcDays(dateStart, dateEnd) {
 	var days = (dateEnd - dateStart) / 1000 / 60 / 60 / 24;
 
 	if (days > 0)
-		showAlertCreare('Info', 'Durata delegatiei este de ' + (days + 1)
-				+ ' zile.');
+		showAlertCreare(
+				'Info',
+				'Durata delegatiei este de '
+						+ (days + 1)
+						+ ' zile. Acesta este un mesaj informativ cu scopul de a evita crearea din greseala a unei delegatii pe mai multe zile. Apasati X pentru a continua.');
 
 }
 
@@ -340,6 +374,8 @@ function getDaysBack() {
 }
 
 function initNrAutoFields() {
+
+	getServerDate();
 
 	var listMasini = $('#listMasini').text().replace('[', '').replace(']', '')
 			.split(',');
@@ -370,4 +406,127 @@ function initNrAutoFields() {
 		$('#select-auto').trigger('change');
 	}
 
+}
+
+function getServerDate() {
+
+	$.ajax({
+		type : "GET",
+		url : window.location.origin + "/flota.service/delegatii/getDate",
+		cache : false,
+		dataType : "text",
+		success : onSuccess
+	});
+
+	function onSuccess(data) {
+		serverDate = data;
+
+	}
+
+}
+
+function showDelegatieNoua() {
+
+	$('#div_nrauto').show();
+	$('#div_dateplecare').show();
+	$('#div_datesosire').show();
+	$('#div_localitati').show();
+	$('#div_calculeaza').show();
+	$('#div_intervaldelgen').hide();
+	$('#div_genereaza').hide();
+	$('#del_generata').hide();
+	$('#saveDelegatieGenerata').hide();
+
+}
+
+function showDelegatieEfectuata() {
+
+	$('#div_nrauto').hide();
+	$('#div_dateplecare').hide();
+	$('#div_datesosire').hide();
+	$('#div_localitati').hide();
+	$('#div_calculeaza').hide();
+	$('#dateTraseu').hide();
+	$('#div_intervaldelgen').show();
+	$('#div_genereaza').show();
+	$('#saveDelegatie').hide();
+
+}
+
+function initDateDelegatieEfectuata() {
+
+	$("#dateStartEfect").datepicker({
+		minDate : "-30D",
+		maxDate : "-1D",
+		dateFormat : "dd-mm-yy",
+		onSelect : function(selected) {
+			$("#dateStopEfect").datepicker("option", "minDate", selected);
+
+		}
+
+	});
+
+	$("#dateStopEfect").datepicker({
+		minDate : "-1D",
+		maxDate : "-1D",
+		dateFormat : "dd-mm-yy"
+
+	});
+
+	var cDate = new Date();
+	var daysToAdd = -1;
+	cDate.setDate(cDate.getDate() + daysToAdd);
+
+	$("#dateStartEfect").datepicker("setDate", cDate);
+	$("#dateStopEfect").datepicker("setDate", cDate);
+
+}
+
+function genereazaDelegatie() {
+
+	var dataPlecare = $('#dateStartEfect').val();
+	var dataSosire = $('#dateStopEfect').val();
+	var codAng = $('#codAng').text();
+
+	$.mobile.loading('show');
+
+	$.ajax({
+		type : "GET",
+		url : window.location.origin
+				+ "/flota.service/delegatii/genereazaDelegatie",
+		data : ({
+			codAngajat : codAng,
+			dataStart : dataPlecare,
+			dataStop : dataSosire
+		}),
+		cache : false,
+		dataType : "text",
+		success : onSuccess
+
+	});
+
+	function onSuccess(data) {
+		$.mobile.loading('hide');
+		afiseazaDelegatieGenerata(data);
+
+	}
+
+}
+
+function afiseazaDelegatieGenerata(data) {
+
+	$('#del_generata').show();
+	$('#del_generata').html(formatDelegatieGenerata($.parseJSON(data)));
+	$('#saveDelegatieGenerata').show();
+
+	scrollToDelegatie();
+
+}
+
+function scrollToDelegatie() {
+	$(function() {
+		$('html, body').animate({
+			scrollTop : $('#del_generata').offset().top
+		});
+	});
 }

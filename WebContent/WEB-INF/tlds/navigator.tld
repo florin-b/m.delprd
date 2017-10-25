@@ -15,5 +15,10 @@
 			<rtexprvalue>true</rtexprvalue>
 			<required>false</required>
 		</attribute>
+		<attribute>
+			<name>numeUser</name>
+			<rtexprvalue>true</rtexprvalue>
+			<required>false</required>
+		</attribute>
 	</tag>
 </taglib>

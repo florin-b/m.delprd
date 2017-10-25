@@ -79,7 +79,7 @@ public class SqlQueries {
 		sqlString.append(" from sapprd.anlz a join sapprd.anla b on b.anln1 = a.anln1 and b.anln2 = a.anln2 and b.mandt=a.mandt ");
 		sqlString.append(" join sapprd.aufk c on c.aufnr = a.caufn and c.mandt=a.mandt ");
 		sqlString.append(" where a.pernr =? ");
-		sqlString.append(" and a.bdatu >= (select to_char(sysdate-5,'YYYYMMDD') from dual) and b.deakt = '00000000' and a.mandt='900' ");
+		sqlString.append(" and a.bdatu >= (select to_char(sysdate-5,'YYYYMMDD') from dual) and b.deakt = '00000000' and a.mandt='900' and c.auart = '2001' ");
 		sqlString.append(" order by a.adatu desc ");
 
 		return sqlString.toString();
@@ -94,6 +94,14 @@ public class SqlQueries {
 		return sqlString.toString();
 	}
 
+	public static String getFullName() {
+		StringBuilder sqlString = new StringBuilder();
+
+		sqlString.append("select nume from personal where cod =? ");
+
+		return sqlString.toString();
+	}
+
 	public static String getTipAngajat()
 
 	{
@@ -103,8 +111,7 @@ public class SqlQueries {
 
 		return sqlString.toString();
 	}
-	
-	
+
 	public static String getDepartAngajat()
 
 	{
@@ -113,9 +120,8 @@ public class SqlQueries {
 		sqlString.append("select departament functie from personal where cod=?");
 
 		return sqlString.toString();
-	}	
-	
-	
+	}
+
 	public static String getExtraFilialeAngajat() {
 		StringBuilder sqlString = new StringBuilder();
 
@@ -123,6 +129,5 @@ public class SqlQueries {
 
 		return sqlString.toString();
 	}
-
 
 }

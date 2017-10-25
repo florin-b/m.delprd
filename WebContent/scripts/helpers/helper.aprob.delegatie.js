@@ -27,7 +27,7 @@ function decodeOpriri(delegatie) {
 			
 		}
 
-		content += '<tr><td>' + adresa + '</td><td>'
+		content += '<tr><td style="width:80%;">' + adresa + '</td><td>'
 				+ status + '</td></tr>';
 
 		status = '';

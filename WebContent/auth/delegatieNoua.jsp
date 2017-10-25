@@ -108,8 +108,22 @@
 		<div data-role="content">
 
 
+			<form>
+				<fieldset data-role="controlgroup" data-theme="a" id="field_tip_del"
+					data-type="horizontal">
+					<legend></legend>
+					<input type="radio" name="radio-tip-delegatie" id="radio-dnoua"
+						value="dnoua" checked="checked"> <label for="radio-dnoua">Delegatia
+						urmeaza sa inceapa</label> <input type="radio" name="radio-tip-delegatie"
+						id="radio-defectuata" value="defectuata"> <label
+						for="radio-defectuata">Delegatia s-a incheiat</label>
 
-			<div class="ui-corner-all custom-corners">
+				</fieldset>
+			</form>
+
+			<br>
+
+			<div class="ui-corner-all custom-corners" id="div_nrauto">
 
 				<div class="ui-bar ui-bar-a">Nr. auto</div>
 
@@ -123,6 +137,7 @@
 							<input type="text" name="nrAuto" class="ui-corner-all"
 								id="nrAuto" readonly="readonly" />
 						</div>
+
 
 
 					</div>
@@ -176,9 +191,60 @@
 
 
 
-			<br>
 
-			<div class="ui-corner-all custom-corners">
+
+
+			<div class="ui-corner-all custom-corners" id="div_intervaldelgen">
+
+
+				<div class="ui-bar ui-bar-a">Interval delegatie</div>
+
+
+				<div class="ui-body ui-body-a">
+
+					<div class="ui-grid-a ui-responsive">
+
+						<div class="ui-block-a">Plecare</div>
+
+						<div class="ui-block-b">
+							<input id="dateStartEfect" type="text" readonly="readonly"
+								style="position: relative; z-index: 100000;" />
+
+						</div>
+
+
+						<div class="ui-block-a">Intoarcere</div>
+
+						<div class="ui-block-b">
+							<input id="dateStopEfect" type="text" readonly="readonly"
+								style="position: relative; z-index: 100000;" />
+
+						</div>
+
+					</div>
+
+
+				</div>
+			</div>
+
+
+			<div id="div_genereaza">
+
+				<br> <a href="#" class="ui-btn ui-corner-all" id="calcDist"
+					style="background: #7CCD7C; color: white;"
+					onclick="genereazaDelegatie();">Genereaza delegatie</a> <br>
+
+			</div>
+
+			<div id="del_generata"></div>
+
+			<br> <a href="#" class="ui-btn ui-corner-all"
+				id="saveDelegatieGenerata"
+				style="background: #7CCD7C; color: white;"
+				onclick="salveazaDelegatieGenerata();">Salveaza</a>
+
+
+			<div class="ui-corner-all custom-corners" id="div_dateplecare">
 
 
 				<div class="ui-bar ui-bar-a">Plecare in delegatie</div>
@@ -254,7 +320,7 @@
 
 			<br> <br>
 
-			<div class="ui-corner-all custom-corners">
+			<div class="ui-corner-all custom-corners" id="div_datesosire">
 
 				<div class="ui-bar ui-bar-a">Intoarcere din delegatie</div>
 
@@ -290,8 +356,6 @@
 						</div>
 
 					</div>
-					
-					
 
 				</div>
 
@@ -303,7 +367,7 @@
 			<br> <br>
 
 
-			<div class="ui-corner-all custom-corners">
+			<div class="ui-corner-all custom-corners" id="div_localitati">
 
 				<div class="ui-bar ui-bar-a">Puncte definire traseu</div>
 
@@ -353,9 +417,17 @@
 
 
 
-			<br> <a href="#" class="ui-btn ui-corner-all" id="calcDist"
-				style="background: #7CCD7C; color: white;"
-				onclick="calculeazaDistanta();">Calculeaza km normati</a> <br>
+			<br>
+
+			<div id="div_calculeaza">
+				<a href="#" class="ui-btn ui-corner-all" id="calcDist"
+					style="background: #7CCD7C; color: white;"
+					onclick="calculeazaDistanta();">Calculeaza km normati</a> <br>
+
+			</div>
+
+
+
 
 
 			<div class="ui-corner-all custom-corners" id="dateTraseu">
@@ -383,20 +455,17 @@
 								src="../scripts/delegatie.noua.maps.js"></script>
 
 
-
-
-
 						</div>
 
 					</div>
 
 				</div>
+
 			</div>
 
 			<br> <a href="#" class="ui-btn ui-corner-all" id="saveDelegatie"
 				style="background: #7CCD7C; color: white;"
 				onclick="salveazaDelegatie();">Salveaza</a> <br> <br> <br>
-
 
 
 
@@ -407,6 +476,7 @@
 			<ul data-role="listview">
 				<jsp:include page="navbar.jsp">
 					<jsp:param name="tipuser" value="${sessionScope.user.tipAng }" />
+					<jsp:param name="numeuser" value="${sessionScope.user.numeAng }" />
 				</jsp:include>
 			</ul>
 		</div>
@@ -426,6 +496,8 @@
 		</div>
 	</div>
 
+	<script type="text/javascript"
+		src="../scripts/helpers/helper.degatie.noua.js"></script>
 	<script type="text/javascript" src="../scripts/delegatie.noua.js"></script>
 
 	<div id="codAng" style="visibility: hidden">${sessionScope.user.cod}</div>

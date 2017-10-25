@@ -18,6 +18,7 @@ public class User implements Serializable {
 	private String tipAng = "";
 	private String listMasini = "";
 	private String codDepart = "";
+	private String numeAng = "";
 
 	public User() {
 
@@ -123,10 +124,18 @@ public class User implements Serializable {
 		this.codDepart = codDepart;
 	}
 
+	public String getNumeAng() {
+		return numeAng;
+	}
+
+	public void setNumeAng(String numeAng) {
+		this.numeAng = numeAng;
+	}
+
 	@Override
 	public String toString() {
-		return "User [password=" + password + ", name=" + name + ", userName=" + userName + ", filiala=" + filiala + ", message=" + message + ", cod=" + cod + ", unitLog="
-				+ unitLog + ", tipAng=" + tipAng + ", listMasini=" + listMasini + ", codDepart=" + codDepart + "]";
+		return "User [password=" + password + ", name=" + name + ", userName=" + userName + ", filiala=" + filiala + ", message=" + message + ", cod=" + cod
+				+ ", unitLog=" + unitLog + ", tipAng=" + tipAng + ", listMasini=" + listMasini + ", codDepart=" + codDepart + "]";
 	}
 
 }

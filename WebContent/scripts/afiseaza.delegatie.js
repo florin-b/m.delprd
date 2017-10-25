@@ -6,7 +6,6 @@ $(document).on('pagecreate', '#afiseaza', function() {
 
 	setDivsVisibility();
 	initDateFields();
-	
 
 });
 
@@ -35,8 +34,6 @@ function TestObject(prop1, prop2) {
 function testBeanObiectiv() {
 
 	var myObj = new Object();
-
-
 
 	myObj.tip = 'tip 6666';
 	myObj.nume = 'nume';
@@ -147,36 +144,6 @@ function afiseazaDelegatii_test() {
 	});
 
 	function onSuccess1(data) {
-
-		alert(data);
-
-	}
-
-	$.mobile.loading('hide');
-
-}
-
-function afiseazaDelegatii_OK() {
-	var myObj = new TestObject("Perl", "Python");
-
-	alert(JSON.stringify(myObj));
-
-	$.mobile.loading('show');
-	$.ajax({
-		type : "POST",
-		url : window.location.origin + "/flota.service/delegatii/getObject",
-		data : JSON.stringify(myObj),
-		cache : false,
-		dataType : "json",
-		contentType : "application/json; charset=utf-8",
-		success : onSuccess1,
-		error : function(data) {
-			alert(JSON.stringify(data));
-		}
-	});
-
-	function onSuccess1(data) {
-
 		alert(data);
 
 	}
@@ -292,8 +259,16 @@ function adaugaDelegatieAfis(delegatie) {
 
 	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
 	content += '<div class="ui-block-a">Stare:</div>';
-	content += '<div class="ui-block-b">'
-			+ getStatusDelegatie(delegatie.statusCode) + '</div>';
+
+	var statusContent = '<table border="0" style="width:100%;" cellpadding="0" data-role="table"  data-mode="columntoggle" class="ui-responsive">';
+
+	statusContent += '<tr><td style="width:80%;">'
+			+ getStatusDelegatie(delegatie.statusCode) + '</td><td>'
+			+ getStatusIcon(delegatie.statusCode) + '</td></tr>';
+
+	statusContent += '</table>';
+
+	content += '<div class="ui-block-b">' + statusContent + '</div>';
 	content += '</div>';
 
 	content += '</div>';
@@ -301,6 +276,32 @@ function adaugaDelegatieAfis(delegatie) {
 	content += '</div>';
 
 	return content;
+}
+
+function getStatusIcon(statusDelegatie) {
+
+	var statusIcon;
+
+	switch (statusDelegatie) {
+	case "-1":
+		statusIcon = '<img src="../img/circle_yellow.png">';
+		break;
+	case "1":
+		statusIcon = '<img src="../img/circle_blue.png">';
+		break;
+	case "2":
+		statusIcon = '<img src="../img/circle_green.png">';
+		break;
+	case "6":
+		statusIcon = '<img src="../img/circle_red.png">';
+		break;
+	default:
+		statusIcon = ' ';
+
+	}
+
+	return statusIcon;
+
 }
 
 function initDateFields() {
@@ -330,12 +331,12 @@ function getStatusDelegatie(codStatus) {
 	case "-1":
 		strStatus = " <b>Trimisa spre aprobare</b>"
 		break;
-
 	case "1":
-	case "2":
-		strStatus = "  <b>Aprobata</b>"
+		strStatus = "  <b>Aprobata initial</b>"
 		break;
-
+	case "2":
+		strStatus = "  <b>Aprobata final</b>"
+		break;
 	case "6":
 		strStatus = "  <b>Respinsa</b>"
 		break;

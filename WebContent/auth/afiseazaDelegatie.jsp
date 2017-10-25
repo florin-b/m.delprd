@@ -42,6 +42,7 @@
 			<ul data-role="listview">
 				<jsp:include page="navbar.jsp">
 					<jsp:param name="tipuser" value="${sessionScope.user.tipAng }" />
+					<jsp:param name="numeuser" value="${sessionScope.user.numeAng }" />
 				</jsp:include>
 			</ul>
 		</div>

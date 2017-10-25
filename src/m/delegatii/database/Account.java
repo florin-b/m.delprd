@@ -70,6 +70,7 @@ public class Account {
 					codAgent = "0" + codAgent;
 				}
 
+				UserInfo.getInstance().setNumeAngajat(getNumeAngajat(conn, codAgent));
 				UserInfo.getInstance().setCod(codAgent);
 
 				String tipPersNonV = getTipPersNonV(conn, codAgent);
@@ -133,6 +134,30 @@ public class Account {
 		}
 
 		return tipPers;
+	}
+
+	private static String getNumeAngajat(Connection conn, String angajatId) {
+
+		String fullName = null;
+
+		try (PreparedStatement stmt = conn.prepareStatement(SqlQueries.getFullName())) {
+
+			stmt.setString(1, angajatId);
+
+			stmt.executeQuery();
+
+			ResultSet rs = stmt.getResultSet();
+
+			while (rs.next()) {
+
+				fullName = rs.getString("nume");
+			}
+
+		} catch (Exception ex) {
+			logger.error(Utils.getStackTrace(ex));
+		}
+
+		return fullName;
 	}
 
 	private void setErrMessage(int msgId) {

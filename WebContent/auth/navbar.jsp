@@ -2,7 +2,7 @@
 
 <%@ taglib prefix="menuoptions" uri="/WEB-INF/tlds/navigator.tld"%>
 
-
+<p align="center">${param.numeuser}</p>
 <ul data-role="listview">
 
 	<li data-icon="delete"><a href="#" data-rel="close">Inchide

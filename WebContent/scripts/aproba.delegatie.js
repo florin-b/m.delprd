@@ -4,8 +4,11 @@ var rowid;
 
 var init = 0;
 
+var tipAng;
+
 $(document).on('pageshow', '#aproba', function() {
 
+	tipAng = $('#tipAng').text();
 	afisDelegatiiAprob();
 
 });
@@ -254,21 +257,46 @@ function adaugaDelegatieAprob(delegatie) {
 
 		content += '<div style="margin:10px; position:relative"><b>'
 				+ delegatie.msgAtentionare + '</b></div>';
-
+		
 		content += '<div class="ui-grid-b ui-responsive">';
+		
+		if (delegatie.weekend && tipAng != 'DZ') {
+			content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+			content += '<div class="ui-block-a"  >Observatii</div>';
+			content += '<div class="ui-block-b">Aceasta delegatie se aproba de catre Directorul de zona</div>';
+			content += '</div>';
 
-		content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" onclick="showAprobDialog('
-				+ delegatie.id + ',1);">Aproba total</a></div>';
+		}
 
-		content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #7CCD7C;" onclick="showAprobDialog('
-				+ delegatie.id + ',2);">Aproba partial</a></div>';
+		else {
 
-		content += '<div class="ui-block-c" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="showRespingDialog('
-				+ delegatie.id + ');">Respinge</a></div></div>';
+			if (delegatie.weekend && tipAng == 'DZ') {
+				content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+				content += '<div class="ui-block-a"  >Observatii</div>';
+				content += '<div class="ui-block-b">Delegatia contine zile libere</div>';
+				content += '</div>';
+			}
+
+			content += '<div class="ui-block-a" ><a href="#" class="ui-btn ui-corner-all" style="background: #66CDAA;" onclick="showAprobDialog('
+					+ delegatie.id + ',1);">Aproba total</a></div>';
+
+			content += '<div class="ui-block-b" ><a href="#" class="ui-btn ui-corner-all" style="background: #7CCD7C;" onclick="showAprobDialog('
+					+ delegatie.id + ',2);">Aproba partial</a></div>';
+
+			content += '<div class="ui-block-c" ><a href="#" class="ui-btn ui-corner-all" style="background: #EE8262; " onclick="showRespingDialog('
+					+ delegatie.id + ');">Respinge</a></div></div>';
+		}
 
 	}
 
 	else {
+		
+		if (delegatie.weekend && tipAng == 'DZ') {
+			content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+			content += '<div class="ui-block-a"  >Observatii</div>';
+			content += '<div class="ui-block-b">Delegatia contine zile libere</div>';
+			content += '</div>';
+		}
 
 		content += '<br><div class="ui-grid-a ui-responsive">';
 

@@ -15,6 +15,7 @@ public class UserInfo {
 	private String unitLog;
 	private String listMasini;
 	private List<NavigationDetails> menuOptions;
+	private String numeAngajat;
 
 	private static UserInfo instance;
 
@@ -233,6 +234,8 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.SSIC;
 		} else if (codAcces.equals("DDEZ")) {
 			tipAngajat = TipAnjagat.DDEZ;
+		} else if (codAcces.equals("SBL")) {
+			tipAngajat = TipAnjagat.SBL;
 		}
 
 	}
@@ -269,6 +272,14 @@ public class UserInfo {
 		this.menuOptions = menuOptions;
 	}
 
+	public String getNumeAngajat() {
+		return numeAngajat;
+	}
+
+	public void setNumeAngajat(String numeAngajat) {
+		this.numeAngajat = numeAngajat;
+	}
+
 	public void clearData() {
 
 		nume = "";
@@ -280,6 +291,7 @@ public class UserInfo {
 		unitLog = "";
 		listMasini = "";
 		menuOptions = null;
+		numeAngajat= "";
 
 	}
 

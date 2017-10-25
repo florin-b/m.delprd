@@ -155,7 +155,7 @@ function afisListDelegatii() {
 		$.mobile.loading('hide');
 
 		if (json_parsed.length > 0)
-			$("#labelInfo").html('Selectati o delegatie.');
+			$("#labelInfo").html('Selectati o delegatie:');
 		else
 			$("#labelInfo").html('Nu exista delegatii.');
 	}
@@ -192,7 +192,7 @@ function showDelegatieData(delegatie) {
 	var delegatieObj = $.parseJSON(delegatie);
 
 	$("#detaliiDelegatie").show();
-	$('#selectedDel').html('Modificare delegatie ' + delegatieSelIndex);
+	$('#selectedDel').html('Detalii delegatie ' + delegatieSelId);
 
 	$('#nrAutoM').val(delegatieObj.nrAuto);
 
@@ -291,7 +291,7 @@ function adaugaDelegatieAfis(i, delegatie) {
 	var content = '<table>';
 
 	content += '<tr><td><b>Delegatia</b></td>';
-	content += '<td><b>' + (i + 1) + '</b></td>';
+	content += '<td><b>' + delegatie.id + '</b></td>';
 	content += '</tr>';
 
 	content += '<tr><td>Plecare</td>';
@@ -327,6 +327,7 @@ function salveazaDelegatieM() {
 
 	var tipAng = $('#tipAng').text();
 	var codAng = $('#codAng').text();
+	var unitLog = $('#unitLog').text();
 
 	if (locPlecare == '') {
 		showAlertModif('Atentie!', 'Selectati localitatea de plecare.');
@@ -376,25 +377,27 @@ function salveazaDelegatieM() {
 
 	opriri += ',' + locSosire + ' / ' + judetSosire;
 
+	var delegatie = new Object();
+	delegatie.codAngajat = codAng;
+	delegatie.tipAngajat = tipAng;
+	delegatie.dataP = dataPlecare;
+	delegatie.oraP = oraPlecare;
+	delegatie.dataS = dataSosire;
+	delegatie.distcalc = distkm;
+	delegatie.stops = opriri;
+	delegatie.nrAuto = nrAuto;
+	delegatie.distreal = '0';
+	delegatie.unitlog = unitLog;
+	delegatie.id = delegatieSelId;
+
 	$.mobile.loading('show');
 
 	$.ajax({
 		type : "POST",
 		url : window.location.origin
 				+ "/flota.service/delegatii/modificaDelegatie",
-		data : ({
-			codAngajat : codAng,
-			tipAngajat : tipAng,
-			dataP : dataPlecare,
-			oraP : oraPlecare,
-			dataS : dataSosire,
-			distcalc : distkm,
-			stops : opriri,
-			nrAuto : nrAuto,
-			idDelegatie : delegatieSelId
-		}),
+		data : delegatie,
 		cache : false,
-		dataType : "text",
 		success : onSuccess,
 		error : onError
 	});
@@ -413,6 +416,63 @@ function salveazaDelegatieM() {
 
 	function onError() {
 		$.mobile.loading('hide');
+	}
+
+}
+
+function stergeDelegatie() {
+	
+	
+
+	confirmStergeDialog("Delegatia va fi stearsa.", "Confirmati?", "Da",
+			function() {
+				stergeDlgService(delegatieSelId);
+
+			});
+
+}
+
+function confirmStergeDialog(text1, text2, button, callback) {
+	$("#confirmStergeDel .textHeader").text(text1);
+	$("#confirmStergeDel .textDet").text(text2);
+	$("#confirmStergeDel .conf-da").text(button).unbind(
+			"click.confirmStergeDel").on("click.confirmStergeDel", function() {
+		callback(false);
+		$(this).off("click.confirmStergeDel");
+	});
+
+	$.mobile.changePage('#confirmStergeDel', {
+		transition : "none"
+	});
+
+}
+
+function stergeDlgService(delegatieId) {
+
+	var tipAng = $('#tipAng').text();
+	var codAng = $('#codAng').text();
+
+	$.mobile.loading('show');
+
+	$.ajax({
+		type : "POST",
+		url : window.location.origin
+				+ "/flota.service/delegatii/respingeDelegatie",
+		data : ({
+			idDelegatie : delegatieId,
+			tipAngajat : tipAng,
+			codAngajat : codAng
+		}),
+		cache : false,
+		dataType : "text",
+		success : onSuccess
+	});
+
+	function onSuccess() {
+		$.mobile.loading('hide');
+		showAlertModif('Status', 'Delegatie stearsa');
+
+		afisListDelegatii();
 	}
 
 }
@@ -438,7 +498,6 @@ function initDateFields() {
 
 }
 
-
 function getDaysBack() {
 
 	var today = new Date();
@@ -460,7 +519,6 @@ function getDaysBack() {
 		return "-1D";
 	}
 }
-
 
 function hideControlsM() {
 
