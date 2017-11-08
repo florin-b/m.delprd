@@ -78,10 +78,14 @@ $(document).on("pagecreate", "#new-page", function() {
 
 	var unitLog = $('#unitLog').text();
 
-	if (unitLog == 'GL10')
+	/*
+	if (unitLog.substring('GL10') != -1)
 		$('#field_tip_del').show();
 	else
 		$('#field_tip_del').hide();
+	*/
+	
+	$('#field_tip_del').hide();
 
 	showDelegatieNoua();
 

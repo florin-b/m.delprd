@@ -236,6 +236,18 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.DDEZ;
 		} else if (codAcces.equals("SBL")) {
 			tipAngajat = TipAnjagat.SBL;
+		} else if (codAcces.equals("SMG")) {
+			tipAngajat = TipAnjagat.SMG;
+		} else if (codAcces.equals("CVG")) {
+			tipAngajat = TipAnjagat.CVG;
+		} else if (codAcces.equals("CVR")) {
+			tipAngajat = TipAnjagat.CVR;
+		} else if (codAcces.equals("SMR")) {
+			tipAngajat = TipAnjagat.SMR;
+		} else if (codAcces.equals("SMW")) {
+			tipAngajat = TipAnjagat.SMW;
+		} else if (codAcces.equals("CVW")) {
+			tipAngajat = TipAnjagat.CVW;
 		}
 
 	}
@@ -291,7 +303,7 @@ public class UserInfo {
 		unitLog = "";
 		listMasini = "";
 		menuOptions = null;
-		numeAngajat= "";
+		numeAngajat = "";
 
 	}
 

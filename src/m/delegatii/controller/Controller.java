@@ -46,6 +46,7 @@ public class Controller extends HttpServlet {
 
 		try {
 			conn = new DBManager().getProdDataSource().getConnection();
+			
 			account.setConn(conn);
 		} catch (SQLException e) {
 			logger.error(Utils.getStackTrace(e));

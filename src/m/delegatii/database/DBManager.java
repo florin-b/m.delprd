@@ -31,6 +31,7 @@ public class DBManager {
 			oracleDS.setURL("jdbc:oracle:thin:@10.1.3.94:1521:prd002");
 			oracleDS.setUser("WEBSAP");
 			oracleDS.setPassword("2INTER7");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
