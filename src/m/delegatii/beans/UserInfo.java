@@ -227,7 +227,7 @@ public class UserInfo {
 		} else if (codAcces.equals("GS")) {
 			tipAngajat = TipAnjagat.GS;
 		} else if (codAcces.equals("KA08")) {
-			tipAngajat = TipAnjagat.KA;
+			tipAngajat = TipAnjagat.KA08;
 		} else if (codAcces.equals("CONS-GED")) {
 			tipAngajat = TipAnjagat.CONS_GED;
 		} else if (codAcces.equals("SSIC")) {

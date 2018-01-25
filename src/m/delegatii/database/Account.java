@@ -75,6 +75,10 @@ public class Account {
 
 				String tipPersNonV = getTipPersNonV(conn, codAgent);
 				
+				
+				
+				
+				
 				if (tipPersNonV != null) {
 					UserInfo.getInstance().setTipAngajat(tipPersNonV);
 				} else {

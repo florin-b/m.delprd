@@ -127,8 +127,9 @@ function afiseazaDelegatii() {
 	var tipAng = $('#tipAng').text();
 	var unitLog = $('#unitLog').text();
 	var depart = $('#codDepart').text();
-
 	
+	
+
 	var tipDel = $('input[name=radio-del]:checked').val();
 
 	$.mobile.loading('show');
@@ -209,6 +210,12 @@ function adaugaDelegatieAfis(delegatie) {
 	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
 	content += '<div class="ui-block-a">Km alocati:</div>';
 	content += '<div class="ui-block-b">' + delegatie.distantaCalculata
+			+ '</div>';
+	content += '</div>';
+
+	content += '<div class="ui-grid-b ui-responsive" style="margin:10px; position:relative">';
+	content += '<div class="ui-block-a">Km recalculati:</div>';
+	content += '<div class="ui-block-b">' + delegatie.distantaRecalculata
 			+ '</div>';
 	content += '</div>';
 

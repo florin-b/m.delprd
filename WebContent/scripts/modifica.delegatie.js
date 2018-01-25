@@ -478,8 +478,11 @@ function stergeDlgService(delegatieId) {
 }
 
 function initDateFields() {
+	
+	$("#dateStopM").datepicker("option", "minDate", $('#dateStartM').val());
+	
 	$("#dateStartM").datepicker({
-		minDate : getDaysBack(),
+		minDate : "-30D",
 		maxDate : "+10D",
 		dateFormat : "dd-mm-yy",
 		onSelect : function(selected) {
@@ -490,7 +493,7 @@ function initDateFields() {
 	});
 
 	$("#dateStopM").datepicker({
-		minDate : getDaysBack(),
+		minDate : "-30D",
 		maxDate : "+30D",
 		dateFormat : "dd-mm-yy",
 
@@ -505,7 +508,7 @@ function getDaysBack() {
 	var mm = today.getMonth() + 1;
 	var yyyy = today.getFullYear();
 
-	if (dd < 12 && mm < 10 && yyyy == 2017)
+	if (dd < 12 && mm <= 12 && yyyy == 2017)
 		return new Date('2017/09/01');
 
 	else {

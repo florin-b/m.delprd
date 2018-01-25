@@ -40,7 +40,7 @@ public class RedirectToWebApp extends HttpServlet {
 
 			String codAcces = request.getParameter("tipAcces");
 
-			if (codAcces.equals("12") || codAcces.equals("27")) {
+			if (codAcces.equals("12") || codAcces.equals("17") || codAcces.equals("18") || codAcces.equals("27")) {
 				codAcces = new OperatiiAngajat().getTipAngajat(UserInfo.getInstance().getCod());
 
 			}
