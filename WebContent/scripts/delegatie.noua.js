@@ -304,9 +304,8 @@ function initDateFields() {
 
 	$("#dateStart").datepicker(
 			{
-				// minDate : getDaysBack(),
 				minDate : -40,
-				maxDate : "+10D",
+				maxDate : "+30D",
 				dateFormat : "dd-mm-yy",
 				onSelect : function(selected) {
 					$("#dateStop").datepicker("option", "minDate", selected)
@@ -321,7 +320,7 @@ function initDateFields() {
 	$("#dateStop").datepicker(
 			{
 				minDate : 0,
-				maxDate : "+30D",
+				maxDate : "+60D",
 				dateFormat : "dd-mm-yy",
 				onSelect : function() {
 					calcDays($('#dateStart').datepicker('getDate'), $(

@@ -130,7 +130,7 @@ public class Controller extends HttpServlet {
 
 	private boolean isUserExceptieExtraFiliale(String tipUser) {
 		return tipUser.toUpperCase().startsWith("SD") || tipUser.equalsIgnoreCase("DMK") || tipUser.equalsIgnoreCase("DIT")
-				|| tipUser.equalsIgnoreCase("DADMIN");
+				|| tipUser.equalsIgnoreCase("DADMIN") || tipUser.equalsIgnoreCase("DZ");
 	}
 
 }

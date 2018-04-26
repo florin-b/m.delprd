@@ -248,6 +248,10 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.SMW;
 		} else if (codAcces.equals("CVW")) {
 			tipAngajat = TipAnjagat.CVW;
+		} else if (codAcces.equals("SSSSM-SU")) {
+			tipAngajat = TipAnjagat.SSSSM_SU;
+		} else if (codAcces.equals("MDMK")) {
+			tipAngajat = TipAnjagat.MDMK;
 		}
 
 	}

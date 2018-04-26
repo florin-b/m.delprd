@@ -122,6 +122,14 @@ public class SqlQueries {
 		return sqlString.toString();
 	}
 
+	public static String getUnitLogAngajat() {
+		StringBuilder sqlString = new StringBuilder();
+
+		sqlString.append("select filiala from personal  where cod=? ");
+
+		return sqlString.toString();
+	}
+
 	public static String getExtraFilialeAngajat() {
 		StringBuilder sqlString = new StringBuilder();
 

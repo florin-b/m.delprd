@@ -130,6 +130,8 @@ function afiseazaDelegatii() {
 	
 	
 
+	
+	
 	var tipDel = $('input[name=radio-del]:checked').val();
 
 	$.mobile.loading('show');

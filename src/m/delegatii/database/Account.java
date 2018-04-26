@@ -74,11 +74,7 @@ public class Account {
 				UserInfo.getInstance().setCod(codAgent);
 
 				String tipPersNonV = getTipPersNonV(conn, codAgent);
-				
-				
-				
-				
-				
+
 				if (tipPersNonV != null) {
 					UserInfo.getInstance().setTipAngajat(tipPersNonV);
 				} else {
@@ -92,7 +88,8 @@ public class Account {
 				if (numeDepart.equalsIgnoreCase("TOAT"))
 					codDepart = new OperatiiAngajat().getDepartAngajat(codAgent);
 
-				UserInfo.getInstance().setUnitLog(Utils.getUnitLog(user.getFiliala()));
+				UserInfo.getInstance().setUnitLog(getUnitLogAngajat(conn, UserInfo.getInstance().getCod()));
+
 				UserInfo.getInstance().setCodDepart(codDepart);
 
 				List<String> listMasini = new OperatiiMasini().getMasiniAlocate(UserInfo.getInstance().getCod());
@@ -163,6 +160,30 @@ public class Account {
 		}
 
 		return fullName;
+	}
+
+	private static String getUnitLogAngajat(Connection conn, String angajatId) {
+
+		String unitLog = null;
+
+		try (PreparedStatement stmt = conn.prepareStatement(SqlQueries.getUnitLogAngajat())) {
+
+			stmt.setString(1, angajatId);
+
+			stmt.executeQuery();
+
+			ResultSet rs = stmt.getResultSet();
+
+			while (rs.next()) {
+
+				unitLog = rs.getString("filiala");
+			}
+
+		} catch (Exception ex) {
+			logger.error(Utils.getStackTrace(ex));
+		}
+
+		return unitLog;
 	}
 
 	private void setErrMessage(int msgId) {
