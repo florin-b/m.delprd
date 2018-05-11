@@ -4,6 +4,17 @@ function afisTraseu() {
 
 	var dStop = $('#dateStop').val();
 
+	var start = $("#dateStart").datepicker("getDate");
+	var end = $("#dateStop").datepicker("getDate");
+	var days = (end - start) / (1000 * 60 * 60 * 24);
+
+	if (days > 1) {
+		showAlertTraseu("Info",
+				"Intervalul nu trebuie sa fie mai mare de 2 zile.");
+		return;
+
+	}
+
 	var codAngajat = $('#select-angajat-traseu').val();
 
 	var nrAuto = $('#select-masina-traseu').val();

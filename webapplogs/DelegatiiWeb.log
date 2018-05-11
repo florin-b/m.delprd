@@ -1,0 +1,7 @@
+30-Apr-2018 11:43:16 [main] ERROR m.delegatii.model.OperatiiAngajat - java.sql.SQLException: Invalid column name
+	at oracle.jdbc.driver.OracleStatement.getColumnIndex(OracleStatement.java:3724)
+	at oracle.jdbc.driver.OracleResultSetImpl.findColumn(OracleResultSetImpl.java:2799)
+	at oracle.jdbc.driver.OracleResultSet.getString(OracleResultSet.java:498)
+	at m.delegatii.model.OperatiiAngajat.getCategSubord(OperatiiAngajat.java:121)
+	at m.delegatii.test.TestClass.main(TestClass.java:14)
+

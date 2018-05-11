@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import m.delegatii.beans.User;
 import m.delegatii.beans.UserInfo;
+import m.delegatii.enums.TipAnjagat;
 import m.delegatii.model.OperatiiAngajat;
 import m.delegatii.model.OperatiiMasini;
 import m.delegatii.queries.SqlQueries;
@@ -52,6 +53,8 @@ public class Account {
 			callableStatement.registerOutParameter(9, java.sql.Types.VARCHAR);
 			callableStatement.registerOutParameter(10, java.sql.Types.NUMERIC);
 
+			callableStatement.setString(7, user.getIpAddr());
+			
 			callableStatement.execute();
 
 			if (callableStatement.getInt(3) == 3) {
@@ -91,6 +94,7 @@ public class Account {
 				UserInfo.getInstance().setUnitLog(getUnitLogAngajat(conn, UserInfo.getInstance().getCod()));
 
 				UserInfo.getInstance().setCodDepart(codDepart);
+				UserInfo.getInstance().setHasSubordonati(userHasSubordonati(conn, UserInfo.getInstance().getTipAngajat()));
 
 				List<String> listMasini = new OperatiiMasini().getMasiniAlocate(UserInfo.getInstance().getCod());
 
@@ -184,6 +188,30 @@ public class Account {
 		}
 
 		return unitLog;
+	}
+
+	private boolean userHasSubordonati(Connection conn, TipAnjagat tipAngajat) {
+		boolean hasSubordonati = false;
+
+		try (PreparedStatement stmt = conn.prepareStatement(SqlQueries.userHasSubordonati())) {
+
+			stmt.setString(1, tipAngajat.toString());
+
+			stmt.executeQuery();
+
+			ResultSet rs = stmt.getResultSet();
+
+			while (rs.next()) {
+
+				hasSubordonati = true;
+				break;
+			}
+
+		} catch (Exception ex) {
+			logger.error(Utils.getStackTrace(ex));
+		}
+
+		return hasSubordonati;
 	}
 
 	private void setErrMessage(int msgId) {

@@ -82,7 +82,7 @@ $(document).on('pageshow', '#modifica', function() {
 	$("#labelInfo").html('Incarcare lista delegatii. Asteptati...');
 
 	$('#listdel').on('click', 'li', function() {
-
+		
 		delegatieSelIndex = $(this).closest("li").index() + 1;
 		delegatieSelId = $(this).attr("data-rowid");
 

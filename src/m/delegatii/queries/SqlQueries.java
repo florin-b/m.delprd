@@ -138,4 +138,12 @@ public class SqlQueries {
 		return sqlString.toString();
 	}
 
+	public static String userHasSubordonati() {
+		StringBuilder sqlString = new StringBuilder();
+
+		sqlString.append(" select 1 from functii_non_vanzari where aprobat =? ");
+
+		return sqlString.toString();
+	}
+
 }

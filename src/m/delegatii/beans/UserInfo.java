@@ -16,6 +16,7 @@ public class UserInfo {
 	private String listMasini;
 	private List<NavigationDetails> menuOptions;
 	private String numeAngajat;
+	private boolean hasSubordonati;
 
 	private static UserInfo instance;
 
@@ -296,6 +297,14 @@ public class UserInfo {
 		this.numeAngajat = numeAngajat;
 	}
 
+	public boolean isHasSubordonati() {
+		return hasSubordonati;
+	}
+
+	public void setHasSubordonati(boolean hasSubordonati) {
+		this.hasSubordonati = hasSubordonati;
+	}
+
 	public void clearData() {
 
 		nume = "";
@@ -308,6 +317,7 @@ public class UserInfo {
 		listMasini = "";
 		menuOptions = null;
 		numeAngajat = "";
+		hasSubordonati = false;
 
 	}
 

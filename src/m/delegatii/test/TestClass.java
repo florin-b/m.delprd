@@ -5,22 +5,16 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import m.delegatii.beans.User;
-import m.delegatii.database.Account;
-import m.delegatii.database.DBManager;
+import m.delegatii.model.OperatiiAngajat;
 
 public class TestClass {
 
 	public static void main(String[] args) throws Exception {
 
-		//System.out.println(new OperatiiAngajat().getTipAngajat("00050099"));
+	
 		
 		
-		User user = new User();
-		user.setName("APOPESCU5");
-		user.setPassword("YP7mhg");
-		
-		new Account(new DBManager().getProdDataSource().getConnection()).loginUser(user);
+	
 		
 
 	}

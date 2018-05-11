@@ -10,6 +10,7 @@ import javax.servlet.jsp.PageContext;
 import javax.servlet.jsp.tagext.SimpleTagSupport;
 
 import m.delegatii.beans.NavigationDetails;
+import m.delegatii.beans.UserInfo;
 import m.delegatii.enums.EnumMeniu;
 import m.delegatii.helpers.HelperMeniu;
 
@@ -66,6 +67,14 @@ public class Navigator extends SimpleTagSupport {
 		nd.setNume(EnumMeniu.AFISEAZA_TRASEU);
 		HelperMeniu.addMenuOption(navigationLinks, nd, tipUser);
 
+		if (UserInfo.getInstance().isHasSubordonati() && isUserExeptie()) {
+			nd = new NavigationDetails();
+			nd.setLink(String.format("%s/auth/afiseazaPozitie.jsp", root));
+			nd.setText("Afiseaza pozitie");
+			nd.setNume(EnumMeniu.AFISEAZA_POZITIE);
+			HelperMeniu.addMenuOption(navigationLinks, nd, tipUser);
+		}
+
 		nd = new NavigationDetails();
 		nd.setLink(String.format("%s/exit.jsp", root));
 		nd.setText("Iesire");
@@ -83,6 +92,15 @@ public class Navigator extends SimpleTagSupport {
 			getJspContext().setAttribute("navdetails", nd);
 			getJspBody().invoke(null);
 		}
+	}
+
+	private boolean isUserExeptie() {
+		boolean isUserExceptie = false;
+
+		if (UserInfo.getInstance().getUnitLog().equals("GL90") || UserInfo.getInstance().getCod().equals("00002066"))
+			isUserExceptie = true;
+
+		return isUserExceptie;
 	}
 
 }

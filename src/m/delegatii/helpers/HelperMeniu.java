@@ -43,6 +43,7 @@ public class HelperMeniu {
 			case APROBA_DELEGATIE:
 			case AFISEAZA_DELEGATIE:
 			case AFISEAZA_TRASEU:
+			case AFISEAZA_POZITIE:
 			case EXIT:
 				navigationLinks.add(nd);
 				break;
@@ -58,6 +59,7 @@ public class HelperMeniu {
 			case CREEAZA_DELEGATIE:
 			case MODIFICA_DELEGATIE:
 			case AFISEAZA_DELEGATIE:
+			case AFISEAZA_TRASEU:
 			case EXIT:
 				navigationLinks.add(nd);
 				break;

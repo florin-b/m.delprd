@@ -3,6 +3,9 @@ package m.delegatii.controller;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,7 +49,7 @@ public class Controller extends HttpServlet {
 
 		try {
 			conn = new DBManager().getProdDataSource().getConnection();
-			
+
 			account.setConn(conn);
 		} catch (SQLException e) {
 			logger.error(Utils.getStackTrace(e));
@@ -66,6 +69,7 @@ public class Controller extends HttpServlet {
 			User user = new User();
 			user.setName(name);
 			user.setPassword(password);
+			user.setIpAddr(request.getParameter("txt_ipaddr"));
 
 			try {
 				HttpSession session = request.getSession();

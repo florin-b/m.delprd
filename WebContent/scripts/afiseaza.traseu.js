@@ -16,6 +16,7 @@ function afisAngajati() {
 	var tipAng = $('#tipAng').text();
 	var unitLog = $('#unitLog').text();
 	var depart = $('#codDepart').text();
+	var codAng = $('#codAng').text();
 
 	$.mobile.loading('show');
 
@@ -25,7 +26,8 @@ function afisAngajati() {
 		data : ({
 			tipAngajat : tipAng,
 			unitLog : unitLog,
-			codDepart : depart
+			codDepart : depart,
+			codAng : codAng
 		}),
 		cache : false,
 		dataType : "text",
@@ -142,3 +144,11 @@ function initDateFields() {
 	$("#dateStart").datepicker("setDate", firstDate);
 	$("#dateStop").datepicker("setDate", lastDate);
 }
+
+
+function showAlertTraseu(tipAlert, mesajAlert) {
+	$('#tipAlertT').text(tipAlert);
+	$('#textAlertT').text(mesajAlert);
+	$.mobile.changePage('#dialogTraseu');
+}
+

@@ -19,6 +19,7 @@ public class User implements Serializable {
 	private String listMasini = "";
 	private String codDepart = "";
 	private String numeAng = "";
+	private String ipAddr = "";
 
 	public User() {
 
@@ -130,6 +131,18 @@ public class User implements Serializable {
 
 	public void setNumeAng(String numeAng) {
 		this.numeAng = numeAng;
+	}
+
+	public String getIpAddr() {
+		
+		if (ipAddr == null)
+			return "-1";
+		
+		return ipAddr;
+	}
+
+	public void setIpAddr(String ipAddr) {
+		this.ipAddr = ipAddr;
 	}
 
 	@Override

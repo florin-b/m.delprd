@@ -38,7 +38,12 @@
 					<c:out value="${account.errMessage}" />
 				</div>
 
+
+				<input type="hidden" name="txt_ipaddr"
+					id="ipaddr" value=<%out.print(request.getRemoteAddr());%>>
+
 			</form>
+
 
 		</div>
 

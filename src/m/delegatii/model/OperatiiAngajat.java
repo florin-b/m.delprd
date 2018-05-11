@@ -67,7 +67,7 @@ public class OperatiiAngajat {
 
 		return tipAngajat;
 	}
-	
+
 	public String getExtraFiliale(String codAngajat) {
 		StringBuilder extraFil = new StringBuilder();
 
