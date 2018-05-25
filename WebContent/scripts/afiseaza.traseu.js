@@ -127,7 +127,8 @@ function populateListMasini(listMasini) {
 
 function initDateFields() {
 	$("#dateStart").datepicker({
-		dateFormat : "dd-mm-yy"
+		dateFormat : "dd-mm-yy",
+		minDate:'-30d'
 	});
 
 	$("#dateStop").datepicker({

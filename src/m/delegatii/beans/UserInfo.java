@@ -324,7 +324,10 @@ public class UserInfo {
 	@Override
 	public String toString() {
 		return "UserInfo [nume=" + nume + ", filiala=" + filiala + ", tipAcces=" + tipAcces + ", cod=" + cod + ", tipAngajat=" + tipAngajat + ", codDepart="
-				+ codDepart + ", unitLog=" + unitLog + ", listMasini=" + listMasini + "]";
+				+ codDepart + ", unitLog=" + unitLog + ", listMasini=" + listMasini + ", menuOptions=" + menuOptions + ", numeAngajat=" + numeAngajat
+				+ ", hasSubordonati=" + hasSubordonati + "]";
 	}
+
+	
 
 }

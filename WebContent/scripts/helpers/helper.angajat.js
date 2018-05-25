@@ -29,6 +29,7 @@ function hasSubords(tipAngajat) {
 	case 'SMR':
 	case 'SMW':
 	case 'SMG':
+	case 'SSLO':
 		subords = true;
 		break;
 	default:

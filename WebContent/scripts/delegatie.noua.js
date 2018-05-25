@@ -221,7 +221,7 @@ function salveazaDelegatie() {
 		delegatie.nrAuto = nrAuto;
 		delegatie.distreal = '0';
 		delegatie.unitlog = unitLog;
-
+		
 		$.mobile.loading('show');
 
 		$.ajax({

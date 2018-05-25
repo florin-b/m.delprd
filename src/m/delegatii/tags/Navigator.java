@@ -67,7 +67,7 @@ public class Navigator extends SimpleTagSupport {
 		nd.setNume(EnumMeniu.AFISEAZA_TRASEU);
 		HelperMeniu.addMenuOption(navigationLinks, nd, tipUser);
 
-		if (UserInfo.getInstance().isHasSubordonati() && isUserExeptie()) {
+		if (UserInfo.getInstance().isHasSubordonati()) {
 			nd = new NavigationDetails();
 			nd.setLink(String.format("%s/auth/afiseazaPozitie.jsp", root));
 			nd.setText("Afiseaza pozitie");
@@ -94,13 +94,6 @@ public class Navigator extends SimpleTagSupport {
 		}
 	}
 
-	private boolean isUserExeptie() {
-		boolean isUserExceptie = false;
-
-		if (UserInfo.getInstance().getUnitLog().equals("GL90") || UserInfo.getInstance().getCod().equals("00002066"))
-			isUserExceptie = true;
-
-		return isUserExceptie;
-	}
+	
 
 }
