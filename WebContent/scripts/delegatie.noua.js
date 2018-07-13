@@ -304,7 +304,7 @@ function initDateFields() {
 
 	$("#dateStart").datepicker(
 			{
-				minDate : -40,
+				minDate : -90,
 				maxDate : "+30D",
 				dateFormat : "dd-mm-yy",
 				onSelect : function(selected) {

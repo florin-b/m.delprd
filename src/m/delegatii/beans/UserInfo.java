@@ -145,6 +145,8 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.GD;
 		} else if (codAcces.equals("IOFR08")) {
 			tipAngajat = TipAnjagat.IOFR08;
+		} else if (codAcces.equals("IOFR09")) {
+			tipAngajat = TipAnjagat.IOFR09;
 		} else if (codAcces.equals("IHR")) {
 			tipAngajat = TipAnjagat.IHR;
 		} else if (codAcces.equals("ISSM")) {
@@ -327,7 +329,5 @@ public class UserInfo {
 				+ codDepart + ", unitLog=" + unitLog + ", listMasini=" + listMasini + ", menuOptions=" + menuOptions + ", numeAngajat=" + numeAngajat
 				+ ", hasSubordonati=" + hasSubordonati + "]";
 	}
-
-	
 
 }

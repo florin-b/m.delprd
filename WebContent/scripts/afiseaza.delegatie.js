@@ -200,7 +200,7 @@ function getStatusIcon(statusDelegatie) {
 function initDateFields() {
 	$("#dateStart").datepicker({
 		dateFormat : "dd-mm-yy",
-		minDate:'-30d'
+		minDate:'-90d'
 	});
 
 	$("#dateStop").datepicker({
