@@ -388,7 +388,7 @@ function initNrAutoFields() {
 	$('#select-auto').empty();
 
 	$('#schimbaAuto').hide();
-
+	
 	if (listMasini.length > 0) {
 
 		var i;

@@ -40,7 +40,7 @@ public class RedirectToWebApp extends HttpServlet {
 
 			String codAcces = request.getParameter("tipAcces");
 
-			if (codAcces.equals("12") || codAcces.equals("17") || codAcces.equals("18") || codAcces.equals("27")) {
+			if (codAcces.equals("12") || codAcces.equals("17") || codAcces.equals("18") || codAcces.equals("27") || codAcces.equals("32")) {
 				codAcces = new OperatiiAngajat().getTipAngajat(UserInfo.getInstance().getCod());
 
 			}
@@ -67,7 +67,7 @@ public class RedirectToWebApp extends HttpServlet {
 			// Exceptie CMATEI2 si SM
 			if (UserInfo.getInstance().getCod().equals("00010281") || codAcces.equals("SMG"))
 				UserInfo.getInstance().setCodDepart("11");
-			else if (codAcces.equals("27") || codAcces.startsWith("KA"))
+			else if (codAcces.equals("27") || codAcces.equals("32") || codAcces.startsWith("KA"))
 				UserInfo.getInstance().setCodDepart("10");
 			else
 				UserInfo.getInstance().setCodDepart(request.getParameter("codDepart"));

@@ -75,7 +75,7 @@ public class SqlQueries {
 	public static String getMasiniAlocate() {
 		StringBuilder sqlString = new StringBuilder();
 
-		sqlString.append(" select distinct c.ktext,a.adatu ");
+		sqlString.append(" select distinct replace(c.ktext,' ','') ktext,a.adatu ");
 		sqlString.append(" from sapprd.anlz a join sapprd.anla b on b.anln1 = a.anln1 and b.anln2 = a.anln2 and b.mandt=a.mandt ");
 		sqlString.append(" join sapprd.aufk c on c.aufnr = a.caufn and c.mandt=a.mandt ");
 		sqlString.append(" where a.pernr =? ");
