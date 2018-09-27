@@ -69,6 +69,8 @@ public class UserInfo {
 
 	public void setTipAngajat(String codAcces) {
 
+	
+		
 		if (codAcces.equals("9")) {
 			tipAngajat = TipAnjagat.AV;
 		} else if (codAcces.equals("AV")) {
@@ -255,6 +257,10 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.SSSSM_SU;
 		} else if (codAcces.equals("MDMK")) {
 			tipAngajat = TipAnjagat.MDMK;
+		} else if (codAcces.equals("SMK")) {
+			tipAngajat = TipAnjagat.SMK;
+		} else if (codAcces.equals("DEC")) {
+			tipAngajat = TipAnjagat.DEC;
 		}
 
 	}

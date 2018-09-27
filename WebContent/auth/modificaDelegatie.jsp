@@ -371,7 +371,10 @@
 							<div id="map_canvas_delegatieM" style="height: 400px">
 
 								<script
-									src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhGZckc6WAio9WiiLstQTTpVtAvQ7kIEc'></script>
+									src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC5LRmkHjtEYCRB99GJrZkoKTZ0Xh3uGJw'></script>
+									
+									
+									
 								<script type="text/javascript"
 									src="../scripts/modifica.delegatie.maps.js"></script>
 							</div>
