@@ -46,8 +46,12 @@ function afisTraseu() {
 }
 
 function showMap(data) {
+	
+	
 
 	var objTraseu = $.parseJSON(data);
+	
+	
 
 	if (objTraseu.coordonate == null) {
 		$("#map_traseu").hide();
@@ -111,7 +115,8 @@ function showMap(data) {
 				position : new google.maps.LatLng(
 						objTraseu.opriri[j].pozitieGps.latitudine,
 						objTraseu.opriri[j].pozitieGps.longitudine),
-				labelContent : objTraseu.opriri[j].durata,
+				labelContent : objTraseu.opriri[j].durata + '<br>' + objTraseu.opriri[j].data + '<br>' +  
+				objTraseu.opriri[j].pozitieGps.latitudine +' , ' + objTraseu.opriri[j].pozitieGps.longitudine,
 				map : map,
 
 				icon : '../img/stop-icon.png',

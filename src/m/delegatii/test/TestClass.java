@@ -1,20 +1,52 @@
 package m.delegatii.test;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-import m.delegatii.model.OperatiiAngajat;
+import javax.servlet.ServletException;
+
+import m.delegatii.beans.User;
+import m.delegatii.database.Account;
+import m.delegatii.database.DBManager;
+import m.delegatii.utils.Utils;
 
 public class TestClass {
 
 	public static void main(String[] args) throws Exception {
 
 	
-		
-		
+		User u = new User();
+		u.setUserName("BCIUPITU1");
+		u.setPassword("JT63ky");
 	
+		Connection conn = null;
+		Account account = new Account();
+		
+		try {
+			conn = new DBManager().getProdDataSource().getConnection();
+
+			account.setConn(conn);
+		} catch (SQLException e) {
+		
+			System.out.println(e.toString());
+			
+			account.setErrMessage(e.toString());
+			throw new ServletException();
+		}
+
+		
+		account.loginUser(u);
+		
+		if (conn != null)
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
 		
 
 	}
