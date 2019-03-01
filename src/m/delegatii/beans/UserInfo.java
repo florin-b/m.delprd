@@ -69,8 +69,6 @@ public class UserInfo {
 
 	public void setTipAngajat(String codAcces) {
 
-	
-		
 		if (codAcces.equals("9")) {
 			tipAngajat = TipAnjagat.AV;
 		} else if (codAcces.equals("AV")) {
@@ -261,8 +259,9 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.SMK;
 		} else if (codAcces.equals("DEC")) {
 			tipAngajat = TipAnjagat.DEC;
+		} else if (codAcces.equals("CVS")) {
+			tipAngajat = TipAnjagat.CVS;
 		}
-
 	}
 
 	public String getUnitLog() {

@@ -22,21 +22,7 @@ public class DBManager {
 
 	private static final Logger logger = LogManager.getLogger(DBManager.class);
 
-	public DataSource getProdDataSource_old() {
 
-		OracleDataSource oracleDS = null;
-		try {
-
-			oracleDS = new OracleDataSource();
-			oracleDS.setURL("jdbc:oracle:thin:@10.1.3.94:1521:prd002");
-			oracleDS.setUser("WEBSAP");
-			oracleDS.setPassword("2INTER7");
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return oracleDS;
-	}
 
 	public DataSource getProdDataSource() {
 
