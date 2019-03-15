@@ -20,8 +20,8 @@ public class TestClass {
 
 	
 		User u = new User();
-		u.setUserName("IIONESCU1");
-		u.setPassword("XxVyHQ");
+		u.setUserName("ICRISTIAN2");
+		u.setPassword("dBzRp4");
 	
 		Connection conn = null;
 		Account account = new Account();

@@ -261,6 +261,8 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.DEC;
 		} else if (codAcces.equals("CVS")) {
 			tipAngajat = TipAnjagat.CVS;
+		} else if (codAcces.equals("KA")) {
+			tipAngajat = TipAnjagat.KA;
 		}
 	}
 
