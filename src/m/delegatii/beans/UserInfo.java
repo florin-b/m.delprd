@@ -69,6 +69,8 @@ public class UserInfo {
 
 	public void setTipAngajat(String codAcces) {
 
+		System.out.println("setTipAngajat: " + codAcces);
+
 		if (codAcces.equals("9")) {
 			tipAngajat = TipAnjagat.AV;
 		} else if (codAcces.equals("AV")) {
@@ -143,7 +145,7 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.ARC;
 		} else if (codAcces.equals("GD")) {
 			tipAngajat = TipAnjagat.GD;
-		} else if (codAcces.equals("IOFR08")) {
+		} else if (codAcces.equals("IOFR08") || codAcces.equals("55")) {
 			tipAngajat = TipAnjagat.IOFR08;
 		} else if (codAcces.equals("IOFR09")) {
 			tipAngajat = TipAnjagat.IOFR09;
