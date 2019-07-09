@@ -100,10 +100,12 @@ public class Account {
 				List<String> listMasini = new OperatiiMasini().getMasiniAlocate(UserInfo.getInstance().getCod());
 
 				UserInfo.getInstance().setListMasini(listMasini.toString());
+				
 
 				return true;
 			} else {
 				setErrMessage(callableStatement.getInt(3));
+				System.out.println("ERR:" + callableStatement.getInt(3));
 				return false;
 			}
 
