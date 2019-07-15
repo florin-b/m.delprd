@@ -178,8 +178,8 @@
 			<div data-role="content" id="div_traseu">
 				<div id="map_traseu" style="height: 500px">
 
-					<script
-						src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhGZckc6WAio9WiiLstQTTpVtAvQ7kIEc'></script>
+				  	<script	src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBacSk9khZt7CGoqPe9UZFJGQAjWymAmBg'></script> 
+
 
 					<script type="text/javascript"
 						src='../scripts/helpers/markerwithlabel.js'></script>

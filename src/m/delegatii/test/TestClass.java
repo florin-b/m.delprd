@@ -12,16 +12,20 @@ import javax.servlet.ServletException;
 import m.delegatii.beans.User;
 import m.delegatii.database.Account;
 import m.delegatii.database.DBManager;
-import m.delegatii.utils.Utils;
 
 public class TestClass {
 
 	public static void main(String[] args) throws Exception {
 
 	
+	
+		
+		
+		
+		
 		User u = new User();
-		u.setUserName("ICRISTIAN2");
-		u.setPassword("dBzRp4");
+		u.setUserName("IONITAD");
+		u.setPassword("JYXgd4");
 	
 		Connection conn = null;
 		Account account = new Account();
@@ -40,6 +44,9 @@ public class TestClass {
 
 		
 		account.loginUser(u);
+		
+		
+		
 		
 		if (conn != null)
 			try {

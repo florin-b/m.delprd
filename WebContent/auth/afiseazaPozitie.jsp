@@ -135,7 +135,7 @@
 				<div id="map_pozitie" style="height: 500px">
 
 					<script
-						src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBhGZckc6WAio9WiiLstQTTpVtAvQ7kIEc'></script>
+						src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBacSk9khZt7CGoqPe9UZFJGQAjWymAmBg'></script>
 
 					<script src='../scripts/helpers/markerwithlabel.js'></script>
 					<script type="text/javascript" src="../scripts/pozitie.maps.js"></script>

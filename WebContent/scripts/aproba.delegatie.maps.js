@@ -48,7 +48,7 @@ function showMapRoute(listOpriri) {
 			google.maps.event.trigger(map, 'resize');
 
 		} else {
-			window.alert('Eroare calculare distanta ' + status);
+			window.alert('Eroare calculare distanta: ' + status);
 		}
 	});
 
