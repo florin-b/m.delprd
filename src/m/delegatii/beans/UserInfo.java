@@ -145,7 +145,7 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.ARC;
 		} else if (codAcces.equals("GD")) {
 			tipAngajat = TipAnjagat.GD;
-		} else if (codAcces.equals("IOFR08") || codAcces.equals("55")) {
+		} else if (codAcces.equals("IOFR08") || codAcces.equals("55") || codAcces.equals("INGOF")) {
 			tipAngajat = TipAnjagat.IOFR08;
 		} else if (codAcces.equals("IOFR09")) {
 			tipAngajat = TipAnjagat.IOFR09;
@@ -167,7 +167,7 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.RGEST;
 		} else if (codAcces.equals("SBA")) {
 			tipAngajat = TipAnjagat.SBA;
-		} else if (codAcces.equals("SDCVA")) {
+		} else if (codAcces.equals("SDCVA") || codAcces.equals("39")) {
 			tipAngajat = TipAnjagat.SDCVA;
 		} else if (codAcces.equals("SDKA")) {
 			tipAngajat = TipAnjagat.SDKA;

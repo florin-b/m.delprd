@@ -76,6 +76,12 @@ public class Navigator extends SimpleTagSupport {
 		}
 
 		nd = new NavigationDetails();
+		nd.setLink(String.format("%s/auth/stareGps.jsp", root));
+		nd.setText("Stare GPS");
+		nd.setNume(EnumMeniu.STARE_GPS);
+		HelperMeniu.addMenuOption(navigationLinks, nd, tipUser);		
+		
+		nd = new NavigationDetails();
 		nd.setLink(String.format("%s/exit.jsp", root));
 		nd.setText("Iesire");
 		nd.setNume(EnumMeniu.EXIT);

@@ -102,7 +102,7 @@ function getListMasini(codAngajat, dStart) {
 function populateListMasini(listMasini) {
 	var arrayMasini = listMasini.replace('[', '').replace(']', '').split(',');
 
-	$('#select-masina-traseu').empty();
+	$('#text_stare_gps').empty();
 
 	if (arrayMasini.length > 0) {
 

@@ -75,6 +75,7 @@ $(document).on('pageshow', '#modifica', function() {
 	$("#dateTraseuM").hide();
 
 	afisListDelegatii();
+
 	initNrAutoFields();
 	initDateFields();
 
@@ -82,7 +83,7 @@ $(document).on('pageshow', '#modifica', function() {
 	$("#labelInfo").html('Incarcare lista delegatii. Asteptati...');
 
 	$('#listdel').on('click', 'li', function() {
-		
+
 		delegatieSelIndex = $(this).closest("li").index() + 1;
 		delegatieSelId = $(this).attr("data-rowid");
 
@@ -421,8 +422,6 @@ function salveazaDelegatieM() {
 }
 
 function stergeDelegatie() {
-	
-	
 
 	confirmStergeDialog("Delegatia va fi stearsa.", "Confirmati?", "Da",
 			function() {
@@ -478,9 +477,9 @@ function stergeDlgService(delegatieId) {
 }
 
 function initDateFields() {
-	
+
 	$("#dateStopM").datepicker("option", "minDate", $('#dateStartM').val());
-	
+
 	$("#dateStartM").datepicker({
 		minDate : "-30D",
 		maxDate : "+10D",
