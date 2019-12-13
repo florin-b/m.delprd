@@ -24,8 +24,8 @@ public class TestClass {
 		
 		
 		User u = new User();
-		u.setUserName("IONITAD");
-		u.setPassword("JYXgd4");
+		u.setUserName("EGEGO");
+		u.setPassword("cZVHxG");
 	
 		Connection conn = null;
 		Account account = new Account();

@@ -103,6 +103,8 @@ function populateListMasini(listMasini) {
 	var arrayMasini = listMasini.replace('[', '').replace(']', '').split(',');
 
 	$('#text_stare_gps').empty();
+	
+	$('#select-masina-traseu').empty();
 
 	if (arrayMasini.length > 0) {
 
