@@ -36,8 +36,6 @@
 	src="../scripts/helpers/helper.angajat.js"></script>
 
 
-
-
 </head>
 <body>
 

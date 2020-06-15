@@ -267,9 +267,10 @@ public class UserInfo {
 			tipAngajat = TipAnjagat.KA;
 		} else if (codAcces.equals("SDIP")) {
 			tipAngajat = TipAnjagat.SDIP;
-		}
-		else if (codAcces.equals("CVIP")) {
+		} else if (codAcces.equals("CVIP")) {
 			tipAngajat = TipAnjagat.CVIP;
+		}else if (codAcces.equals("COC")) {
+			tipAngajat = TipAnjagat.COC;
 		}
 	}
 
