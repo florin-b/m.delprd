@@ -1,5 +1,5 @@
 function afisPozitie() {
-
+	
 	$.ajax({
 		type : 'GET',
 		url : window.location.origin

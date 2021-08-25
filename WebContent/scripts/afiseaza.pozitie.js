@@ -209,6 +209,8 @@ function getAngajatiCategorie() {
 }
 
 function loadListAngajati(listAngajati) {
+	
+	
 
 	jQuery('#totiAngajatii').prop({
 		'checked' : false

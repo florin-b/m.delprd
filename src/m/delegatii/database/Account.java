@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 
 import m.delegatii.beans.User;
 import m.delegatii.beans.UserInfo;
+import m.delegatii.enums.EnumTipAprob;
 import m.delegatii.enums.TipAnjagat;
 import m.delegatii.model.OperatiiAngajat;
 import m.delegatii.model.OperatiiMasini;
@@ -86,12 +87,14 @@ public class Account {
 				}
 
 				String numeDepart = callableStatement.getString(4);
+				
+				System.out.println("NumeDepart: " + numeDepart);
 
 				String codDepart = Utils.getDepart(numeDepart);
 
 				if (numeDepart.equalsIgnoreCase("TOAT"))
 					codDepart = new OperatiiAngajat().getDepartAngajat(codAgent);
-
+				
 				UserInfo.getInstance().setUnitLog(getUnitLogAngajat(conn, UserInfo.getInstance().getCod()));
 
 				UserInfo.getInstance().setCodDepart(codDepart);
@@ -101,6 +104,7 @@ public class Account {
 
 				UserInfo.getInstance().setListMasini(listMasini.toString());
 				
+				System.out.println("UserInfo: " + UserInfo.getInstance());
 
 				return true;
 			} else {

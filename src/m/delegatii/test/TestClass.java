@@ -12,6 +12,7 @@ import javax.servlet.ServletException;
 import m.delegatii.beans.User;
 import m.delegatii.database.Account;
 import m.delegatii.database.DBManager;
+import m.delegatii.model.OperatiiAngajat;
 
 public class TestClass {
 
@@ -19,13 +20,13 @@ public class TestClass {
 
 	
 	
-		
+		System.out.println(new OperatiiAngajat().getDepartAngajat("00086469"));
 		
 		
 		
 		User u = new User();
-		u.setUserName("EGEGO");
-		u.setPassword("cZVHxG");
+		u.setUserName("VURSAVCHE1");
+		u.setPassword("46DrX3");
 	
 		Connection conn = null;
 		Account account = new Account();

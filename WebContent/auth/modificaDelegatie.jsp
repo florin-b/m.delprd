@@ -83,9 +83,17 @@
 		<!-- /header -->
 		<div data-role="content" id="delegatieContent">
 
-			<div id='labelInfo' style="margin: 5px;">Selectati o delegatie</div>
+
+			<div style="margin: 5px;">Dupa ce delegatiile se
+				preiau un FAZ, acestea nu mai apar in modificare. Daca este necesara
+				modificarea unei delegatii preluata in FAZ atunci trebuie sa vorbiti
+				cu seful de coloana sa o stearga din FAZ. Dupa stergere aceasta va
+				aparea in Modificare.</div>
 
 			<br>
+			<div id='labelInfo' style="margin: 5px;">Selectati o delegatie</div>
+
+			
 			<div class="ui-corner-all custom-corners">
 				<ul data-role="listview" id="listdel" data-inset="true"
 					style="height: 200px; overflow: auto;">
@@ -372,9 +380,9 @@
 
 								<script
 									src='https://maps.googleapis.com/maps/api/js?key=AIzaSyC5LRmkHjtEYCRB99GJrZkoKTZ0Xh3uGJw'></script>
-									
-									
-									
+
+
+
 								<script type="text/javascript"
 									src="../scripts/modifica.delegatie.maps.js"></script>
 							</div>
